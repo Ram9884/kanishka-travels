@@ -1,30 +1,54 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import CallButton from '@/components/CallButton';
-import { Crown, Menu, X, User } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
+import { Crown, Menu, X, User, LogOut } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [userName, setUserName] = useState<string>('');
+  const router = useRouter();
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    // Get current user
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        setUser(user);
+        setUserName(user.user_metadata?.full_name || user.email?.split('@')[0] || 'Customer');
+      }
+    });
+
+    // Listen for auth state changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      const currentUser = session?.user || null;
+      setUser(currentUser);
+      if (currentUser) {
+        setUserName(currentUser.user_metadata?.full_name || currentUser.email?.split('@')[0] || 'Customer');
+      } else {
+        setUserName('');
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    setUser(null);
+    router.push('/');
+    router.refresh();
+  };
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#A16207]/25 bg-[#0F172A]/85 backdrop-blur-xl transition-all">
-      {/* Top Banner */}
-      <div className="bg-[#1E3A8A] text-white text-xs py-1.5 px-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <span className="font-medium text-[#F5D77F]">Direct Phone & WhatsApp Booking with S. Ramesh</span>
-            <span className="hidden md:inline text-white/60">| Iyyappanthangal, Chennai</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <CallButton phone="9677384267" label="96773 84267" variant="icon" className="text-white hover:text-[#F5D77F]" />
-            <WhatsAppButton variant="icon" />
-          </div>
-        </div>
-      </div>
-
       {/* Main Nav */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -46,7 +70,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-200">
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-200">
             <Link href="/" className="hover:text-[#A16207] transition-colors cursor-pointer">
               Home
             </Link>
@@ -59,26 +83,46 @@ export default function Navbar() {
             <Link href="/about" className="hover:text-[#A16207] transition-colors cursor-pointer">
               About
             </Link>
-            <Link href="/#faq" className="hover:text-[#A16207] transition-colors cursor-pointer">
-              FAQ
+
+            {/* Dedicated Book a Trip Link */}
+            <Link href="/book" className="hover:text-[#A16207] transition-colors cursor-pointer font-semibold text-white">
+              Book a Trip
+            </Link>
+
+            {/* Dedicated My Bookings Link */}
+            <Link href="/my-bookings" className="text-[#F5D77F] hover:text-[#D4AF37] font-semibold transition-colors cursor-pointer">
+              My Bookings
             </Link>
           </nav>
 
-          {/* Actions */}
+          {/* User Auth Actions */}
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/login"
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
-            >
-              <User className="w-4 h-4" />
-              <span>Login</span>
-            </Link>
-            <Link
-              href="/book"
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#A16207] to-[#D4AF37] text-white text-sm font-semibold shadow-md hover:brightness-110 transition-all cursor-pointer border border-amber-300/30"
-            >
-              Book a Trip
-            </Link>
+            {user ? (
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/my-bookings"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200 hover:text-white transition-colors cursor-pointer"
+                >
+                  <User className="w-3.5 h-3.5 text-[#A16207]" />
+                  <span className="max-w-[120px] truncate">{userName}</span>
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  title="Logout"
+                  className="p-2 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
+                  aria-label="Log Out"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#A16207] to-[#D4AF37] text-white text-sm font-semibold shadow-md hover:brightness-110 transition-all cursor-pointer border border-amber-300/30"
+              >
+                <span>Login</span>
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu trigger */}
@@ -108,22 +152,34 @@ export default function Navbar() {
             <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
               About Us
             </Link>
-            <Link href="/my-bookings" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
+            <Link href="/book" onClick={() => setMobileMenuOpen(false)} className="py-2 font-semibold text-white">
+              Book a Trip
+            </Link>
+            <Link href="/my-bookings" onClick={() => setMobileMenuOpen(false)} className="py-2 text-[#F5D77F] font-semibold">
               My Bookings
             </Link>
           </nav>
 
           <div className="pt-2 flex flex-col gap-3">
-            <Link
-              href="/book"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-3 rounded-lg bg-gradient-to-r from-[#A16207] to-[#D4AF37] text-white font-semibold shadow-md"
-            >
-              Book a Trip
-            </Link>
-            <div className="flex gap-2">
-              <WhatsAppButton variant="inline" className="flex-1 justify-center" label="WhatsApp Ramesh" />
-            </div>
+            {user ? (
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-center py-2.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-300 font-semibold text-sm"
+              >
+                Log Out ({userName})
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-2.5 rounded-lg bg-gradient-to-r from-[#A16207] to-[#D4AF37] text-white font-semibold text-sm shadow-md"
+              >
+                Customer Login
+              </Link>
+            )}
           </div>
         </div>
       )}
