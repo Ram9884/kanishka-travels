@@ -16,10 +16,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    requestAnimationFrame(() => setMounted(true));
     const savedTheme = localStorage.getItem('kt_theme') as Theme;
     if (savedTheme === 'light' || savedTheme === 'dark') {
-      setTheme(savedTheme);
+      requestAnimationFrame(() => setTheme(savedTheme));
       document.documentElement.classList.remove('light', 'dark');
       document.documentElement.classList.add(savedTheme);
     } else {

@@ -68,8 +68,10 @@ export default function LocationAutocomplete({
 
   useEffect(() => {
     if (!value || value.trim().length === 0) {
-      setSuggestions([]);
-      setIsOpen(false);
+      requestAnimationFrame(() => {
+        setSuggestions([]);
+        setIsOpen(false);
+      });
       return;
     }
 
@@ -78,8 +80,10 @@ export default function LocationAutocomplete({
       loc.name.toLowerCase().includes(query)
     ).slice(0, 6);
 
-    setSuggestions(matches);
-    setIsOpen(matches.length > 0);
+    requestAnimationFrame(() => {
+      setSuggestions(matches);
+      setIsOpen(matches.length > 0);
+    });
   }, [value]);
 
   // Handle outside click

@@ -10,7 +10,7 @@ import { Crown, Menu, X, User, LogOut, Calendar, Sun, Moon } from 'lucide-react'
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<unknown>(null);
   const [userName, setUserName] = useState<string>('');
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
@@ -55,21 +55,11 @@ export default function Navbar() {
   };
 
   return (
-    <motion.header
-      className="fixed top-0 left-0 right-0 z-50 w-full transition-[background,border-color,box-shadow] duration-500"
-      style={{
-        background: scrolled
-          ? 'rgba(10, 17, 40, 0.82)'
-          : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(161,98,7,0.22)' : '1px solid transparent',
-        boxShadow: scrolled ? '0 4px 32px rgba(0,0,0,0.45)' : 'none',
-      }}
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-    >
+        <motion.header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 border border-white/20 ${scrolled ? (theme === 'dark' ? 'glass-dark' : 'glass-light') : 'bg-transparent'}`}
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -153,7 +143,7 @@ export default function Navbar() {
               >
                 <span>Login</span>
               </Link>
-            )}
+            ) }
           </div>
 
           {/* Mobile Toggle */}
@@ -181,12 +171,7 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden border-b border-[#A16207]/20 px-4 pt-2 pb-6 space-y-4"
-          style={{
-            background: 'rgba(10, 17, 40, 0.96)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-          }}
+          className={`md:hidden border-b border-[#A16207]/20 px-4 pt-2 pb-6 space-y-4 ${theme === 'dark' ? 'glass-dark' : 'glass-light'}`}
         >
           <nav className="flex flex-col gap-3 text-base font-medium text-slate-200">
             <Link href="/" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">Home</Link>

@@ -1,0 +1,3 @@
+{
+  "ignorePatterns": [".claude/**", "node_modules/**"]
+}
