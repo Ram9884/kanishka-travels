@@ -9,7 +9,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
     <div className="min-h-screen flex flex-col bg-[#0A1128] text-slate-100 relative">
       <Navbar />
       <JourneyLine />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pt-0">{children}</main>
       <WhatsAppButton variant="floating" />
       <Footer />
     </div>

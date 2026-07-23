@@ -5,7 +5,7 @@ import Link from 'next/link';
 import ScrollReveal from '@/components/motion/ScrollReveal';
 import TiltCard from '@/components/motion/TiltCard';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { Users, Briefcase, Snowflake, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Users, Briefcase, Snowflake, CheckCircle2, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
 const FLEET_TYPES = [
   {
@@ -17,7 +17,6 @@ const FLEET_TYPES = [
     ac: true,
     bestFor: 'Airport Pickups, Local Chennai Rides, Small Family Outstation Trips',
     features: ['Comfortable Pushback Seats', 'Dual Airbags & ABS', 'Chilled Air Conditioning', 'Clean & Hygienic Interior'],
-    image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'suv',
@@ -28,7 +27,6 @@ const FLEET_TYPES = [
     ac: true,
     bestFor: 'Outstation Highways, Temple Pilgrimages, Family Vacations, VIP Corporate',
     features: ['Captain Seats Available', 'Rear AC Vents', 'Superior Highway Suspension', 'Ample Legroom'],
-    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'tempo',
@@ -39,24 +37,24 @@ const FLEET_TYPES = [
     ac: true,
     bestFor: 'Wedding Group Travel, Pilgrimage Groups, College/School Tours',
     features: ['Reclining Pushback Seats', 'Individual Reading Lights', 'High Roof & Aisles', 'Audio System'],
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=800',
   },
 ];
 
 export default function FleetPreview() {
   return (
-    <section id="fleet" className="py-24 bg-[#0A1128] text-white px-4 relative">
+    <section id="fleet" className="py-28 bg-[#0F172A] text-white px-4 sm:px-6 lg:px-8 relative border-t border-slate-800/80">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal yOffset={20}>
           <div className="text-center space-y-3 mb-16">
-            <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[#A16207]">
-              Well-Maintained Fleet
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-white">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#A16207]/15 border border-[#A16207]/40 text-[#F5D77F] text-xs font-mono font-medium">
+              <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Sanitized & Well-Maintained Vehicles</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-serif text-white tracking-tight">
               Choose Your Vehicle Category
             </h2>
-            <p className="text-slate-400 text-sm max-w-xl mx-auto">
-              Select your vehicle type when booking. S. Ramesh assigns the specific clean, verified vehicle upon confirmation.
+            <p className="text-slate-300 text-sm max-w-xl mx-auto font-sans leading-relaxed">
+              Select your vehicle category when booking. S. Ramesh assigns the specific clean, verified vehicle upon confirmation.
             </p>
           </div>
         </ScrollReveal>
@@ -65,41 +63,43 @@ export default function FleetPreview() {
           {FLEET_TYPES.map((vehicle, index) => (
             <ScrollReveal key={vehicle.id} yOffset={30} delay={index * 0.08}>
               <TiltCard className="h-full">
-                <div className="rounded-2xl bg-slate-900 border border-[#A16207]/30 hover:border-[#A16207] p-6 h-full flex flex-col justify-between shadow-xl transition-all duration-300">
+                <div className="rounded-3xl bg-slate-900/90 border border-slate-800 hover:border-[#A16207]/60 p-7 h-full flex flex-col justify-between shadow-2xl transition-all duration-300 backdrop-blur-xl group">
                   <div>
                     {/* Category badge */}
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-[11px] font-mono uppercase px-3 py-1 rounded-full bg-[#1E3A8A] text-[#F5D77F] border border-[#A16207]/40 font-semibold">
+                    <div className="flex justify-between items-center mb-5">
+                      <span className="text-[11px] font-mono uppercase px-3.5 py-1 rounded-full bg-[#1E3A8A] text-[#F5D77F] border border-[#A16207]/40 font-bold shadow-md">
                         {vehicle.category}
                       </span>
-                      <span className="flex items-center gap-1 text-xs text-emerald-400 font-mono">
+                      <span className="flex items-center gap-1.5 text-xs text-emerald-400 font-mono font-semibold">
                         <Snowflake className="w-3.5 h-3.5" /> Full AC
                       </span>
                     </div>
 
-                    <h3 className="text-2xl font-bold font-serif text-white mb-2">{vehicle.name}</h3>
+                    <h3 className="text-2xl font-bold font-serif text-white group-hover:text-[#F5D77F] transition-colors mb-3">
+                      {vehicle.name}
+                    </h3>
 
                     {/* Specs Grid */}
-                    <div className="flex items-center gap-4 py-3 border-y border-slate-800 text-xs text-slate-300 mb-4 font-mono">
+                    <div className="flex items-center gap-5 py-3 border-y border-slate-800 text-xs text-slate-300 mb-4 font-mono font-semibold">
                       <div className="flex items-center gap-1.5">
-                        <Users className="w-4 h-4 text-[#A16207]" />
+                        <Users className="w-4 h-4 text-[#D4AF37]" />
                         <span>{vehicle.seating} Seats</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Briefcase className="w-4 h-4 text-[#A16207]" />
+                        <Briefcase className="w-4 h-4 text-[#D4AF37]" />
                         <span>{vehicle.luggage}</span>
                       </div>
                     </div>
 
-                    <p className="text-xs text-slate-400 mb-4 leading-relaxed">
-                      <strong className="text-slate-200">Best for:</strong> {vehicle.bestFor}
+                    <p className="text-xs text-slate-300 mb-5 leading-relaxed font-sans">
+                      <strong className="text-slate-100">Best for:</strong> {vehicle.bestFor}
                     </p>
 
                     {/* Key features */}
-                    <ul className="space-y-2 mb-6">
+                    <ul className="space-y-2.5 mb-6">
                       {vehicle.features.map((feat, i) => (
-                        <li key={i} className="text-xs text-slate-300 flex items-center gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#A16207] shrink-0" />
+                        <li key={i} className="text-xs text-slate-300 flex items-center gap-2 font-sans">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
                           <span>{feat}</span>
                         </li>
                       ))}
@@ -107,13 +107,13 @@ export default function FleetPreview() {
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-4 border-t border-slate-800 space-y-2.5">
+                  <div className="pt-5 border-t border-slate-800/80 space-y-2.5">
                     <Link
                       href={`/book?vehicle=${vehicle.id}`}
-                      className="w-full py-3 rounded-lg bg-[#1E3A8A] hover:bg-[#152e72] text-white text-xs font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#1E3A8A] to-[#152e72] hover:from-[#152e72] hover:to-[#1E3A8A] text-white text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer border border-blue-500/20 shadow-md"
                     >
                       <span>Select Vehicle in Booking</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-4 h-4" />
                     </Link>
 
                     <WhatsAppButton

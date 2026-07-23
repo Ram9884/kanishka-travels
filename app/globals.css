@@ -1,53 +1,268 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* ─── CSS Variables ──────────────────────────────────────────────────────── */
 :root {
   --background: #0A1128;
   --foreground: #F8FAFC;
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Plus Jakarta Sans', 'Outfit', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-crown: 'Cinzel Decorative', serif;
+  --font-serif:  'Playfair Display', serif;
+  --font-sans:   'Plus Jakarta Sans', 'Outfit', sans-serif;
+  --font-mono:   'JetBrains Mono', monospace;
+  --font-crown:  'Cinzel Decorative', serif;
+  --gold:        #D4AF37;
+  --gold-muted:  #A16207;
+  --navy:        #1E3A8A;
 }
 
+/* ─── Light Theme Variables ──────────────────────────────────────────────── */
+html.light {
+  --background: #FAF7F2;
+  --foreground: #1A1209;
+  --gold:       #B8860B;
+  --gold-muted: #92680A;
+  --navy:       #1E3A8A;
+}
+
+/* ─── Base Body ──────────────────────────────────────────────────────────── */
 body {
-  background-color: #0A1128;
-  color: #F8FAFC;
+  background-color: var(--background);
+  color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
   scroll-behavior: smooth;
   letter-spacing: -0.01em;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-h1, h2, h3, h4, .font-serif {
-  font-family: var(--font-serif);
-  letter-spacing: -0.02em;
+h1, h2, h3, h4, .font-serif { font-family: var(--font-serif); letter-spacing: -0.02em; }
+.font-crown { font-family: var(--font-crown); }
+.font-mono  { font-family: var(--font-mono); }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PREMIUM LIGHT THEME
+   Warm Ivory + Antique Gold + Deep Navy on Cream
+   Inspired by: Rolls-Royce, Taj Hotels, LVMH Luxury brand design
+────────────────────────────────────────────────────────────────────────── */
+
+/* Page background: warm cream gradient, never flat white */
+html.light body,
+html.light main {
+  background: linear-gradient(160deg, #FAF7F2 0%, #F5EDD8 40%, #EDE8DF 100%) !important;
+  background-attachment: fixed !important;
+  color: #1A1209 !important;
 }
 
-.font-crown {
-  font-family: var(--font-crown);
+/* ── Sections ──────────────────────────────────────────────────────────── */
+html.light section {
+  background: transparent !important;
+  color: #1A1209 !important;
+  border-color: rgba(180, 140, 60, 0.18) !important;
 }
 
-.font-mono {
-  font-family: var(--font-mono);
+/* Every alternate section gets a gentle warm cream tint */
+html.light section:nth-child(even) {
+  background: rgba(245, 237, 216, 0.55) !important;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #0A1128;
-}
-::-webkit-scrollbar-thumb {
-  background: #1E3A8A;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #A16207;
+/* ── Header / Navbar ────────────────────────────────────────────────────── */
+html.light header {
+  background: rgba(250, 247, 242, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(180, 140, 60, 0.25) !important;
+  box-shadow: 0 4px 24px rgba(180, 140, 60, 0.08) !important;
 }
 
-/* Glassmorphism helpers */
+html.light header a,
+html.light header span { color: #1A1209 !important; }
+
+html.light header nav a { color: #3D2B0A !important; font-weight: 500; }
+html.light header nav a:hover { color: #B8860B !important; }
+
+/* Logo text */
+html.light header .font-serif { color: #1A1209 !important; }
+html.light header .text-\[\#A16207\] { color: #B8860B !important; }
+html.light header .text-\[\#F5D77F\]\/80 { color: #92680A !important; }
+
+/* ── Dark background containers → Premium Cream Cards ──────────────────── */
+html.light .bg-\[\#0A1128\],
+html.light .bg-\[\#0F172A\],
+html.light .bg-slate-950,
+html.light .bg-slate-900,
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/95,
+html.light .bg-slate-900\/60 {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FDF8F0 100%) !important;
+  color: #1A1209 !important;
+  border-color: rgba(180, 140, 60, 0.22) !important;
+  box-shadow:
+    0 4px 6px -1px rgba(180, 140, 60, 0.08),
+    0 20px 48px -8px rgba(180, 140, 60, 0.10) !important;
+}
+
+html.light .bg-slate-800,
+html.light .bg-slate-800\/90,
+html.light .bg-slate-800\/80,
+html.light .bg-slate-800\/60 {
+  background: linear-gradient(145deg, #FDF8F0 0%, #F5EDD8 100%) !important;
+  color: #1A1209 !important;
+  border-color: rgba(180, 140, 60, 0.18) !important;
+}
+
+/* ── Cards: rich ivory with gold shimmer border ─────────────────────────── */
+html.light .rounded-3xl,
+html.light .rounded-2xl,
+html.light .rounded-xl {
+  border-color: rgba(180, 140, 60, 0.20) !important;
+}
+
+/* Destination / Feature Cards */
+html.light .rounded-3xl.bg-slate-900\/90,
+html.light .rounded-3xl.bg-slate-900\/95 {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FDF8EE 100%) !important;
+  border: 1px solid rgba(180, 140, 60, 0.25) !important;
+  box-shadow:
+    0 1px 0 0 rgba(255,255,255,0.8) inset,
+    0 8px 32px -4px rgba(180, 140, 60, 0.14),
+    0 2px 8px rgba(0,0,0,0.06) !important;
+}
+
+/* ── Autocomplete Dropdown ─────────────────────────────────────────────── */
+html.light .absolute.z-50,
+html.light div[class*="z-50"] {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(180, 140, 60, 0.35) !important;
+  box-shadow: 0 24px 56px rgba(180, 140, 60, 0.18), 0 4px 16px rgba(0,0,0,0.08) !important;
+}
+
+html.light .absolute.z-50 button,
+html.light div[class*="z-50"] button { color: #1A1209 !important; }
+
+html.light .absolute.z-50 button:hover,
+html.light div[class*="z-50"] button:hover {
+  background: linear-gradient(90deg, rgba(212,175,55,0.08), rgba(180,140,60,0.12)) !important;
+  color: #B8860B !important;
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+html.light .text-slate-100,
+html.light .text-slate-200,
+html.light .text-slate-300 { color: #4A3520 !important; }
+
+html.light .text-slate-400 { color: #7A5C30 !important; }
+
+html.light .text-white { color: #1A1209 !important; }
+
+html.light h1, html.light h2, html.light h3, html.light h4 { color: #1A1209 !important; }
+
+/* Keep gold accent text gold */
+html.light .text-\[\#D4AF37\],
+html.light .text-\[\#F5D77F\],
+html.light .text-\[\#A16207\] { color: #B8860B !important; }
+
+/* Keep emerald trust badge green */
+html.light .text-emerald-400 { color: #059669 !important; }
+
+/* Gradient headline text: keep it on light theme too */
+html.light .bg-gradient-to-r.bg-clip-text.text-transparent {
+  background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #92680A 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* ── Section Badge Pills ─────────────────────────────────────────────────── */
+html.light .bg-\[\#A16207\]\/15,
+html.light .bg-\[\#A16207\]\/10 {
+  background: rgba(184, 134, 11, 0.10) !important;
+  border-color: rgba(184, 134, 11, 0.30) !important;
+}
+
+html.light .bg-\[\#1E3A8A\]\/60,
+html.light .bg-\[\#1E3A8A\]\/15 {
+  background: rgba(30, 58, 138, 0.08) !important;
+  border-color: rgba(30, 58, 138, 0.20) !important;
+}
+
+/* ── Form Inputs ─────────────────────────────────────────────────────────── */
+html.light select,
+html.light input,
+html.light textarea {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FDFAF4 100%) !important;
+  color: #1A1209 !important;
+  border-color: rgba(180, 140, 60, 0.30) !important;
+  box-shadow: 0 1px 3px rgba(180, 140, 60, 0.08) inset !important;
+}
+
+html.light select:focus,
+html.light input:focus,
+html.light textarea:focus {
+  border-color: #B8860B !important;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.12), 0 1px 3px rgba(180, 140, 60, 0.08) inset !important;
+  outline: none !important;
+}
+
+/* ── Borders ─────────────────────────────────────────────────────────────── */
+html.light .border-slate-800,
+html.light .border-slate-700,
+html.light .border-slate-600 {
+  border-color: rgba(180, 140, 60, 0.18) !important;
+}
+
+html.light .border-t.border-slate-800\/80,
+html.light .border-y.border-slate-800\/80 {
+  border-color: rgba(180, 140, 60, 0.15) !important;
+}
+
+/* ── Buttons: keep gradients white text ─────────────────────────────────── */
+html.light button.bg-gradient-to-r,
+html.light a.bg-gradient-to-r,
+html.light button.bg-\[\#1E3A8A\],
+html.light a.bg-\[\#1E3A8A\] {
+  color: #FFFFFF !important;
+}
+
+html.light button.bg-gradient-to-r span,
+html.light a.bg-gradient-to-r span,
+html.light button.bg-\[\#1E3A8A\] span,
+html.light a.bg-\[\#1E3A8A\] span {
+  color: #FFFFFF !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+html.light footer {
+  background: linear-gradient(160deg, #1A1209 0%, #2D1F0A 100%) !important;
+  color: #F5EDD8 !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.25) !important;
+}
+
+html.light footer * { color: #D4B896 !important; }
+html.light footer .text-\[\#D4AF37\],
+html.light footer .text-\[\#F5D77F\],
+html.light footer .text-\[\#A16207\] { color: #D4AF37 !important; }
+
+/* ── Floating Micro-Badges in Light Mode ────────────────────────────────── */
+html.light .backdrop-blur-sm.bg-white\/8,
+html.light .backdrop-blur-md.bg-white\/8 {
+  background: rgba(250, 247, 242, 0.85) !important;
+  border: 1px solid rgba(180, 140, 60, 0.22) !important;
+  color: #4A3520 !important;
+}
+
+/* ── Image / Destination cards: keep dark overlay images as-is ──────────── */
+html.light .bg-slate-950 { background: #1A1209 !important; }
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0A1128; }
+html.light ::-webkit-scrollbar-track { background: #F5EDD8; }
+::-webkit-scrollbar-thumb { background: #1E3A8A; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #A16207; }
+html.light ::-webkit-scrollbar-thumb { background: rgba(184,134,11,0.55); border-radius: 4px; }
+html.light ::-webkit-scrollbar-thumb:hover { background: #B8860B; }
+
+/* ── Glassmorphism Helpers ───────────────────────────────────────────────── */
 .glass-panel {
   background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(16px);
@@ -55,7 +270,101 @@ h1, h2, h3, h4, .font-serif {
   border: 1px solid rgba(161, 98, 7, 0.25);
 }
 
-::selection {
-  background: #A16207;
-  color: #FFFFFF;
+html.light .glass-panel {
+  background: rgba(250, 247, 242, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(184, 134, 11, 0.28);
+  box-shadow: 0 8px 32px rgba(180, 140, 60, 0.12);
+}
+
+/* ── Selection ───────────────────────────────────────────────────────────── */
+::selection { background: #A16207; color: #FFFFFF; }
+html.light ::selection { background: #B8860B; color: #FFFFFF; }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DARK MODE ANIMATIONS & UTILITIES (unchanged)
+────────────────────────────────────────────────────────────────────────── */
+.hero-cinematic-sheen {
+  background:
+    linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.08) 44%, transparent 58%),
+    linear-gradient(180deg, rgba(245,215,127,0.08), transparent 34%);
+  background-size: 220% 100%, 100% 100%;
+  animation: premium-sheen 9s ease-in-out infinite;
+}
+
+.premium-booking-card {
+  animation: premium-card-rise 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both, premium-card-float 7s ease-in-out 1s infinite;
+}
+
+.premium-float-card { animation: premium-float 6s ease-in-out infinite; }
+
+.premium-cta { position: relative; overflow: hidden; }
+.premium-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-125%) skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  transition: transform 700ms ease;
+}
+.premium-cta:hover::after,
+.premium-cta:focus-visible::after { transform: translateX(125%) skewX(-18deg); }
+
+.premium-stat {
+  min-height: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.premium-stat strong { color: #FFFFFF; font-family: var(--font-serif); font-size: 18px; line-height: 1.1; }
+.premium-stat span   { color: #CBD5E1; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* Light mode stat pill */
+html.light .premium-stat {
+  background: rgba(250,247,242,0.80) !important;
+  border: 1px solid rgba(180,140,60,0.22) !important;
+  box-shadow: 0 4px 24px rgba(180,140,60,0.10) !important;
+}
+html.light .premium-stat strong { color: #1A1209 !important; }
+html.light .premium-stat span   { color: #7A5C30 !important; }
+
+/* ─── Keyframes ──────────────────────────────────────────────────────────── */
+@keyframes premium-sheen {
+  0%, 100% { background-position: 180% 0, 0 0; }
+  50%       { background-position: -40% 0, 0 0; }
+}
+
+@keyframes premium-card-rise {
+  from { opacity: 0; transform: translateY(28px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes premium-card-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes premium-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%       { transform: translate3d(0, -12px, 0); }
+}
+
+@media (min-width: 1024px) {
+  .premium-stat { align-items: flex-start; padding-left: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
+  .hero-cinematic-sheen, .premium-booking-card, .premium-float-card { animation: none !important; }
+  .premium-cta::after { display: none; }
 }

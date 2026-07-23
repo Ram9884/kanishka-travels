@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import LocationAutocomplete from '@/components/ui/LocationAutocomplete';
 import { Crown, ArrowRight, ArrowLeft, CheckCircle2, ShieldCheck, AlertCircle } from 'lucide-react';
 
 function BookingWizardContent() {
@@ -19,7 +20,7 @@ function BookingWizardContent() {
   // Form State
   const [serviceType, setServiceType] = useState(searchParams?.get('service') || 'outstation');
   const [pickupLocation, setPickupLocation] = useState(searchParams?.get('pickup') || '');
-  const [dropLocation, setDropLocation] = useState('');
+  const [dropLocation, setDropLocation] = useState(searchParams?.get('drop') || '');
   const [pickupDate, setPickupDate] = useState(searchParams?.get('date') || '');
   const [pickupTime, setPickupTime] = useState('06:00');
   const [returnDate, setReturnDate] = useState('');
@@ -182,24 +183,20 @@ function BookingWizardContent() {
 
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1">Pickup Location</label>
-                <input
-                  type="text"
+                <LocationAutocomplete
                   value={pickupLocation}
-                  onChange={(e) => setPickupLocation(e.target.value)}
-                  placeholder="e.g. Iyyappanthangal, Porur, Airport"
-                  className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none"
+                  onChange={setPickupLocation}
+                  placeholder="Type pickup area (e.g. Porur, Airport, Iyyappanthangal)"
                   required
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-medium text-slate-300 mb-1">Destination / Drop Location</label>
-                <input
-                  type="text"
+                <LocationAutocomplete
                   value={dropLocation}
-                  onChange={(e) => setDropLocation(e.target.value)}
-                  placeholder="e.g. Tirupati, Pondicherry, T. Nagar"
-                  className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none"
+                  onChange={setDropLocation}
+                  placeholder="Type drop area (e.g. Ooty, Tirupati, Pondicherry, T. Nagar)"
                   required
                 />
               </div>

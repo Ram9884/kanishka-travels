@@ -3,19 +3,29 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { createClient } from '@/lib/supabase/client';
-import { Crown, Menu, X, User, LogOut } from 'lucide-react';
+import { useTheme } from '@/components/ThemeProvider';
+import { Crown, Menu, X, User, LogOut, Calendar, Sun, Moon } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [userName, setUserName] = useState<string>('');
+  const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const router = useRouter();
+
+  /* Track scroll position */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     const supabase = createClient();
 
-    // Get current user
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
         setUser(user);
@@ -23,7 +33,6 @@ export default function Navbar() {
       }
     });
 
-    // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       const currentUser = session?.user || null;
       setUser(currentUser);
@@ -34,9 +43,7 @@ export default function Navbar() {
       }
     });
 
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => { subscription.unsubscribe(); };
   }, []);
 
   const handleLogout = async () => {
@@ -48,8 +55,21 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#A16207]/25 bg-[#0F172A]/85 backdrop-blur-xl transition-all">
-      {/* Main Nav */}
+    <motion.header
+      className="fixed top-0 left-0 right-0 z-50 w-full transition-[background,border-color,box-shadow] duration-500"
+      style={{
+        background: scrolled
+          ? 'rgba(10, 17, 40, 0.82)'
+          : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(161,98,7,0.22)' : '1px solid transparent',
+        boxShadow: scrolled ? '0 4px 32px rgba(0,0,0,0.45)' : 'none',
+      }}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -80,32 +100,43 @@ export default function Navbar() {
             <Link href="/fleet" className="hover:text-[#A16207] transition-colors cursor-pointer">
               Fleet
             </Link>
-            <Link href="/about" className="hover:text-[#A16207] transition-colors cursor-pointer">
-              About
-            </Link>
-
-            {/* Dedicated Book a Trip Link */}
             <Link href="/book" className="hover:text-[#A16207] transition-colors cursor-pointer font-semibold text-white">
               Book a Trip
             </Link>
-
-            {/* Dedicated My Bookings Link */}
-            <Link href="/my-bookings" className="text-[#F5D77F] hover:text-[#D4AF37] font-semibold transition-colors cursor-pointer">
-              My Bookings
+            <Link href="/about" className="hover:text-[#A16207] transition-colors cursor-pointer">
+              About
             </Link>
           </nav>
 
-          {/* User Auth Actions */}
+          {/* Auth & Theme */}
           <div className="hidden md:flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Theme`}
+              className="p-2.5 rounded-xl bg-white/8 border border-white/12 hover:border-[#A16207]/60 text-amber-400 hover:text-amber-300 transition-all cursor-pointer"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark'
+                ? <Sun className="w-4 h-4 text-[#F5D77F]" />
+                : <Moon className="w-4 h-4 text-[#1E3A8A]" />}
+            </button>
+
             {user ? (
               <div className="flex items-center gap-3">
-                <Link
-                  href="/my-bookings"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200 hover:text-white transition-colors cursor-pointer"
-                >
+                <div className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white/8 border border-white/12 text-xs font-semibold text-slate-200">
                   <User className="w-3.5 h-3.5 text-[#A16207]" />
                   <span className="max-w-[120px] truncate">{userName}</span>
+                </div>
+
+                <Link
+                  href="/my-bookings"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#1E3A8A] border border-[#A16207]/40 text-xs font-bold text-[#F5D77F] hover:bg-[#152e72] transition-colors cursor-pointer shadow-sm"
+                >
+                  <Calendar className="w-3.5 h-3.5 text-[#A16207]" />
+                  <span>My Bookings</span>
                 </Link>
+
                 <button
                   onClick={handleLogout}
                   title="Logout"
@@ -125,52 +156,67 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile menu trigger */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-slate-300 hover:text-white cursor-pointer"
-            aria-label="Toggle Navigation"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Toggle */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-amber-400 cursor-pointer"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark'
+                ? <Sun className="w-5 h-5 text-[#F5D77F]" />
+                : <Moon className="w-5 h-5 text-[#1E3A8A]" />}
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-lg text-slate-300 hover:text-white cursor-pointer"
+              aria-label="Toggle Navigation"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-[#A16207]/20 bg-[#0F172A]/95 px-4 pt-2 pb-6 space-y-4">
+        <div
+          className="md:hidden border-b border-[#A16207]/20 px-4 pt-2 pb-6 space-y-4"
+          style={{
+            background: 'rgba(10, 17, 40, 0.96)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+          }}
+        >
           <nav className="flex flex-col gap-3 text-base font-medium text-slate-200">
-            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
-              Home
-            </Link>
-            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
-              Services
-            </Link>
-            <Link href="/fleet" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
-              Fleet
-            </Link>
-            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
-              About Us
-            </Link>
-            <Link href="/book" onClick={() => setMobileMenuOpen(false)} className="py-2 font-semibold text-white">
-              Book a Trip
-            </Link>
-            <Link href="/my-bookings" onClick={() => setMobileMenuOpen(false)} className="py-2 text-[#F5D77F] font-semibold">
-              My Bookings
-            </Link>
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">Home</Link>
+            <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">Services</Link>
+            <Link href="/fleet" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">Fleet</Link>
+            <Link href="/book" onClick={() => setMobileMenuOpen(false)} className="py-2 font-semibold text-white">Book a Trip</Link>
+            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">About Us</Link>
           </nav>
 
           <div className="pt-2 flex flex-col gap-3">
             {user ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full text-center py-2.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-300 font-semibold text-sm"
-              >
-                Log Out ({userName})
-              </button>
+              <div className="space-y-2">
+                <div className="text-xs text-slate-400 font-mono flex items-center gap-1.5 px-1">
+                  <User className="w-3.5 h-3.5 text-[#A16207]" />
+                  <span>Logged in as <strong>{userName}</strong></span>
+                </div>
+                <Link
+                  href="/my-bookings"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center py-2.5 rounded-lg bg-[#1E3A8A] text-[#F5D77F] font-semibold text-sm border border-[#A16207]/40 block"
+                >
+                  My Bookings Portal
+                </Link>
+                <button
+                  onClick={() => { handleLogout(); setMobileMenuOpen(false); }}
+                  className="w-full text-center py-2.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-300 font-semibold text-sm"
+                >
+                  Log Out
+                </button>
+              </div>
             ) : (
               <Link
                 href="/login"
@@ -183,6 +229,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

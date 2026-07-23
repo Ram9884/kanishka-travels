@@ -4,56 +4,69 @@ import React from 'react';
 import ScrollReveal from '@/components/motion/ScrollReveal';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CallButton from '@/components/CallButton';
-import { Crown, ShieldCheck, Clock, UserCheck, HeartHandshake, PhoneCall } from 'lucide-react';
+import { Crown, ShieldCheck, Clock, UserCheck, PhoneCall, Quote, CheckCircle2 } from 'lucide-react';
 
 const REASONS = [
   {
     icon: PhoneCall,
-    title: 'Personalized Service by S. Ramesh',
-    description: 'Every booking is personally reviewed, confirmed, and managed by S. Ramesh — no middleman or automated call center.',
+    title: 'Personal Attention by S. Ramesh',
+    description: 'Every booking request is personally reviewed, confirmed, and coordinated by S. Ramesh — zero automated call centers or chatbots.',
   },
   {
     icon: ShieldCheck,
-    title: 'No Surprise Charges',
-    description: 'Transparent booking terms discussed upfront before trip departure. Clear agreement on tolls, permits, and driver bata.',
+    title: 'Zero Hidden Charges',
+    description: 'Transparent trip terms discussed upfront before departure. Clear agreement on tolls, state permits, and driver bata.',
   },
   {
     icon: UserCheck,
     title: 'Experienced Highway Drivers',
-    description: 'Polite, well-trained drivers who know Tamil Nadu, AP, Karnataka, and Kerala routes inside out.',
+    description: 'Polite, verified drivers with extensive route knowledge across Tamil Nadu, Andhra Pradesh, Karnataka, and Kerala.',
   },
   {
     icon: Clock,
     title: '100% Punctuality Guarantee',
-    description: 'On-time pickup for early morning airport flights and long-distance outstation pilgrimages.',
+    description: 'On-time pickup guaranteed for early 4 AM airport flights and long-distance outstation pilgrimages.',
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 bg-[#0F172A] text-white px-4 border-t border-slate-800 relative">
+    <section className="py-28 bg-[#0F172A] text-white px-4 sm:px-6 lg:px-8 border-t border-slate-800/80 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-6">
             <ScrollReveal yOffset={20}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#A16207]/15 border border-[#A16207]/40 text-[#F5D77F] text-xs font-mono">
-                <Crown className="w-4 h-4 text-[#A16207]" />
-                <span>Our Heritage & Trust</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#A16207]/15 border border-[#A16207]/40 text-[#F5D77F] text-xs font-mono font-medium">
+                <Crown className="w-4 h-4 text-[#D4AF37]" />
+                <span>Our Service Heritage</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">
-                Why Chennai Families & Corporates Trust <span className="text-[#A16207]">Kanishka Travels</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-serif leading-tight">
+                Why Travelers Trust <br />
+                <span className="text-[#D4AF37]">Kanishka Travels</span>
               </h2>
 
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Operating out of Iyyappanthangal, Chennai, we believe travel is not just about moving between places — it is about trust, safety, and personal care for your loved ones.
+              <p className="text-slate-300 text-sm leading-relaxed font-sans">
+                Operating out of Iyyappanthangal, Chennai, we believe travel is not just about moving between places — it is about personal trust, safety, and care for your family.
               </p>
 
-              <blockquote className="border-l-2 border-[#A16207] pl-4 py-2 my-4 text-xs italic text-[#F5D77F] bg-[#1E3A8A]/20 rounded-r-lg font-serif">
-                &quot;We don&apos;t just rent cars. We take personal responsibility for making your journey smooth, comfortable, and memorable.&quot;
-                <footer className="not-italic text-slate-400 font-mono text-[10px] mt-1">— S. Ramesh, Proprietor</footer>
-              </blockquote>
+              {/* Quote Card */}
+              <div className="relative rounded-2xl bg-slate-900/90 border border-[#A16207]/40 p-6 shadow-xl space-y-3 my-6 backdrop-blur-xl">
+                <Quote className="w-8 h-8 text-[#D4AF37]/30 absolute top-4 right-4" />
+                <p className="text-xs sm:text-sm italic text-[#F5D77F] font-serif leading-relaxed pr-6">
+                  &quot;We don&apos;t just rent cabs. We take personal responsibility for making your journey safe, punctual, and memorable.&quot;
+                </p>
+                <div className="flex items-center gap-2 pt-2 border-t border-slate-800">
+                  <div className="w-7 h-7 rounded-full bg-[#1E3A8A] flex items-center justify-center text-[#D4AF37] font-bold text-xs font-serif">
+                    R
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-white font-serif">S. Ramesh</p>
+                    <p className="text-[10px] text-slate-400 font-mono">Proprietor • Kanishka Travels</p>
+                  </div>
+                </div>
+              </div>
 
               <div className="flex flex-wrap gap-3 pt-2">
                 <WhatsAppButton variant="inline" label="Connect on WhatsApp" />
@@ -68,12 +81,14 @@ export default function WhyChooseUs() {
               const Icon = item.icon;
               return (
                 <ScrollReveal key={index} yOffset={30} delay={index * 0.06}>
-                  <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-[#A16207]/50 transition-all duration-300">
-                    <div className="w-10 h-10 rounded-lg bg-[#1E3A8A]/40 border border-[#A16207]/30 flex items-center justify-center text-[#A16207] mb-4">
-                      <Icon className="w-5 h-5" />
+                  <div className="p-7 rounded-3xl bg-slate-900/80 border border-slate-800 hover:border-[#A16207]/60 transition-all duration-300 hover:bg-slate-800/80 shadow-xl group">
+                    <div className="w-12 h-12 rounded-2xl bg-[#1E3A8A]/50 border border-[#A16207]/40 flex items-center justify-center text-[#D4AF37] mb-5 group-hover:scale-110 transition-transform">
+                      <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="text-base font-bold text-white font-serif mb-2">{item.title}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
+                    <h3 className="text-lg font-bold text-white font-serif mb-2 group-hover:text-[#F5D77F] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans">{item.description}</p>
                   </div>
                 </ScrollReveal>
               );
