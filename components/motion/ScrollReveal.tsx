@@ -10,6 +10,7 @@ if (typeof window !== 'undefined') {
 }
 
 interface ScrollRevealProps {
+
   children: React.ReactNode;
   stagger?: number;
   yOffset?: number;

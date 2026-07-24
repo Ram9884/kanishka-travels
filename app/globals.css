@@ -293,6 +293,352 @@ html.light .stats-card-desc {
   color: #4A3B2C !important;
 }
 
+/* ─── Light Theme: Services Page Luxury Refinement ──────────────────── */
+html.light .service-intro-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 20px 50px rgba(184, 134, 11, 0.12), 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .service-intro-title {
+  color: #1A1108 !important;
+}
+
+html.light .service-intro-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .service-exp-title {
+  color: #1A1108 !important;
+}
+
+html.light .service-exp-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .service-exp-bullet {
+  color: #1A1108 !important;
+}
+
+html.light .services-why-badge {
+  background: rgba(184, 134, 11, 0.12) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .services-why-title {
+  color: #1A1108 !important;
+}
+
+html.light .services-why-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .services-why-card:hover {
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.20) !important;
+}
+
+html.light .services-why-icon {
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EBD4 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .services-why-card-title {
+  color: #1A1108 !important;
+}
+
+html.light .services-why-card-title:hover,
+html.light .services-why-card:hover .services-why-card-title {
+  color: #B8860B !important;
+}
+
+html.light .services-why-card-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .services-cta-title {
+  color: #1A1108 !important;
+}
+
+html.light .services-cta-desc {
+  color: #4A3B2C !important;
+}
+
+
+/* ─── Light Theme: Fleet Page Luxury Refinement ─────────────────────── */
+html.light .fleet-hero-title,
+html.light .fleet-hero-subtitle {
+  color: #1A1108 !important;
+}
+
+html.light .fleet-philosophy-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 20px 50px rgba(184, 134, 11, 0.12), 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .fleet-philosophy-title {
+  color: #1A1108 !important;
+}
+
+html.light .fleet-philosophy-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .fleet-philosophy-item {
+  background: rgba(250, 245, 232, 0.8) !important;
+  border-color: rgba(184, 134, 11, 0.20) !important;
+}
+
+html.light .fleet-philosophy-item-title {
+  color: #B8860B !important;
+}
+
+html.light .fleet-philosophy-item-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .fleet-vehicle-title {
+  color: #1A1108 !important;
+}
+
+html.light .fleet-vehicle-tagline {
+  color: #B8860B !important;
+}
+
+html.light .fleet-vehicle-story {
+  color: #4A3B2C !important;
+}
+
+html.light .fleet-spec-cell {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+}
+
+html.light .fleet-spec-value {
+  color: #1A1108 !important;
+}
+
+html.light .fleet-use-case {
+  background: rgba(250, 245, 232, 0.9) !important;
+  border-color: rgba(184, 134, 11, 0.25) !important;
+  color: #4A3B2C !important;
+}
+
+html.light .fleet-why-badge {
+  background: rgba(184, 134, 11, 0.12) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .fleet-why-title {
+  color: #1A1108 !important;
+}
+
+html.light .fleet-why-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .fleet-why-card:hover {
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.20) !important;
+}
+
+html.light .fleet-why-icon {
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EBD4 100%) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .fleet-why-card-title {
+  color: #1A1108 !important;
+}
+
+html.light .fleet-why-card-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .fleet-stat-cell {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+}
+
+html.light .fleet-stat-icon {
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EBD4 100%) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+}
+
+html.light .fleet-stat-label {
+  color: #1A1108 !important;
+}
+
+html.light .fleet-stat-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .fleet-cta-title {
+  color: #1A1108 !important;
+}
+
+html.light .fleet-cta-desc {
+  color: #4A3B2C !important;
+}
+
+
+/* ─── Light Theme: Booking Wizard ───────────────────────────────────────── */
+html.light .booking-step-title {
+  color: #1A1108 !important;
+}
+
+html.light .booking-step-subtitle {
+  color: #4A3B2C !important;
+}
+
+html.light .booking-summary-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border-color: rgba(184, 134, 11, 0.25) !important;
+}
+
+html.light .booking-field {
+  background: rgba(255, 255, 255, 0.90) !important;
+  border-color: rgba(184, 134, 11, 0.25) !important;
+  color: #1A1108 !important;
+}
+
+html.light .booking-field:focus {
+  border-color: rgba(184, 134, 11, 0.65) !important;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.10) !important;
+}
+
+html.light .booking-field::placeholder {
+  color: #9CA3AF !important;
+}
+
+
+/* ─── Light Theme: About Page Luxury Refinement ─────────────────────── */
+html.light .about-hero-title,
+html.light .about-hero-subtitle {
+  color: #1A1108 !important;
+}
+
+html.light .about-hero-badge {
+  background: rgba(184, 134, 11, 0.12) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .about-story-title {
+  color: #1A1108 !important;
+}
+
+html.light .about-story-p {
+  color: #4A3B2C !important;
+}
+
+html.light .about-quote-box {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border-color: rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 15px 40px rgba(184, 134, 11, 0.10) !important;
+}
+
+
+
+html.light .about-pillars-title {
+  color: #1A1108 !important;
+}
+
+html.light .about-pillars-subtitle {
+  color: #4A3B2C !important;
+}
+
+html.light .about-pillar-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .about-pillar-card:hover {
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.20) !important;
+}
+
+html.light .about-pillar-icon {
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EBD4 100%) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .about-pillar-card-title {
+  color: #1A1108 !important;
+}
+
+html.light .about-pillar-card-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .about-timeline-title {
+  color: #1A1108 !important;
+}
+
+html.light .about-timeline-subtitle {
+  color: #4A3B2C !important;
+}
+
+html.light .about-timeline-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.10) !important;
+}
+
+html.light .about-timeline-card-title {
+  color: #1A1108 !important;
+}
+
+html.light .about-timeline-card-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .about-testi-title {
+  color: #1A1108 !important;
+}
+
+html.light .about-testi-subtitle {
+  color: #4A3B2C !important;
+}
+
+html.light .about-testi-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.10) !important;
+}
+
+html.light .about-testi-text {
+  color: #4A3B2C !important;
+}
+
+html.light .about-founder-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  box-shadow: 0 20px 50px rgba(184, 134, 11, 0.12) !important;
+}
+
+html.light .about-founder-name {
+  color: #1A1108 !important;
+}
+
+html.light .about-cta-title {
+  color: #1A1108 !important;
+}
+
+html.light .about-cta-desc {
+  color: #4A3B2C !important;
+}
+
+
 /* ─── Autocomplete ───────────────────────────────────────────────────────── */
 html.light .absolute.z-50,
 html.light div[class*="z-50"] {
