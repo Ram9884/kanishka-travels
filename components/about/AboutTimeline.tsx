@@ -89,8 +89,8 @@ export default function AboutTimeline() {
 
         {/* Timeline structure */}
         <div className="relative">
-          {/* Vertical central gold line */}
-          <div className="timeline-gold-line absolute left-4 sm:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-transparent -translate-x-1/2" />
+          {/* Vertical central gold line with glow */}
+          <div className="timeline-gold-line absolute left-4 sm:left-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#F5D77F] via-[#D4AF37] to-transparent -translate-x-1/2 shadow-[0_0_18px_rgba(212,175,55,0.6)]" />
 
           <div className="space-y-12 sm:space-y-16">
             {MILESTONES.map((m, idx) => {
@@ -98,27 +98,27 @@ export default function AboutTimeline() {
               const Icon = m.icon;
               return (
                 <div key={idx} className="relative flex flex-col sm:flex-row items-start sm:items-center">
-                  {/* Timeline dot node */}
-                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 z-10 w-9 h-9 rounded-full bg-[#0B0B0D] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.4)]">
-                    <Icon className="w-4 h-4" />
+                  {/* Glowing Milestone Node */}
+                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 z-10 w-11 h-11 rounded-full icon-container-gold flex items-center justify-center font-bold">
+                    <Icon className="w-5 h-5" />
                   </div>
 
                   {/* Card Container */}
-                  <div className={`w-full sm:w-1/2 pl-12 sm:pl-0 ${isEven ? 'sm:pr-12 sm:text-right' : 'sm:pl-12 sm:ml-auto sm:text-left'}`}>
+                  <div className={`w-full sm:w-1/2 pl-14 sm:pl-0 ${isEven ? 'sm:pr-14 sm:text-right' : 'sm:pl-14 sm:ml-auto sm:text-left'}`}>
                     <motion.div
                       initial={{ opacity: 0, x: isEven ? -30 : 30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: 0.1 }}
-                      className="about-timeline-card p-6 sm:p-7 rounded-2xl bg-[#1A1A1D]/90 border border-[#D4AF37]/20 hover:border-[#D4AF37]/50 transition-colors duration-300 shadow-xl"
+                      className="card-editorial p-7 sm:p-8 rounded-2xl group overflow-hidden"
                     >
-                      <span className="inline-block px-3 py-1 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/35 text-[#F5D77F] font-mono text-xs font-bold mb-3">
+                      <span className="inline-block px-3.5 py-1 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-[#F5D77F] font-mono text-xs font-extrabold mb-3 shadow-[0_0_12px_rgba(212,175,55,0.2)]">
                         {m.year}
                       </span>
                       <h3 className="about-timeline-card-title text-base sm:text-lg font-bold text-white mb-2 leading-snug">
                         {m.title}
                       </h3>
-                      <p className="about-timeline-card-desc text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
+                      <p className="about-timeline-card-desc text-xs sm:text-sm text-[#A1A1AA] leading-relaxed font-sans font-light">
                         {m.desc}
                       </p>
                     </motion.div>

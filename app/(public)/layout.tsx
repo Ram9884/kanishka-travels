@@ -6,7 +6,7 @@ import JourneyLine from '@/components/motion/JourneyLine';
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0A1128] text-slate-100 relative">
+    <div className="min-h-screen flex flex-col bg-transparent text-slate-100 relative">
       <Navbar />
       <JourneyLine />
       <main className="flex-1 pt-0">{children}</main>

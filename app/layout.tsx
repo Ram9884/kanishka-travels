@@ -122,6 +122,8 @@ const schemas = [
   },
 ];
 
+import GlobalCinematicBackground from '@/components/background/GlobalCinematicBackground';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -135,8 +137,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
         />
       </head>
-      <body className="min-h-full bg-[#0B0B0D] text-[#F8F5EE] font-sans selection:bg-[#D4AF37] selection:text-slate-950" suppressHydrationWarning>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="min-h-full bg-[#0B0B0D] text-[#F8F5EE] font-sans selection:bg-[#D4AF37] selection:text-slate-950 relative" suppressHydrationWarning>
+        <ThemeProvider>
+          <GlobalCinematicBackground />
+          <div className="relative z-10">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );

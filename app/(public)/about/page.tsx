@@ -3,7 +3,6 @@ import AboutHero from '@/components/about/AboutHero';
 import AboutStory from '@/components/about/AboutStory';
 import AboutPillars from '@/components/about/AboutPillars';
 import AboutTimeline from '@/components/about/AboutTimeline';
-import AboutTestimonials from '@/components/about/AboutTestimonials';
 import AboutFounderCard from '@/components/about/AboutFounderCard';
 import AboutCTA from '@/components/about/AboutCTA';
 
@@ -27,13 +26,10 @@ export default function AboutPage() {
       {/* 4. Heritage Timeline (2012 - Present) */}
       <AboutTimeline />
 
-      {/* 5. Guest Testimonials */}
-      <AboutTestimonials />
-
-      {/* 6. Founder Profile & Contact Card */}
+      {/* 5. Founder Profile & Contact Card */}
       <AboutFounderCard />
 
-      {/* 7. Conversion CTA */}
+      {/* 6. Conversion CTA */}
       <AboutCTA />
     </main>
   );

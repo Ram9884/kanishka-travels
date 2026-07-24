@@ -25,7 +25,7 @@ export default function AboutTestimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {TESTIMONIALS.map((t, idx) => (
             <motion.div
               key={t.id}
@@ -33,34 +33,34 @@ export default function AboutTestimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="about-testi-card relative p-7 rounded-2xl bg-[#1A1A1D]/90 border border-[#D4AF37]/20 hover:border-[#D4AF37]/50 transition-all duration-300 shadow-xl flex flex-col justify-between"
+              className="card-feature p-8 rounded-2xl flex flex-col justify-between group overflow-hidden"
             >
-              <Quote className="w-8 h-8 text-[#D4AF37]/15 absolute top-6 right-6" />
+              <Quote className="w-8 h-8 text-[#D4AF37]/20 absolute top-6 right-6" />
 
               <div className="space-y-4">
                 {/* Rating stars */}
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5">
                   {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37]" />
+                    <Star key={i} className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,0.5)]" />
                   ))}
-                  <span className="ml-2 text-xs font-mono text-[#D4AF37]/80">{t.tripType}</span>
+                  <span className="ml-2.5 text-xs font-mono text-[#D4AF37] font-semibold">{t.tripType}</span>
                 </div>
 
-                <p className="about-testi-text text-sm text-[#F8F5EE]/80 leading-relaxed font-sans font-light italic">
+                <p className="about-testi-text text-sm text-[#F8F5EE]/85 leading-relaxed font-sans font-light italic">
                   &quot;{t.review}&quot;
                 </p>
               </div>
 
               {/* Author details */}
-              <div className="mt-6 pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#D4AF37]/40 shrink-0 bg-[#0B0B0D]">
+              <div className="mt-6 pt-5 border-t border-[#D4AF37]/15 flex items-center justify-between">
+                <div className="flex items-center gap-3.5">
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-[#D4AF37]/50 shrink-0 bg-[#0B0B0D] shadow-[0_0_12px_rgba(212,175,55,0.2)]">
                     <Image
                       src={t.avatar}
                       alt={t.name}
                       fill
                       className="object-cover"
-                      sizes="40px"
+                      sizes="44px"
                     />
                   </div>
                   <div>
@@ -71,7 +71,7 @@ export default function AboutTestimonials() {
                     <p className="text-[11px] text-[#A1A1AA]">{t.role} · {t.location}</p>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono text-[#D4AF37]/60">{t.date}</span>
+                <span className="text-[10px] font-mono text-[#D4AF37]/70">{t.date}</span>
               </div>
             </motion.div>
           ))}

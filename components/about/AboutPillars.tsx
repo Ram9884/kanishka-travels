@@ -29,9 +29,9 @@ const PRINCIPLES = [
 
 export default function AboutPillars() {
   return (
-    <section className="relative w-full py-20 bg-transparent px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full py-24 bg-transparent px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
           <span className="text-xs font-mono font-bold text-[#D4AF37] uppercase tracking-widest block">
             Our Commitments
           </span>
@@ -46,7 +46,7 @@ export default function AboutPillars() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {PRINCIPLES.map((p, idx) => {
             const Icon = p.icon;
             return (
@@ -56,16 +56,16 @@ export default function AboutPillars() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className="about-pillar-card p-7 rounded-2xl bg-[#1A1A1D]/90 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)] flex flex-col justify-between group"
+                className="card-feature p-8 rounded-2xl flex flex-col justify-between group overflow-hidden"
               >
                 <div>
-                  <div className="about-pillar-icon w-12 h-12 rounded-xl bg-[#0B0B0D] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] mb-5 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl icon-container-gold flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Icon className="w-6 h-6" strokeWidth={1.8} />
                   </div>
                   <h3 className="about-pillar-card-title text-base font-bold text-[#F5D77F] mb-3 leading-snug">
                     {p.title}
                   </h3>
+                  <div className="w-8 h-[1.5px] bg-[#D4AF37]/30 mb-3 group-hover:w-16 group-hover:bg-[#D4AF37] transition-all duration-300" />
                   <p className="about-pillar-card-desc text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
                     {p.desc}
                   </p>

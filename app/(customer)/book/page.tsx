@@ -792,7 +792,7 @@ function BookingWizardContent() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-transparent pt-20">
       {/* ─── Left Panel ─────────────────────────────── */}
-      <aside className="hidden lg:block lg:w-[28%] xl:w-[25%] sticky top-35 h-fit ml-[120px] px-8 py-10 rounded-2xl bg-[#0B0B0D]/90 border border-[#D4AF37]/15 backdrop-blur-xl shadow-2xl">
+      <aside className="card-luxury-glass hidden lg:block lg:w-[28%] xl:w-[25%] sticky top-35 h-fit ml-[120px] px-8 py-10 rounded-2xl overflow-hidden group transition-all duration-500">
         {/* Step tracker */}
         <div className="space-y-0">
           {STEPS.map((s, idx) => {

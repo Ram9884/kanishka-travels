@@ -67,7 +67,8 @@ export default function AboutStory() {
             </p>
 
             {/* Founder message highlight box */}
-            <div className="about-quote-box relative rounded-2xl p-6 bg-[#1A1A1D]/90 border border-[#D4AF37]/25 backdrop-blur-md shadow-xl">
+            <div className="about-quote-box relative rounded-2xl p-6 sm:p-7 bg-gradient-to-br from-[#18181C]/95 via-[#101013]/95 to-[#0B0B0D]/95 border border-[#D4AF37]/35 shadow-[0_20px_50px_rgba(0,0,0,0.8),_inset_0_1px_1px_rgba(245,215,127,0.15)] backdrop-blur-xl group hover:border-[#D4AF37]/60 transition-all duration-300 overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#F5D77F]/40 to-transparent" />
               <Quote className="w-8 h-8 text-[#D4AF37]/30 absolute top-4 right-4" />
               <p className="text-xs sm:text-sm text-[#F5D77F] font-serif italic leading-relaxed pr-6">
                 &quot;When a family trusts us with their trip, it is never just a ride — it is an important occasion, a holy pilgrimage, or a long-awaited reunion. I ensure every driver arrives on time, every vehicle is spotless, and every guest feels valued.&quot;
