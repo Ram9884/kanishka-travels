@@ -31,7 +31,7 @@ const REASONS = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative w-full py-24 bg-gradient-to-b from-[#0A1128] via-[#0E1738] to-[#0A1128] text-white px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative w-full py-24 bg-transparent text-white px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Radial Glow */}
       <div className="absolute top-1/3 left-1/4 w-[600px] h-[350px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
 
@@ -51,9 +51,9 @@ export default function WhyChooseUs() {
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-                Why Travelers Trust <br />
+                The Kanishka <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">
-                  Kanishka Travels
+                  Experience
                 </span>
               </h2>
 

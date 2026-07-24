@@ -1,5 +1,7 @@
 'use client';
 
+import { trackEvent } from '@/lib/analytics';
+
 type WhatsAppButtonProps = {
   phone?: string;
   message?: string;
@@ -20,10 +22,15 @@ export default function WhatsAppButton({
 }: WhatsAppButtonProps) {
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
+  const handleClick = () => {
+    trackEvent('whatsapp_click', { phone, variant });
+  };
+
   if (variant === 'floating') {
     return (
       <a
         href={url}
+        onClick={handleClick}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3.5 text-white shadow-xl hover:scale-105 hover:bg-[#20bd5a] transition-all cursor-pointer border border-white/20"
@@ -39,6 +46,7 @@ export default function WhatsAppButton({
     return (
       <a
         href={url}
+        onClick={handleClick}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -53,6 +61,7 @@ export default function WhatsAppButton({
     return (
       <a
         href={url}
+        onClick={handleClick}
         target="_blank"
         rel="noopener noreferrer"
         className={`inline-flex items-center gap-2 rounded-full bg-[#25D366]/15 border border-[#25D366]/40 px-3.5 py-1.5 text-xs text-[#25D366] font-semibold hover:bg-[#25D366]/25 transition-all cursor-pointer ${className}`}

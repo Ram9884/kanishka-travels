@@ -1,15 +1,15 @@
 import React from 'react';
-import FleetPreview from '@/components/home/FleetPreview';
+import FleetShowcase from '@/components/fleet/FleetShowcase';
 
 export const metadata = {
-  title: 'Our Fleet | Kanishka Travels — Maruti Dzire, Innova Crysta, Tempo Traveller',
-  description: 'View vehicle categories available for booking with Kanishka Travels in Chennai. Clean, AC, well-maintained vehicles.',
+  title: 'Featured Vehicles & Fleet | Kanishka Travels — Swift Dzire, Ertiga, Innova Crysta, Tempo Traveller',
+  description: 'Explore Kanishka Travels fleet: Swift Dzire, Ertiga, Etios, Innova, Innova Crysta, Tempo Traveller, and Mini Bus with professional chauffeurs.',
 };
 
 export default function FleetPage() {
   return (
-    <div className="py-8">
-      <FleetPreview />
-    </div>
+    <main className="pt-20">
+      <FleetShowcase />
+    </main>
   );
 }

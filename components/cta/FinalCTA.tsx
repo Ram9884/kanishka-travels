@@ -9,7 +9,7 @@ import CallButton from '@/components/CallButton';
 
 export default function FinalCTA() {
   return (
-    <section className="relative w-full py-28 bg-gradient-to-b from-[#0A1128] via-[#0E1738] to-[#0A1128] overflow-hidden border-t border-[#D4AF37]/20">
+    <section className="relative w-full py-28 bg-[#0B0B0D] overflow-hidden border-t border-[#D4AF37]/20">
       {/* Cinematic Golden Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-gradient-to-r from-[#D4AF37]/10 via-[#F5D77F]/15 to-[#A16207]/10 blur-[160px] rounded-full pointer-events-none" />
 
@@ -32,15 +32,15 @@ export default function FinalCTA() {
 
           {/* Title */}
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            Ready for Your <br className="hidden sm:inline" />
+            Your Next Journey <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">
-              Next Journey?
+              Begins Here
             </span>
           </h2>
 
           {/* Description */}
           <p className="mt-6 text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
-            Book your luxury chauffeur-driven vehicle in seconds. Enjoy 100% transparent rates, polite highway drivers, and complete peace of mind.
+            Reserve your luxury chauffeur-driven vehicle in seconds. Enjoy 100% transparent rates, polite highway drivers, and complete peace of mind.
           </p>
 
           {/* CTA Buttons Row */}
@@ -49,10 +49,10 @@ export default function FinalCTA() {
               href="/book"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-sm uppercase tracking-wider shadow-2xl hover:shadow-[#D4AF37]/30 transition-all duration-300 hover:scale-105"
             >
-              <span>Book Your Trip</span>
+              <span>Reserve Your Chauffeur</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <WhatsAppButton variant="inline" label="WhatsApp Us" />
+            <WhatsAppButton variant="inline" label="Chat on WhatsApp" />
             <CallButton variant="primary" label="Call S. Ramesh" />
           </div>
 

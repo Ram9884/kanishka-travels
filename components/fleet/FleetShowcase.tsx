@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -15,9 +15,15 @@ import {
   Shield
 } from 'lucide-react';
 import { FEATURED_VEHICLES, Vehicle } from '@/data/fleet';
+import { initFleetScroll } from '@/utils/gsap';
 
 export default function FleetShowcase() {
+  const sectionRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    return initFleetScroll(sectionRef, '.vehicle-card-gsap');
+  }, []);
 
   const scroll = (direction: 'left' | 'right') => {
     if (carouselRef.current) {
@@ -27,7 +33,7 @@ export default function FleetShowcase() {
   };
 
   return (
-    <section className="relative w-full py-20 bg-gradient-to-b from-[#0A1128] via-[#0D1535] to-[#0A1128] overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-20 bg-gradient-to-b from-[#0A1128] via-[#0D1535] to-[#0A1128] overflow-hidden">
       {/* Subtle Background Radial Glow */}
       <div className="absolute top-1/3 right-10 w-[600px] h-[350px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
 
@@ -107,7 +113,7 @@ function VehicleCard({ vehicle, index }: { vehicle: Vehicle; index: number }) {
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -6, scale: 1.02 }}
-      className="snap-start shrink-0 w-[300px] sm:w-[350px] md:w-[380px] rounded-2xl overflow-hidden glass-dark border border-white/10 hover:border-[#D4AF37]/60 shadow-2xl transition-all duration-300 flex flex-col justify-between group"
+      className="vehicle-card-gsap snap-start shrink-0 w-[300px] sm:w-[350px] md:w-[380px] rounded-2xl overflow-hidden glass-dark border border-white/10 hover:border-[#D4AF37]/60 shadow-2xl transition-all duration-300 flex flex-col justify-between group"
     >
       {/* Large Image Container */}
       <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-slate-950">
@@ -131,11 +137,6 @@ function VehicleCard({ vehicle, index }: { vehicle: Vehicle; index: number }) {
               {vehicle.tag}
             </span>
           )}
-        </div>
-
-        {/* Rate Tag */}
-        <div className="absolute bottom-3 right-4 z-10 px-3 py-1 rounded-lg bg-slate-950/80 backdrop-blur-md border border-[#D4AF37]/40 text-[#F5D77F] font-mono text-sm font-bold">
-          {vehicle.ratePerKm}
         </div>
       </div>
 

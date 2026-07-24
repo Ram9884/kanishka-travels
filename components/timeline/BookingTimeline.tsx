@@ -1,14 +1,22 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { BOOKING_TIMELINE_STEPS } from '@/data/timeline';
 import Link from 'next/link';
+import { initTimelineScroll } from '@/utils/gsap';
 
 export default function BookingTimeline() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    return initTimelineScroll(sectionRef, lineRef);
+  }, []);
+
   return (
-    <section className="relative w-full py-24 bg-gradient-to-b from-[#0A1128] via-[#0E1738] to-[#0A1128] overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-24 bg-transparent overflow-hidden">
       {/* Soft Radial Gold Glow Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
 
@@ -32,7 +40,7 @@ export default function BookingTimeline() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight"
           >
-            How Booking <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Works</span>
+            Your Journey in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Four Simple Steps</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +56,7 @@ export default function BookingTimeline() {
         {/* Timeline Desktop (Horizontal) & Mobile (Vertical) */}
         <div className="relative">
           {/* Connecting Line Desktop */}
-          <div className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent z-0" />
+          <div ref={lineRef} className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent z-0 origin-left" />
 
           {/* Connecting Line Mobile */}
           <div className="lg:hidden absolute top-[40px] bottom-[40px] left-[39px] w-[2px] bg-gradient-to-b from-transparent via-[#D4AF37]/40 to-transparent z-0" />

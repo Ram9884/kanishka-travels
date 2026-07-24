@@ -20,7 +20,7 @@ export default function FAQAccordion() {
   };
 
   return (
-    <section className="relative w-full py-24 bg-[#0A1128] overflow-hidden">
+    <section className="relative w-full py-24 bg-transparent overflow-hidden">
       {/* Background Radial Glow */}
       <div className="absolute top-1/3 right-1/4 w-[600px] h-[350px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
 
@@ -44,7 +44,7 @@ export default function FAQAccordion() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight"
           >
-            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Questions</span>
+            Everything You <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Need to Know</span>
           </motion.h2>
         </div>
 

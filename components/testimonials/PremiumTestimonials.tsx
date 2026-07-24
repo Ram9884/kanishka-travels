@@ -34,7 +34,7 @@ export default function PremiumTestimonials() {
   };
 
   return (
-    <section className="relative w-full py-24 bg-[#0A1128] overflow-hidden">
+    <section className="relative w-full py-24 bg-transparent overflow-hidden">
       {/* Radial Background Glow */}
       <div className="absolute top-1/3 left-1/3 w-[600px] h-[350px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
 
@@ -59,7 +59,7 @@ export default function PremiumTestimonials() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight"
             >
-              What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Travellers Say</span>
+              Stories from <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Our Travellers</span>
             </motion.h2>
 
             {/* Google Rating Summary Badge */}
@@ -123,9 +123,9 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -6, scale: 1.02 }}
-      className="snap-start shrink-0 w-[310px] sm:w-[360px] md:w-[400px] p-7 rounded-2xl glass-dark border border-white/10 hover:border-[#D4AF37]/60 shadow-2xl transition-all duration-300 flex flex-col justify-between group relative"
+      className="snap-start shrink-0 w-[310px] sm:w-[360px] md:w-[400px] p-7 rounded-2xl glass-dark border border-white/10 hover:border-[#D4AF37]/60 shadow-2xl hover:shadow-[0_20px_50px_rgba(212,175,55,0.12)] transition-all duration-300 flex flex-col justify-between group relative"
     >
-      <Quote className="w-10 h-10 text-[#D4AF37]/20 absolute top-6 right-6" />
+      <Quote className="w-14 h-14 text-[#D4AF37]/15 group-hover:text-[#D4AF37]/35 group-hover:scale-105 transition-all duration-300 absolute top-5 right-5 pointer-events-none" />
 
       <div>
         {/* Rating Stars & Trip Tag */}

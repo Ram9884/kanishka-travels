@@ -24,26 +24,16 @@ const fadeUp = {
   visible:  { opacity: 1, y: 0,  filter: 'blur(0px)',  transition: { duration: 0.75, ease: 'easeOut' as const } },
 };
 
+import { initPinnedHeroScroll } from '@/utils/gsap';
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef   = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] });
-  const videoScale     = useTransform(scrollYProgress, [0, 1], [1, 1.14]);
-  const contentY       = useTransform(scrollYProgress, [0, 1], ['0%', '-12%']);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.65], [0, 0.28]);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!contentRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.to(contentRef.current, {
-        y: -44,
-        ease: 'none',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: 1.8 },
-      });
-    });
-    return () => ctx.revert();
+    return initPinnedHeroScroll(sectionRef, videoRef, contentRef, overlayRef);
   }, []);
 
   return (
@@ -64,18 +54,13 @@ export default function HeroSection() {
         background: 'linear-gradient(to bottom, rgba(8,14,31,0.68) 0%, rgba(8,14,31,0.22) 50%, rgba(8,14,31,0.80) 100%)',
       }} />
 
-      {/* ── Full-screen video ─────────────────────────────────────────── */}
-      <motion.div className="absolute inset-0 z-0" style={{ scale: videoScale }}>
-        <video ref={videoRef} className="hero-video absolute inset-0 w-full h-full object-cover" autoPlay muted loop playsInline preload="metadata" poster="/images/hero-poster.jpg" aria-hidden="true">
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
-        </video>
-      </motion.div>
+      {/* Transparent section over GlobalVideoBackground */}
 
       {/* 3 — Ambient gold bloom bottom-right */}
       <div className="absolute bottom-0 right-0 w-[600px] h-[400px] z-[2] opacity-30 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at bottom right, rgba(202,138,4,0.35), transparent 70%)' }} />
       {/* 4 — Scroll darken */}
-      <motion.div className="absolute inset-0 z-[3] bg-black" style={{ opacity: overlayOpacity }} />
+      <div ref={overlayRef} className="absolute inset-0 z-[3] bg-black opacity-20 pointer-events-none" />
       {/* Vignette overlay */}
       <div className="absolute inset-0 z-[4] pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.12), transparent 70%)' }} />
       {/* 5 — Subtle gold dot grid */}
@@ -86,7 +71,6 @@ export default function HeroSection() {
       <motion.div
         ref={contentRef}
         className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 flex flex-col items-center"
-        style={{ y: contentY }}
       >
         <motion.div
           className="w-full flex flex-col items-center text-center space-y-8"
@@ -114,20 +98,23 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Headline — dark mode: white + gold, light mode: espresso + gold via CSS */}
-          <motion.h1
-            variants={fadeUp}
-            className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-white leading-[1.05] tracking-tight max-w-4xl"
-            style={{ fontFamily: 'var(--font-serif)' }}
-          >
-            <span className="dark:text-[#F5D77F]">Your Trip...</span>{' '}
-            <br className="hidden sm:block" />
-            <span
-              className="bg-gradient-to-r from-[#F5D77F] via-[#CA8A04] to-[#EAB308] bg-clip-text text-transparent hero-headline-gradient"
-              style={{ fontStyle: 'italic' }}
+          <div className="relative">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[280px] bg-[#D4AF37]/15 blur-[120px] rounded-full pointer-events-none z-0" />
+            <motion.h1
+              variants={fadeUp}
+              className="relative z-10 text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-white leading-[1.05] tracking-tight max-w-4xl"
+              style={{ fontFamily: 'var(--font-serif)' }}
             >
-              Our Responsibility!
-            </span>
-          </motion.h1>
+              <span className="dark:text-[#F5D77F]">Your Trip...</span>{' '}
+              <br className="hidden sm:block" />
+              <span
+                className="bg-gradient-to-r from-[#F5D77F] via-[#CA8A04] to-[#EAB308] bg-clip-text text-transparent hero-headline-gradient"
+                style={{ fontStyle: 'italic' }}
+              >
+                Our Responsibility!
+              </span>
+            </motion.h1>
+          </div>
 
           {/* Subtitle */}
           <motion.p

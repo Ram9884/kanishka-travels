@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, Variants } from 'framer-motion';
 import { Camera, MapPin, Sparkles } from 'lucide-react';
 import { GALLERY_ITEMS, GalleryItem } from '@/data/gallery';
+import { initGalleryScroll } from '@/utils/gsap';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -24,8 +25,14 @@ const itemVariants: Variants = {
 };
 
 export default function TravelMoments() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    return initGalleryScroll(sectionRef, '.gallery-image-gsap');
+  }, []);
+
   return (
-    <section className="relative w-full py-24 bg-[#0A1128] overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-24 bg-transparent overflow-hidden">
       {/* Background Radial Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
 
@@ -49,7 +56,7 @@ export default function TravelMoments() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight"
           >
-            Travel <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Moments</span>
+            Memories We <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Help Create</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -90,7 +97,7 @@ function GalleryCard({ item }: { item: GalleryItem }) {
         src={item.image}
         alt={item.title}
         fill
-        className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out opacity-85 group-hover:opacity-100"
+        className="gallery-image-gsap object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out opacity-85 group-hover:opacity-100"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         loading="lazy"
       />

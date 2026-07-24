@@ -15,7 +15,7 @@ import CallButton from '@/components/CallButton';
 
 export default function Footer() {
   return (
-    <footer className="relative w-full bg-[#070C1E] text-slate-300 border-t border-[#D4AF37]/20 overflow-hidden">
+    <footer className="relative w-full bg-[#0B0B0D] text-slate-300 border-t border-[#D4AF37]/20 overflow-hidden">
       {/* Soft Ambient Radial Glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#D4AF37]/5 blur-[160px] rounded-full pointer-events-none" />
 
@@ -93,7 +93,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
-                <a href="tel:+919840000000" className="hover:text-[#F5D77F] transition-colors">+91 98400 00000</a>
+                <a href="tel:+919677384267" className="hover:text-[#F5D77F] transition-colors">+91 96773 84267</a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />

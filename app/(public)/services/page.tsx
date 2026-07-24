@@ -1,15 +1,15 @@
 import React from 'react';
-import ServicesSection from '@/components/home/ServicesSection';
+import ServicesGrid from '@/components/services/ServicesGrid';
 
 export const metadata = {
-  title: 'Services | Kanishka Travels — Taxi, Outstation & Tours',
-  description: 'Explore taxi, airport pickup, outstation round-trip tours, and temple packages by Kanishka Travels in Chennai.',
+  title: 'Our Premium Services | Kanishka Travels — Chennai Taxi & Outstation',
+  description: 'Explore 24/7 airport transfers, outstation round-trips, corporate mobility, temple packages, wedding travel, and monthly rentals by Kanishka Travels.',
 };
 
 export default function ServicesPage() {
   return (
-    <div className="py-8">
-      <ServicesSection />
-    </div>
+    <main className="pt-20">
+      <ServicesGrid />
+    </main>
   );
 }

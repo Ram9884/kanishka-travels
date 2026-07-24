@@ -7,7 +7,7 @@ import { MILESTONE_STATS, StatItem } from '@/data/stats';
 
 export default function AnimatedStats() {
   return (
-    <section className="relative w-full py-20 bg-gradient-to-b from-[#0A1128] via-[#0E1738] to-[#0A1128] overflow-hidden border-y border-[#D4AF37]/15">
+    <section className="relative w-full py-20 bg-transparent overflow-hidden border-y border-[#D4AF37]/15">
       {/* Subtle Ambient Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
 
@@ -30,7 +30,7 @@ export default function AnimatedStats() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight"
           >
-            Numbers That Define <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Our Reputation</span>
+            Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Thousands of Travellers</span>
           </motion.h2>
         </div>
 

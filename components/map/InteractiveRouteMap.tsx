@@ -217,6 +217,7 @@ export default function InteractiveRouteMap() {
                     {/* Glowing Pulse Ring for Active Node */}
                     {isActive && (
                       <circle
+                        key={`pulse-${city.id}`}
                         cx={city.x}
                         cy={city.y}
                         r="4"

@@ -14,7 +14,7 @@ export default function TrustedBy() {
   ];
 
   return (
-    <section className="relative w-full py-8 bg-gradient-to-b from-[#0A1128]/80 via-[#0E1738]/60 to-[#0A1128]/80 border-y border-[#D4AF37]/15">
+    <section className="relative w-full py-8 bg-transparent border-y border-[#D4AF37]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-between">
           {stats.map((item, idx) => {
