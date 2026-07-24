@@ -42,7 +42,7 @@ export default function FAQAccordion() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight"
           >
             Everything You <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Need to Know</span>
           </motion.h2>
@@ -76,8 +76,8 @@ export default function FAQAccordion() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className={`rounded-2xl glass-dark border transition-all duration-300 overflow-hidden ${
-                  isOpen ? 'border-[#D4AF37]/60 shadow-xl' : 'border-white/10 hover:border-white/20'
+                className={`rounded-2xl bg-[#1A1A1D]/90 border transition-all duration-300 overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] ${
+                  isOpen ? 'border-[#D4AF37] shadow-[0_20px_50px_rgba(212,175,55,0.15)]' : 'border-[#D4AF37]/20 hover:border-[#D4AF37]/60'
                 }`}
               >
                 {/* Accordion Header */}
@@ -85,12 +85,12 @@ export default function FAQAccordion() {
                   onClick={() => toggleFAQ(item.id)}
                   className="w-full text-left p-6 flex items-center justify-between gap-4 cursor-pointer"
                 >
-                  <span className="text-base font-bold text-white group-hover:text-[#F5D77F] transition-colors">
+                  <span className="font-serif text-lg sm:text-xl font-bold text-[#F5D77F] tracking-wide leading-snug transition-colors">
                     {item.question}
                   </span>
                   <div
-                    className={`p-1.5 rounded-full bg-slate-800/80 text-[#D4AF37] transition-transform duration-300 shrink-0 ${
-                      isOpen ? 'rotate-180 bg-[#D4AF37]/20' : ''
+                    className={`p-1.5 rounded-full bg-[#0B0B0D]/90 border border-[#D4AF37]/30 text-[#D4AF37] transition-transform duration-300 shrink-0 ${
+                      isOpen ? 'rotate-180 bg-[#25262B]' : ''
                     }`}
                   >
                     <ChevronDown className="w-5 h-5" />
@@ -106,7 +106,7 @@ export default function FAQAccordion() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
-                      <div className="px-6 pb-6 pt-1 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 font-normal">
+                      <div className="px-6 pb-6 pt-3 text-xs sm:text-sm text-[#F8F5EE] leading-relaxed border-t border-[#D4AF37]/15 font-normal">
                         {item.answer}
                       </div>
                     </motion.div>

@@ -7,9 +7,13 @@ import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CallButton from '@/components/CallButton';
 
+import { useScrollStoryController } from '@/components/animation/ScrollStoryController';
+
 export default function FinalCTA() {
+  const { ctaSectionRef } = useScrollStoryController();
+
   return (
-    <section className="relative w-full py-28 bg-[#0B0B0D] overflow-hidden border-t border-[#D4AF37]/20">
+    <section ref={ctaSectionRef} className="relative w-full py-28 bg-[#0B0B0D] overflow-hidden border-t border-[#D4AF37]/20">
       {/* Cinematic Golden Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-gradient-to-r from-[#D4AF37]/10 via-[#F5D77F]/15 to-[#A16207]/10 blur-[160px] rounded-full pointer-events-none" />
 
@@ -31,7 +35,7 @@ export default function FinalCTA() {
           </div>
 
           {/* Title */}
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
             Your Next Journey <br className="hidden sm:inline" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">
               Begins Here

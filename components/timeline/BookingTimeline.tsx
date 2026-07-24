@@ -28,7 +28,7 @@ export default function BookingTimeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4"
+            className="timeline-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>4-Step Seamless Booking</span>
@@ -38,16 +38,16 @@ export default function BookingTimeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight"
+            className="timeline-section-title font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight"
           >
-            Your Journey in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Four Simple Steps</span>
+            Your Journey in <span className="timeline-section-highlight text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Four Simple Steps</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 text-base sm:text-lg text-slate-300 font-normal leading-relaxed"
+            className="timeline-section-p mt-4 text-base sm:text-lg text-slate-300 font-normal leading-relaxed"
           >
             No complex app signups or automated bots. Experience direct personal service in 4 simple steps.
           </motion.p>
@@ -56,10 +56,10 @@ export default function BookingTimeline() {
         {/* Timeline Desktop (Horizontal) & Mobile (Vertical) */}
         <div className="relative">
           {/* Connecting Line Desktop */}
-          <div ref={lineRef} className="hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent z-0 origin-left" />
+          <div ref={lineRef} className="timeline-line-desktop hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent z-0 origin-left" />
 
           {/* Connecting Line Mobile */}
-          <div className="lg:hidden absolute top-[40px] bottom-[40px] left-[39px] w-[2px] bg-gradient-to-b from-transparent via-[#D4AF37]/40 to-transparent z-0" />
+          <div className="timeline-line-mobile lg:hidden absolute top-[40px] bottom-[40px] left-[39px] w-[2px] bg-gradient-to-b from-transparent via-[#D4AF37] to-transparent z-0" />
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6 relative z-10">
             {BOOKING_TIMELINE_STEPS.map((step, idx) => {
@@ -76,7 +76,7 @@ export default function BookingTimeline() {
                 >
                   {/* Step Number Circle Icon */}
                   <div className="relative shrink-0 mr-6 lg:mr-0 lg:mb-6">
-                    <div className="w-20 h-20 rounded-2xl glass-dark border border-[#D4AF37]/40 group-hover:border-[#D4AF37] group-hover:bg-[#D4AF37]/15 flex flex-col items-center justify-center text-[#D4AF37] shadow-xl transition-all duration-300">
+                    <div className="timeline-step-circle w-20 h-20 rounded-2xl bg-[#0B0B0D]/90 border border-[#D4AF37]/40 group-hover:border-[#D4AF37] group-hover:bg-[#25262B] flex flex-col items-center justify-center text-[#D4AF37] shadow-xl transition-all duration-300">
                       <Icon className="w-7 h-7 mb-1 group-hover:scale-110 transition-transform" strokeWidth={2} />
                       <span className="text-[10px] font-mono font-bold text-[#F5D77F] tracking-widest uppercase">
                         Step 0{step.stepNumber}
@@ -85,14 +85,14 @@ export default function BookingTimeline() {
                   </div>
 
                   {/* Step Content */}
-                  <div className="glass-dark p-6 rounded-2xl border border-white/10 group-hover:border-[#D4AF37]/40 transition-all duration-300 w-full">
+                  <div className="timeline-step-card bg-[#1A1A1D]/90 p-6 rounded-2xl border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/60 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)] transition-all duration-300 w-full">
                     <span className="text-[11px] font-mono text-[#D4AF37] block font-semibold">
                       {step.subtitle}
                     </span>
-                    <h3 className="text-lg font-bold text-white mt-1 group-hover:text-[#F5D77F] transition-colors">
+                    <h3 className="timeline-step-title text-lg font-extrabold text-[#F5D77F] mt-1 group-hover:text-white transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-xs text-slate-300 mt-2 leading-relaxed">
+                    <p className="timeline-step-desc text-sm text-[#A1A1AA] mt-2 leading-relaxed">
                       {step.description}
                     </p>
                   </div>

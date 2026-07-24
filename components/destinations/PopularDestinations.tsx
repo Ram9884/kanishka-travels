@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
-import { MapPin, Clock, ArrowRight, Sparkles } from 'lucide-react';
+import { MapPin, Clock, ArrowRight, Sparkles, Navigation } from 'lucide-react';
 import { POPULAR_DESTINATIONS, Destination } from '@/data/destinations';
 import { initDestinationsScroll } from '@/utils/gsap';
 
@@ -57,7 +57,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F8F5EE] tracking-tight leading-tight"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#F8F5EE] tracking-tight leading-tight"
           >
             Signature <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Journeys</span>
           </motion.h2>
@@ -66,7 +66,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 text-base sm:text-lg text-[#A1A1AA] font-normal leading-relaxed"
+            className="mt-4 text-base sm:text-lg text-[#F8F5EE] font-medium leading-relaxed"
           >
             Handpicked pilgrimage, hill station, and heritage routes from Chennai with dedicated luxury drivers.
           </motion.p>
@@ -127,11 +127,11 @@ function DestinationCard({ destination, index }: { destination: Destination; ind
           <span>{destination.travelTime}</span>
         </div>
 
-        {/* Floating Price Tag */}
-        <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 rounded-xl bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 shadow-lg">
-          <span className="text-[10px] text-[#A1A1AA] font-mono uppercase tracking-wider block">Starting From</span>
-          <span className="text-xl font-extrabold font-mono text-[#F8F5EE] tracking-tight group-hover:text-[#F5D77F] transition-colors">
-            {destination.startingPrice}
+        {/* Real Distance Tag from Chennai */}
+        <div className="absolute bottom-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 shadow-lg">
+          <Navigation className="w-3.5 h-3.5 text-[#D4AF37]" />
+          <span className="text-xs font-mono font-bold text-[#F8F5EE] tracking-wide">
+            {destination.distance}
           </span>
         </div>
       </div>
@@ -139,9 +139,9 @@ function DestinationCard({ destination, index }: { destination: Destination; ind
       {/* Content Body — Luxury Charcoal #1A1A1D */}
       <div className="p-6 flex-1 flex flex-col justify-between bg-[#1A1A1D] border-t border-[#D4AF37]/15">
         <div>
-          <h3 className="text-xl font-extrabold text-[#F8F5EE] group-hover:text-[#F5D77F] transition-colors duration-300 flex items-center gap-2">
+          <h3 className="text-xl font-extrabold text-[#F5D77F] group-hover:text-white transition-colors duration-300 flex items-center gap-2">
             <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0" />
-            <span>{destination.name}</span>
+            <span className="text-[#F5D77F] tracking-wide">{destination.name}</span>
           </h3>
           <p className="mt-3 text-sm text-[#A1A1AA] leading-relaxed line-clamp-2 font-normal">
             {destination.description}

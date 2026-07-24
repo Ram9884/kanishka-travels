@@ -57,7 +57,7 @@ export default function PremiumTestimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight"
+              className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight"
             >
               Stories from <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Our Travellers</span>
             </motion.h2>
@@ -123,31 +123,26 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -6, scale: 1.02 }}
-      className="snap-start shrink-0 w-[310px] sm:w-[360px] md:w-[400px] p-7 rounded-2xl glass-dark border border-white/10 hover:border-[#D4AF37]/60 shadow-2xl hover:shadow-[0_20px_50px_rgba(212,175,55,0.12)] transition-all duration-300 flex flex-col justify-between group relative"
+      className="snap-start shrink-0 w-[310px] sm:w-[360px] md:w-[400px] p-7 rounded-2xl bg-[#1A1A1D]/90 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)] transition-all duration-300 flex flex-col justify-between group relative"
     >
       <Quote className="w-14 h-14 text-[#D4AF37]/15 group-hover:text-[#D4AF37]/35 group-hover:scale-105 transition-all duration-300 absolute top-5 right-5 pointer-events-none" />
 
       <div>
-        {/* Rating Stars & Trip Tag */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-1">
-            {[...Array(testimonial.rating)].map((_, i) => (
-              <Star key={i} className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37]" />
-            ))}
-          </div>
-          <span className="text-[11px] font-mono text-[#F5D77F] px-2.5 py-0.5 rounded bg-slate-950/80 border border-[#D4AF37]/30">
-            {testimonial.tripType}
-          </span>
+        {/* Rating Stars */}
+        <div className="flex items-center gap-1 mb-4">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-[#D4AF37] text-[#D4AF37]" />
+          ))}
         </div>
 
         {/* Review Text */}
-        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal italic pr-4">
+        <p className="text-xs sm:text-sm text-[#F8F5EE] leading-relaxed font-normal italic pr-4">
           &quot;{testimonial.review}&quot;
         </p>
       </div>
 
       {/* User Footer Info */}
-      <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
+      <div className="mt-6 pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#D4AF37]/40 shrink-0">
             <Image

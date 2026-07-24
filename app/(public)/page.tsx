@@ -5,66 +5,64 @@ import TrustedBy from '@/components/home/TrustedBy';
 import PopularDestinations from '@/components/destinations/PopularDestinations';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
 import BookingTimeline from '@/components/timeline/BookingTimeline';
-import TravelMoments from '@/components/gallery/TravelMoments';
 import AnimatedStats from '@/components/stats/AnimatedStats';
 import PremiumTestimonials from '@/components/testimonials/PremiumTestimonials';
 import FAQAccordion from '@/components/faq/FAQAccordion';
 import FinalCTA from '@/components/cta/FinalCTA';
 import SectionDivider from '@/components/ui/SectionDivider';
 
+import { ScrollStoryControllerProvider } from '@/components/animation/ScrollStoryController';
+
 export default function HomePage() {
   return (
-    <div className="relative w-full">
-      {/* 0. Global Fixed Cinematic Video Background */}
-      <GlobalVideoBackground />
+    <ScrollStoryControllerProvider>
+      <div className="relative w-full">
+        {/* 0. Global Fixed Cinematic Video Background */}
+        <GlobalVideoBackground />
 
-      {/* 1. Hero Section */}
-      <HeroSection />
+        {/* 1. Hero Section */}
+        <HeroSection />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 2. Trusted By Banner */}
-      <TrustedBy />
+        {/* 2. Trusted By Banner */}
+        <TrustedBy />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 3. Popular Destinations */}
-      <PopularDestinations />
+        {/* 3. Popular Destinations */}
+        <PopularDestinations />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 4. Why Kanishka Travels */}
-      <WhyChooseUs />
+        {/* 4. Why Kanishka Travels */}
+        <WhyChooseUs />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 5. Booking Timeline */}
-      <BookingTimeline />
+        {/* 5. Booking Timeline */}
+        <BookingTimeline />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 6. Travel Moments Gallery */}
-      <TravelMoments />
+        {/* 6. Animated Statistics */}
+        <AnimatedStats />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 7. Animated Statistics */}
-      <AnimatedStats />
+        {/* 7. Premium Testimonials */}
+        <PremiumTestimonials />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 8. Premium Testimonials */}
-      <PremiumTestimonials />
+        {/* 8. Premium FAQ Accordion */}
+        <FAQAccordion />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 9. Premium FAQ Accordion */}
-      <FAQAccordion />
-
-      <SectionDivider />
-
-      {/* 10. Final Luxury CTA */}
-      <FinalCTA />
-    </div>
+        {/* 9. Final Luxury CTA */}
+        <FinalCTA />
+      </div>
+    </ScrollStoryControllerProvider>
   );
 }

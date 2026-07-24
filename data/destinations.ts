@@ -6,6 +6,7 @@ export interface Destination {
   image: string;
   startingPrice: string;
   travelTime: string;
+  distance: string;
   featured?: boolean;
   aspectRatio?: 'tall' | 'wide' | 'standard';
 }
@@ -19,6 +20,7 @@ export const POPULAR_DESTINATIONS: Destination[] = [
     image: '/images/destinations/tirupati.png',
     startingPrice: '₹4,500',
     travelTime: '3.5 Hours',
+    distance: '135 km from Chennai',
     featured: true,
     aspectRatio: 'tall',
   },
@@ -30,6 +32,7 @@ export const POPULAR_DESTINATIONS: Destination[] = [
     image: '/images/destinations/pondicherry.png',
     startingPrice: '₹3,800',
     travelTime: '2.5 Hours',
+    distance: '150 km from Chennai',
     aspectRatio: 'standard',
   },
   {
@@ -40,6 +43,7 @@ export const POPULAR_DESTINATIONS: Destination[] = [
     image: '/images/destinations/ooty.png',
     startingPrice: '₹9,500',
     travelTime: '7.5 Hours',
+    distance: '555 km from Chennai',
     featured: true,
     aspectRatio: 'wide',
   },

@@ -24,21 +24,14 @@ const fadeUp = {
   visible:  { opacity: 1, y: 0,  filter: 'blur(0px)',  transition: { duration: 0.75, ease: 'easeOut' as const } },
 };
 
-import { initPinnedHeroScroll } from '@/utils/gsap';
+import { useScrollStoryController } from '@/components/animation/ScrollStoryController';
 
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const videoRef   = useRef<HTMLVideoElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    return initPinnedHeroScroll(sectionRef, videoRef, contentRef, overlayRef);
-  }, []);
+  const { heroSectionRef, heroContentRef } = useScrollStoryController();
 
   return (
     <section
-      ref={sectionRef}
+      ref={heroSectionRef}
       className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden border-none"
     >
       {/* Ambient visual accents */}
@@ -60,7 +53,7 @@ export default function HeroSection() {
       <div className="absolute bottom-0 right-0 w-[600px] h-[400px] z-[2] opacity-30 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse at bottom right, rgba(202,138,4,0.35), transparent 70%)' }} />
       {/* 4 — Scroll darken */}
-      <div ref={overlayRef} className="absolute inset-0 z-[3] bg-black opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 z-[3] bg-black opacity-20 pointer-events-none" />
       {/* Vignette overlay */}
       <div className="absolute inset-0 z-[4] pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.12), transparent 70%)' }} />
       {/* 5 — Subtle gold dot grid */}
@@ -69,7 +62,7 @@ export default function HeroSection() {
 
       {/* ── Content ───────────────────────────────────────────────────── */}
       <motion.div
-        ref={contentRef}
+        ref={heroContentRef}
         className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 flex flex-col items-center"
       >
         <motion.div
@@ -79,31 +72,12 @@ export default function HeroSection() {
           animate="visible"
         >
 
-          {/* Status pill */}
-          <motion.div variants={fadeUp}>
-            <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs font-mono font-semibold tracking-wide backdrop-blur-md"
-              style={{
-                background: 'rgba(255,255,255,0.07)',
-                border: '1px solid rgba(202,138,4,0.35)',
-                color: '#F5D77F',
-                boxShadow: '0 4px 24px rgba(202,138,4,0.15)',
-              }}>
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CA8A04] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#CA8A04]" />
-              </span>
-              <Crown className="w-3.5 h-3.5 text-[#CA8A04]" />
-              S. Ramesh Presents · Iyyappanthangal, Chennai
-            </span>
-          </motion.div>
-
           {/* Headline — dark mode: white + gold, light mode: espresso + gold via CSS */}
           <div className="relative">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[280px] bg-[#D4AF37]/15 blur-[120px] rounded-full pointer-events-none z-0" />
             <motion.h1
               variants={fadeUp}
-              className="relative z-10 text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-white leading-[1.05] tracking-tight max-w-4xl"
-              style={{ fontFamily: 'var(--font-serif)' }}
+              className="relative z-10 font-serif text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-white leading-[1.05] tracking-tight max-w-4xl"
             >
               <span className="dark:text-[#F5D77F]">Your Trip...</span>{' '}
               <br className="hidden sm:block" />

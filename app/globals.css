@@ -163,44 +163,134 @@ html.light header span { color: var(--text-primary) !important; }
 html.light header nav a { color: #3D2B0A !important; }
 html.light header nav a:hover { color: var(--gold) !important; }
 
-/* ─── Dark containers → Premium surface cards ────────────────────────────── */
-html.light .bg-\[\#0A1128\],
-html.light .bg-\[\#0F172A\],
-html.light .bg-\[\#080E1F\],
-html.light .bg-\[\#0D1529\],
-html.light .bg-\[\#111E38\],
-html.light .bg-slate-950,
-html.light .bg-slate-900,
-html.light .bg-slate-900\/90,
-html.light .bg-slate-900\/80,
-html.light .bg-slate-900\/95,
-html.light .bg-slate-900\/60 {
-  background: linear-gradient(145deg, #FFFFFF 0%, #FDF8EE 100%) !important;
-  color: var(--text-primary) !important;
-  border-color: var(--border) !important;
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.9) inset,
-    0 8px 32px -4px rgba(184,134,11,0.10),
-    0 2px 8px rgba(0,0,0,0.05) !important;
+/* ─── Light Theme: The Kanishka Experience Luxury Refinement ───────────── */
+html.light .kanishka-badge {
+  background: rgba(184, 134, 11, 0.12) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
 }
 
-html.light .bg-slate-800,
-html.light .bg-slate-800\/90,
-html.light .bg-slate-800\/80 {
-  background: linear-gradient(145deg, #FDF8EE 0%, #F5EDD8 100%) !important;
-  color: var(--text-primary) !important;
-  border-color: var(--border) !important;
+html.light .kanishka-section-title {
+  color: #1A1108 !important;
 }
 
-/* ─── Cards ──────────────────────────────────────────────────────────────── */
-html.light .rounded-3xl.bg-slate-900\/90,
-html.light .rounded-3xl.bg-slate-900\/95 {
-  background: linear-gradient(145deg, #FFFFFF 0%, #FDF8EE 100%) !important;
-  border: 1px solid rgba(184,134,11,0.22) !important;
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.95) inset,
-    0 12px 40px -6px rgba(184,134,11,0.12),
-    0 2px 10px rgba(0,0,0,0.06) !important;
+html.light .kanishka-section-highlight {
+  background: linear-gradient(90deg, #B8860B 0%, #D4A017 50%, #8A640A 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+html.light .kanishka-section-p {
+  color: #4A3B2C !important;
+}
+
+html.light .kanishka-quote-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF5E8 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  box-shadow: 0 12px 36px rgba(184, 134, 11, 0.14), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .kanishka-quote-text {
+  color: #1A1108 !important;
+}
+
+html.light .kanishka-quote-author {
+  color: #1A1108 !important;
+}
+
+html.light .kanishka-quote-sub {
+  color: #5C4A2A !important;
+}
+
+html.light .kanishka-exp-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .kanishka-exp-card:hover {
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.20) !important;
+}
+
+html.light .kanishka-card-icon {
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EBD4 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .kanishka-card-title {
+  color: #1A1108 !important;
+}
+
+html.light .kanishka-card-title:hover,
+html.light .kanishka-exp-card:hover .kanishka-card-title {
+  color: #B8860B !important;
+}
+
+html.light .kanishka-card-desc {
+  color: #4A3B2C !important;
+}
+
+/* ─── Light Theme: Booking Timeline Luxury Refinement ───────────────── */
+html.light .timeline-badge {
+  background: rgba(184, 134, 11, 0.12) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .timeline-section-title {
+  color: #1A1108 !important;
+}
+
+html.light .timeline-section-highlight {
+  background: linear-gradient(90deg, #B8860B 0%, #D4A017 50%, #8A640A 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+html.light .timeline-section-p {
+  color: #4A3B2C !important;
+}
+
+html.light .timeline-step-circle {
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EBD4 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .timeline-step-circle span {
+  color: #B8860B !important;
+}
+
+html.light .timeline-step-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.28) !important;
+  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.10), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .timeline-step-card:hover {
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.20) !important;
+}
+
+html.light .timeline-step-title {
+  color: #1A1108 !important;
+}
+
+html.light .timeline-step-title:hover,
+html.light .timeline-step-card:hover .timeline-step-title {
+  color: #B8860B !important;
+}
+
+html.light .timeline-step-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .stats-card-desc {
+  color: #4A3B2C !important;
 }
 
 /* ─── Autocomplete ───────────────────────────────────────────────────────── */
@@ -310,12 +400,20 @@ html.light footer .text-\[\#A16207\] { color: #D4AF37 !important; }
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: #080E1F; }
-::-webkit-scrollbar-thumb { background: rgba(30,58,138,0.7); border-radius: 6px; }
-::-webkit-scrollbar-thumb:hover { background: #CA8A04; }
-html.light ::-webkit-scrollbar-track { background: #F0E8D5; }
-html.light ::-webkit-scrollbar-thumb { background: rgba(184,134,11,0.45); border-radius: 6px; }
+::-webkit-scrollbar-track { background: #0B0B0D; }
+::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.45); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+html.light ::-webkit-scrollbar-track { background: #FAF7F0; }
+html.light ::-webkit-scrollbar-thumb { background: rgba(184, 134, 11, 0.45); border-radius: 6px; }
 html.light ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* Light Theme Timeline Connecting Lines overrides */
+html.light .timeline-line-desktop {
+  background: linear-gradient(to right, transparent, rgba(184, 134, 11, 0.65), transparent) !important;
+}
+html.light .timeline-line-mobile {
+  background: linear-gradient(to bottom, transparent, rgba(184, 134, 11, 0.65), transparent) !important;
+}
 
 /* ─── Selection ──────────────────────────────────────────────────────────── */
 ::selection { background: #CA8A04; color: #FFFFFF; }

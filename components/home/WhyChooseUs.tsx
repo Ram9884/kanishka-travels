@@ -45,40 +45,20 @@ export default function WhyChooseUs() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4">
+              <div className="kanishka-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4">
                 <Crown className="w-4 h-4 text-[#D4AF37]" strokeWidth={2} />
                 <span>Our Service Heritage</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-                The Kanishka <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">
-                  Experience
-                </span>
+              <h2 className="kanishka-section-title font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-white">
+                The <span className="kanishka-section-highlight text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Experience</span>
               </h2>
 
-              <p className="mt-4 text-slate-300 text-base leading-relaxed font-normal">
+              <p className="kanishka-section-p mt-4 text-slate-300 text-base leading-relaxed font-normal">
                 Operating out of Iyyappanthangal, Chennai, we believe travel is not just about moving between places — it is about personal trust, safety, and care for your family.
               </p>
 
-              {/* Quote Card */}
-              <div className="relative rounded-2xl glass-dark border border-[#D4AF37]/30 p-6 shadow-2xl space-y-3 my-8 backdrop-blur-xl group hover:border-[#D4AF37]/60 transition-colors">
-                <Quote className="w-8 h-8 text-[#D4AF37]/30 absolute top-4 right-4" />
-                <p className="text-sm italic text-[#F5D77F] leading-relaxed pr-6">
-                  &quot;We don&apos;t just rent cabs. We take personal responsibility for making your journey safe, punctual, and memorable.&quot;
-                </p>
-                <div className="flex items-center gap-3 pt-3 border-t border-white/10">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#A16207] flex items-center justify-center text-slate-950 font-bold text-xs">
-                    R
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white">S. Ramesh</p>
-                    <p className="text-[10px] text-slate-400 font-mono">Proprietor • Kanishka Travels</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap gap-4 pt-6">
                 <WhatsAppButton variant="inline" label="Connect on WhatsApp" />
                 <CallButton variant="primary" label="Call S. Ramesh" />
               </div>
@@ -97,16 +77,16 @@ export default function WhyChooseUs() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -6, scale: 1.02 }}
-                  className="p-7 rounded-2xl glass-dark border border-white/10 hover:border-[#D4AF37]/60 transition-all duration-300 shadow-xl group flex flex-col justify-between"
+                  className="kanishka-exp-card p-7 rounded-2xl bg-[#1A1A1D]/90 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)] group flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-xl bg-slate-950/80 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] mb-5 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all duration-300">
+                    <div className="kanishka-card-icon w-12 h-12 rounded-xl bg-[#0B0B0D]/90 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] mb-5 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all duration-300">
                       <Icon className="w-6 h-6" strokeWidth={2} />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#F5D77F] transition-colors">
+                    <h3 className="kanishka-card-title text-lg font-extrabold text-[#F5D77F] mb-2 group-hover:text-white transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">{item.description}</p>
+                    <p className="kanishka-card-desc text-sm text-[#A1A1AA] leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
               );
