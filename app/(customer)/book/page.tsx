@@ -467,6 +467,7 @@ function Step4({
                   src={v.image}
                   alt={v.name}
                   fill
+                  unoptimized={true}
                   className="object-cover object-center"
                   sizes="80px"
                 />

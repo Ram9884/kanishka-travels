@@ -7,8 +7,8 @@ export default function GlobalVideoBackground() {
   const { videoRef, videoContainerRef, videoOverlayRef } = useScrollStoryController();
 
   return (
-    <div ref={videoContainerRef} className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Background Video */}
+    <div ref={videoContainerRef} className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Background Video Bounded to Hero */}
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover scale-100 transition-transform"

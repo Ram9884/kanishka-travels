@@ -121,7 +121,7 @@ function VehicleCard({ vehicle, index }: { vehicle: Vehicle; index: number }) {
           src={vehicle.image}
           alt={vehicle.name}
           fill
-          unoptimized={vehicle.image.startsWith('http')}
+          unoptimized={true}
           className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           sizes="(max-width: 768px) 300px, 380px"
         />
@@ -163,13 +163,7 @@ function VehicleCard({ vehicle, index }: { vehicle: Vehicle; index: number }) {
             </div>
           </div>
 
-          {/* Best For Tagline */}
-          <div className="mt-4 pt-3 border-t border-slate-800/80">
-            <span className="text-[11px] uppercase tracking-wider text-slate-400 font-medium block">Ideal For:</span>
-            <p className="text-xs text-slate-200 mt-1 font-medium leading-relaxed">
-              {vehicle.bestFor}
-            </p>
-          </div>
+
         </div>
 
         {/* Book Now Action */}

@@ -50,7 +50,7 @@ const SPOTLIGHTS: VehicleSpotlight[] = [
     tagline: 'Smart Family Travel, Effortlessly Comfortable',
     category: 'Family MUV',
     tag: 'Family Favorite',
-    image: '/images/fleet/kia-carens.jpg',
+    image: '/images/fleet/maruti-ertiga.jpg',
     passengers: '6',
     luggage: '3 Bags',
     ac: 'Dual AC Vents',
@@ -64,7 +64,7 @@ const SPOTLIGHTS: VehicleSpotlight[] = [
     name: 'Toyota Etios',
     tagline: 'Japanese Reliability, Executive Comfort',
     category: 'Executive Sedan',
-    image: '/images/fleet/swift-dzire.jpg',
+    image: '/images/fleet/toyota-etios.jpg',
     passengers: '4',
     luggage: '3 Bags (Spacious Boot)',
     ac: 'Chilling AC',
@@ -78,7 +78,7 @@ const SPOTLIGHTS: VehicleSpotlight[] = [
     name: 'Toyota Innova',
     tagline: 'Dependable Power for Long Highway Stretches',
     category: 'Standard MUV',
-    image: '/images/fleet/innova-hycross.jpg',
+    image: '/images/fleet/toyota-innova.jpg',
     passengers: '7',
     luggage: '4 Bags',
     ac: 'Dual AC Compressor',
@@ -93,7 +93,7 @@ const SPOTLIGHTS: VehicleSpotlight[] = [
     tagline: 'The Gold Standard of Indian Highway Travel',
     category: 'Luxury MUV',
     tag: 'Most Popular',
-    image: '/images/fleet/innova-hycross.jpg',
+    image: '/images/fleet/innova-crysta.jpg',
     passengers: '6 – 7',
     luggage: '4 Large Bags',
     ac: 'Dual-Zone Climate Control',
@@ -123,7 +123,7 @@ const SPOTLIGHTS: VehicleSpotlight[] = [
     tagline: 'Grand Gatherings, Travelling Together',
     category: 'Luxury Minibus',
     tag: 'Grand Groups',
-    image: '/images/fleet/tempo-traveller.jpg',
+    image: '/images/fleet/mini-bus.jpg',
     passengers: '21 – 26',
     luggage: '12+ Bags',
     ac: 'High-Capacity Climate System',
@@ -203,7 +203,7 @@ export default function FleetVehicleSpotlight() {
                   src={vehicle.image}
                   alt={vehicle.name}
                   fill
-                  unoptimized={false}
+                  unoptimized={true}
                   className="spotlight-img absolute top-[-10%] left-0 w-full h-[120%] object-cover object-center scale-105 transition-transform duration-700"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
@@ -262,22 +262,7 @@ export default function FleetVehicleSpotlight() {
                   ))}
                 </div>
 
-                {/* Use Cases */}
-                <div className="space-y-2">
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]/60">
-                    Ideal For
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {vehicle.useCases.map((uc) => (
-                      <span
-                        key={uc}
-                        className="fleet-use-case px-3 py-1 rounded-full text-xs font-medium bg-[#1A1A1D] border border-[#D4AF37]/20 text-[#F8F5EE]/75"
-                      >
-                        {uc}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+
 
                 {/* CTA */}
                 <div className="pt-2">
