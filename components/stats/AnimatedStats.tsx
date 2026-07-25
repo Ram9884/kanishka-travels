@@ -18,7 +18,7 @@ export default function AnimatedStats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-3"
+            className="stats-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] dark:text-[#F5D77F] text-xs font-semibold uppercase tracking-wider mb-3"
           >
             <Trophy className="w-3.5 h-3.5" strokeWidth={2} />
             <span>Proven Excellence</span>
@@ -28,14 +28,14 @@ export default function AnimatedStats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight"
+            className="stats-title font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
           >
             Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Thousands of Travellers</span>
           </motion.h2>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {MILESTONE_STATS.map((stat, idx) => (
             <StatCard key={stat.id} stat={stat} index={idx} />
           ))}
@@ -82,21 +82,21 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="p-6 rounded-2xl bg-[#1A1A1D]/90 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)] transition-all duration-300 flex flex-col items-center text-center group"
+      className="stats-card-container p-6 rounded-2xl border transition-all duration-300 flex flex-col items-center text-center group"
     >
-      <div className="w-12 h-12 rounded-xl bg-[#0B0B0D]/90 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] mb-4 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all duration-300">
+      <div className="stats-card-icon w-12 h-12 rounded-xl border flex items-center justify-center text-[#D4AF37] mb-4 group-hover:scale-110 transition-all duration-300">
         <Icon className="w-6 h-6" strokeWidth={2} />
       </div>
 
-      <div className="text-2xl sm:text-3xl font-extrabold font-mono text-[#F8F5EE] tracking-tight group-hover:text-[#F5D77F] transition-colors">
+      <div className="stats-card-value text-2xl sm:text-3xl font-extrabold font-mono tracking-tight transition-colors">
         {stat.value % 1 !== 0 ? count.toFixed(1) : Math.floor(count).toLocaleString()}
         <span className="text-[#D4AF37] font-sans ml-0.5">{stat.suffix}</span>
       </div>
 
-      <h3 className="mt-2 text-xs font-extrabold text-[#F5D77F] tracking-wide uppercase">
+      <h3 className="stats-card-label mt-2 text-xs font-extrabold tracking-wide uppercase">
         {stat.label}
       </h3>
-      <p className="stats-card-desc mt-1 text-xs text-[#A1A1AA] leading-relaxed">
+      <p className="stats-card-desc mt-1 text-xs leading-relaxed">
         {stat.description}
       </p>
     </motion.div>

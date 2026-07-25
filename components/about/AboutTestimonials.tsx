@@ -33,7 +33,7 @@ export default function AboutTestimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="card-feature p-8 rounded-2xl flex flex-col justify-between group overflow-hidden"
+              className="premium-testimonial-card p-8 rounded-2xl flex flex-col justify-between group overflow-hidden"
             >
               <Quote className="w-8 h-8 text-[#D4AF37]/20 absolute top-6 right-6" />
 

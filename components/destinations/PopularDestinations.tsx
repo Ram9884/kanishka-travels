@@ -57,7 +57,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-[#F8F5EE] tracking-tight leading-tight"
+            className="destinations-section-title font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
           >
             Signature <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Journeys</span>
           </motion.h2>
@@ -66,7 +66,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 text-base sm:text-lg text-slate-700 dark:text-[#F8F5EE] font-medium leading-relaxed"
+            className="destinations-section-subtitle mt-4 text-base sm:text-lg font-medium leading-relaxed"
           >
             Handpicked pilgrimage, hill station, and heritage routes from Chennai with dedicated luxury drivers.
           </motion.p>

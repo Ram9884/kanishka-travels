@@ -837,7 +837,71 @@ html.light .kanishka-card-title {
   color: #1A1108 !important;
 }
 
-html.light .kanishka-card-desc {
+/* ─── Animated Stats Section: Dark & Light Parity ───────────────────── */
+.stats-title {
+  color: #FFFFFF;
+}
+
+.stats-card-container {
+  background: rgba(26, 26, 29, 0.90);
+  border-color: rgba(212, 175, 55, 0.20);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.stats-card-icon {
+  background: rgba(11, 11, 13, 0.90);
+  border-color: rgba(212, 175, 55, 0.30);
+  color: #D4AF37;
+}
+
+.stats-card-value {
+  color: #F8F5EE;
+}
+
+.stats-card-label {
+  color: #F5D77F;
+}
+
+.stats-card-desc {
+  color: #A1A1AA;
+}
+
+html.light .stats-title {
+  color: #1A1108 !important;
+}
+
+html.light .stats-badge {
+  background: rgba(184, 134, 11, 0.12) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .stats-card-container {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.32) !important;
+  box-shadow: 0 12px 35px rgba(184, 134, 11, 0.14), 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .stats-card-container:hover {
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.22) !important;
+}
+
+html.light .stats-card-icon {
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EBD4 100%) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .stats-card-value {
+  color: #1A1108 !important;
+}
+
+html.light .stats-card-label {
+  color: #B8860B !important;
+}
+
+html.light .stats-card-desc {
   color: #4A3B2C !important;
 }
 
@@ -1077,17 +1141,75 @@ html.light a.bg-\[\#1E3A8A\] { color: #FFFFFF !important; }
 html.light button.bg-gradient-to-r span,
 html.light a.bg-gradient-to-r span { color: #FFFFFF !important; }
 
-/* ─── Footer ─────────────────────────────────────────────────────────────── */
-html.light footer {
-  background: linear-gradient(160deg, #1A1108 0%, #2A1C06 100%) !important;
-  color: #F0E8D5 !important;
-  border-top: 1px solid rgba(202,138,4,0.25) !important;
+/* ─── Premium Footer System ─────────────────────────────────────────────── */
+footer {
+  background: linear-gradient(180deg, #0E0F12 0%, #08080A 100%) !important;
+  color: #F8F5EE !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.25) !important;
 }
 
-html.light footer * { color: #C8AD80 !important; }
-html.light footer .text-\[\#D4AF37\],
-html.light footer .text-\[\#F5D77F\],
-html.light footer .text-\[\#A16207\] { color: #D4AF37 !important; }
+.footer-card {
+  background: linear-gradient(145deg, rgba(28, 29, 35, 0.85) 0%, rgba(18, 19, 24, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.20);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+}
+
+.footer-text-bright {
+  color: #F8F5EE;
+}
+
+.footer-text-muted {
+  color: #A1A1AA;
+}
+
+/* Light Mode Overrides for Footer */
+html.light footer {
+  background: linear-gradient(180deg, #FAF7F2 0%, #F5EDD8 100%) !important;
+  border-top: 1px solid rgba(184, 134, 11, 0.35) !important;
+  color: #1A1108 !important;
+}
+
+html.light footer .footer-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.30) !important;
+  box-shadow: 0 8px 25px rgba(184, 134, 11, 0.12), 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light footer h3 {
+  color: #B8860B !important;
+}
+
+html.light footer .footer-brand-title {
+  color: #1A1108 !important;
+}
+
+html.light footer p,
+html.light footer li,
+html.light footer span.footer-text-muted {
+  color: #4A3B2C !important;
+}
+
+html.light footer a {
+  color: #2D2319 !important;
+}
+
+html.light footer a:hover {
+  color: #B8860B !important;
+}
+
+html.light footer .footer-card-title {
+  color: #B8860B !important;
+}
+
+html.light footer .footer-card-text {
+  color: #1A1108 !important;
+}
+
+html.light footer .footer-bottom-text {
+  color: #5C4A2A !important;
+}
+
 
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 7px; }
@@ -1247,3 +1369,239 @@ html.light .gold-hairline {
     scroll-behavior: auto !important;
   }
 }
+
+/* ─── Premium Testimonial Cards & Navigation Controls ────────────────────── */
+.premium-testimonial-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(28, 29, 35, 0.95) 0%, rgba(18, 19, 24, 0.97) 50%, rgba(12, 13, 16, 0.99) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-testimonial-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 215, 127, 0.85) 50%, transparent 100%);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.premium-testimonial-card:hover {
+  border-color: rgba(212, 175, 55, 0.75);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(212, 175, 55, 0.20), inset 0 1px 2px rgba(245, 215, 127, 0.25);
+  transform: translateY(-6px);
+}
+
+.testimonial-move-btn {
+  background: rgba(22, 23, 28, 0.90);
+  border: 1px solid rgba(212, 175, 55, 0.30);
+  color: #F8F5EE;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.testimonial-move-btn:hover {
+  background: rgba(212, 175, 55, 0.18);
+  border-color: rgba(212, 175, 55, 0.80);
+  color: #F5D77F;
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+}
+
+/* Light Mode Overrides for Premium Testimonial Cards & Controls */
+html.light .premium-testimonial-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 60%, #F5EEDC 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  box-shadow: 0 16px 45px rgba(184, 134, 11, 0.14), 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .premium-testimonial-card::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 134, 11, 0.75) 50%, transparent 100%) !important;
+}
+
+html.light .premium-testimonial-card:hover {
+  border-color: rgba(184, 134, 11, 0.85) !important;
+  box-shadow: 0 24px 60px rgba(184, 134, 11, 0.22), 0 4px 20px rgba(184, 134, 11, 0.08) !important;
+}
+
+html.light .premium-testimonial-card .testimonial-review-text {
+  color: #1A1108 !important;
+}
+
+html.light .premium-testimonial-card .testimonial-author-name {
+  color: #1A1108 !important;
+}
+
+html.light .premium-testimonial-card .testimonial-author-role {
+  color: #5C4A2A !important;
+}
+
+html.light .testimonial-move-btn {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.40) !important;
+  color: #1A1108 !important;
+  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.15) !important;
+}
+
+html.light .testimonial-move-btn:hover {
+  background: linear-gradient(135deg, #B8860B 0%, #D4A017 100%) !important;
+  border-color: #B8860B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 32px rgba(184, 134, 11, 0.30) !important;
+}
+
+/* Google Rating Badge & Testimonial Section Title */
+.google-rating-badge {
+  background: linear-gradient(135deg, rgba(28, 29, 35, 0.90) 0%, rgba(18, 19, 24, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.30);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.google-rating-score {
+  color: #FFFFFF;
+}
+
+.google-rating-text {
+  color: #9CA3AF;
+}
+
+.testimonial-section-title {
+  color: #FFFFFF;
+}
+
+/* Light Mode Overrides for Rating Badge & Title */
+html.light .google-rating-badge {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF6EE 60%, #F4ECD8 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  box-shadow: 0 8px 25px rgba(184, 134, 11, 0.15), 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .google-rating-score {
+  color: #1A1108 !important;
+}
+
+html.light .google-rating-text {
+  color: #5C4A2A !important;
+}
+
+html.light .testimonial-section-title {
+  color: #1A1108 !important;
+}
+
+/* ─── FAQ Accordion Cards & Category Tabs ───────────────────────────────── */
+.faq-accordion-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(28, 29, 35, 0.95) 0%, rgba(18, 19, 24, 0.97) 50%, rgba(12, 13, 16, 0.99) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-accordion-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 215, 127, 0.85) 50%, transparent 100%);
+  z-index: 10;
+}
+
+.faq-accordion-card.open-faq {
+  border-color: rgba(212, 175, 55, 0.85);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.18), inset 0 1px 2px rgba(245, 215, 127, 0.25);
+}
+
+.faq-question-text {
+  color: #F5D77F;
+}
+
+.faq-answer-text {
+  color: #F8F5EE;
+}
+
+.faq-tab-inactive {
+  background: rgba(22, 23, 28, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #D1D5DB;
+}
+
+.faq-tab-inactive:hover {
+  border-color: rgba(212, 175, 55, 0.70);
+  color: #FFFFFF;
+}
+
+.faq-section-title {
+  color: #FFFFFF;
+}
+
+/* Light Mode Overrides for FAQ Accordion & Category Tabs */
+html.light .faq-accordion-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 60%, #F5EEDC 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  box-shadow: 0 14px 40px rgba(184, 134, 11, 0.14), 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .faq-accordion-card::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 134, 11, 0.75) 50%, transparent 100%) !important;
+}
+
+html.light .faq-accordion-card.open-faq {
+  border-color: rgba(184, 134, 11, 0.85) !important;
+  box-shadow: 0 20px 50px rgba(184, 134, 11, 0.22), 0 4px 20px rgba(184, 134, 11, 0.08) !important;
+}
+
+html.light .faq-question-text {
+  color: #1A1108 !important;
+}
+
+html.light .faq-answer-text {
+  color: #4A3B2C !important;
+}
+
+html.light .faq-tab-inactive {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  color: #4A3B2C !important;
+  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.08) !important;
+}
+
+html.light .faq-tab-inactive:hover {
+  border-color: rgba(184, 134, 11, 0.80) !important;
+  color: #B8860B !important;
+}
+
+html.light .faq-section-title {
+  color: #1A1108 !important;
+}
+
+/* ─── Signature Journeys Destinations Section ──────────────────────────── */
+.destinations-section-title {
+  color: #FFFFFF;
+}
+
+.destinations-section-subtitle {
+  color: rgba(248, 245, 238, 0.85);
+}
+
+html.light .destinations-section-title {
+  color: #1A1108 !important;
+}
+
+html.light .destinations-section-subtitle {
+  color: #4A3B2C !important;
+}
+
+
+
+

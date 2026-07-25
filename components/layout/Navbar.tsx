@@ -167,7 +167,7 @@ export default function Navbar() {
                 className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-[0_4px_25px_rgba(212,175,55,0.3)] hover:scale-105 transition-all duration-300 cursor-pointer"
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Reserve Chauffeur</span>
+                <span>BOOK LUXURY CAB</span>
               </Link>
             )}
           </div>
@@ -240,7 +240,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-lg"
               >
-                Reserve Chauffeur
+                BOOK LUXURY CAB
               </Link>
             )}
           </div>

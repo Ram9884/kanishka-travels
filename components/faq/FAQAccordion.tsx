@@ -42,7 +42,7 @@ export default function FAQAccordion() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight"
+            className="faq-section-title font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
           >
             Everything You <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Need to Know</span>
           </motion.h2>
@@ -56,8 +56,8 @@ export default function FAQAccordion() {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-gradient-to-r from-[#D4AF37] to-[#A16207] text-slate-950 shadow-lg'
-                  : 'glass-dark text-slate-300 hover:text-white hover:border-[#D4AF37]/40'
+                  ? 'bg-gradient-to-r from-[#D4AF37] to-[#A16207] text-slate-950 shadow-lg font-bold'
+                  : 'faq-tab-inactive'
               }`}
             >
               {cat}
@@ -76,8 +76,8 @@ export default function FAQAccordion() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className={`rounded-2xl bg-[#1A1A1D]/90 border transition-all duration-300 overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.6)] ${
-                  isOpen ? 'border-[#D4AF37] shadow-[0_20px_50px_rgba(212,175,55,0.15)]' : 'border-[#D4AF37]/20 hover:border-[#D4AF37]/60'
+                className={`faq-accordion-card rounded-2xl overflow-hidden ${
+                  isOpen ? 'open-faq' : ''
                 }`}
               >
                 {/* Accordion Header */}
@@ -85,12 +85,12 @@ export default function FAQAccordion() {
                   onClick={() => toggleFAQ(item.id)}
                   className="w-full text-left p-6 flex items-center justify-between gap-4 cursor-pointer"
                 >
-                  <span className="font-serif text-lg sm:text-xl font-bold text-[#F5D77F] tracking-wide leading-snug transition-colors">
+                  <span className="faq-question-text font-serif text-lg sm:text-xl font-bold tracking-wide leading-snug transition-colors">
                     {item.question}
                   </span>
                   <div
-                    className={`p-1.5 rounded-full bg-[#0B0B0D]/90 border border-[#D4AF37]/30 text-[#D4AF37] transition-transform duration-300 shrink-0 ${
-                      isOpen ? 'rotate-180 bg-[#25262B]' : ''
+                    className={`p-1.5 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-[#D4AF37] transition-transform duration-300 shrink-0 ${
+                      isOpen ? 'rotate-180 bg-[#D4AF37]/30' : ''
                     }`}
                   >
                     <ChevronDown className="w-5 h-5" />
@@ -106,7 +106,7 @@ export default function FAQAccordion() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
-                      <div className="px-6 pb-6 pt-3 text-xs sm:text-sm text-[#F8F5EE] leading-relaxed border-t border-[#D4AF37]/15 font-normal">
+                      <div className="faq-answer-text px-6 pb-6 pt-3 text-xs sm:text-sm leading-relaxed border-t border-[#D4AF37]/15 font-normal">
                         {item.answer}
                       </div>
                     </motion.div>

@@ -29,13 +29,6 @@ export const MILESTONE_STATS: StatItem[] = [
     description: 'Verified 5-star customer feedback score',
   },
   {
-    id: 'corporate',
-    value: 120,
-    suffix: '+',
-    label: 'Corporate Clients',
-    description: 'Trusted monthly partners & IT firm delegators',
-  },
-  {
     id: 'drivers',
     value: 100,
     suffix: '%',

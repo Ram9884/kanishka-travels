@@ -53,7 +53,7 @@ export default function FinalCTA() {
               href="/book"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-sm uppercase tracking-wider shadow-2xl hover:shadow-[#D4AF37]/30 transition-all duration-300 hover:scale-105"
             >
-              <span>Reserve Your Chauffeur</span>
+              <span>BOOK LUXURY CAB NOW</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <WhatsAppButton variant="inline" label="Chat on WhatsApp" />
