@@ -618,6 +618,230 @@ html.light .booking-field::placeholder {
 }
 
 
+/* ─── Auth Portal Styling (Dark & Light Parity) ─────────────────────── */
+.auth-card {
+  background: rgba(14, 15, 18, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.30);
+  box-shadow: 0 0 60px rgba(212, 175, 55, 0.12);
+  backdrop-filter: blur(24px);
+}
+
+.auth-left-banner {
+  background: linear-gradient(135deg, #131418 0%, #1A1C23 50%, #0D0E12 100%);
+  border-right: 1px solid rgba(212, 175, 55, 0.20);
+}
+
+.auth-right-form {
+  background: rgba(14, 15, 18, 0.95);
+}
+
+.auth-heading {
+  color: #FFFFFF;
+}
+
+.auth-brand-title {
+  color: #FFFFFF;
+}
+
+.auth-subtitle {
+  color: rgba(248, 245, 238, 0.70);
+}
+
+.auth-body-text {
+  color: rgba(248, 245, 238, 0.90);
+}
+
+.auth-footer-text {
+  color: #A1A1AA;
+}
+
+.auth-label {
+  color: rgba(212, 175, 55, 0.90);
+}
+
+.auth-gold-text {
+  color: #D4AF37;
+}
+
+.auth-input {
+  background: #18191E;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #FFFFFF;
+}
+
+.auth-input::placeholder {
+  color: rgba(248, 245, 238, 0.35);
+}
+
+.auth-input:focus {
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.20);
+}
+
+
+/* ─── Light Theme Overrides for Auth Portal ─────────────────────────── */
+html.light .auth-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  box-shadow: 0 20px 60px rgba(184, 134, 11, 0.16), 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .auth-left-banner {
+  background: linear-gradient(145deg, #F8F3E8 0%, #F1E7CF 100%) !important;
+  border-right: 1px solid rgba(184, 134, 11, 0.25) !important;
+}
+
+html.light .auth-right-form {
+  background: #FFFFFF !important;
+}
+
+html.light .auth-heading {
+  color: #1A1108 !important;
+}
+
+html.light .auth-brand-title {
+  color: #1A1108 !important;
+}
+
+html.light .auth-subtitle {
+  color: #4A3B2C !important;
+}
+
+html.light .auth-body-text {
+  color: #2D2319 !important;
+}
+
+html.light .auth-footer-text {
+  color: #6B5B49 !important;
+}
+
+html.light .auth-label {
+  color: #B8860B !important;
+}
+
+html.light .auth-gold-text {
+  color: #B8860B !important;
+}
+
+html.light .auth-input {
+  background: #FAF8F2 !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  color: #1A1108 !important;
+}
+
+html.light .auth-input::placeholder {
+  color: #9CA3AF !important;
+}
+
+html.light .auth-input:focus {
+  border-color: #B8860B !important;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.18) !important;
+}
+
+
+/* ─── Destination Cards: Dark & Light Parity ────────────────────────── */
+.destination-card-container {
+  background: rgba(26, 26, 29, 0.92);
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.destination-card-body {
+  background: #1A1A1D;
+}
+
+.destination-card-title {
+  color: #F5D77F;
+}
+
+.destination-card-desc {
+  color: #A1A1AA;
+}
+
+.destination-card-btn {
+  background: #25262B;
+  border: 1px solid rgba(212, 175, 55, 0.30);
+  color: #F8F5EE;
+}
+
+.destination-card-btn:hover {
+  background: linear-gradient(90deg, #D4AF37 0%, #A16207 100%);
+  color: #0B0B0D;
+}
+
+html.light .destination-card-container {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  box-shadow: 0 14px 40px rgba(184, 134, 11, 0.14), 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .destination-card-body {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+}
+
+html.light .destination-card-title {
+  color: #1A1108 !important;
+}
+
+html.light .destination-card-desc {
+  color: #4A3B2C !important;
+}
+
+html.light .destination-card-btn {
+  background: linear-gradient(90deg, #D4AF37 0%, #F5D77F 50%, #A16207 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.40) !important;
+  color: #0B0B0D !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 18px rgba(184, 134, 11, 0.28) !important;
+}
+
+html.light .destination-card-btn:hover {
+  filter: brightness(1.08) !important;
+  box-shadow: 0 6px 24px rgba(184, 134, 11, 0.40) !important;
+}
+
+
+/* ─── Light Theme: Experience / Why Choose Us Section ─────────────────── */
+html.light .kanishka-badge {
+  background: rgba(184, 134, 11, 0.12) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .kanishka-section-title {
+  color: #1A1108 !important;
+}
+
+html.light .kanishka-section-p {
+  color: #4A3B2C !important;
+}
+
+html.light .kanishka-exp-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.30) !important;
+  box-shadow: 0 12px 35px rgba(184, 134, 11, 0.14), 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .kanishka-exp-card:hover {
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 18px 45px rgba(184, 134, 11, 0.22) !important;
+}
+
+html.light .kanishka-card-icon {
+  background: linear-gradient(135deg, #FAF5E8 0%, #F5EBD4 100%) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .kanishka-card-title {
+  color: #1A1108 !important;
+}
+
+html.light .kanishka-card-desc {
+  color: #4A3B2C !important;
+}
+
+
 /* ─── Light Theme: Footer Styling ───────────────────────────────────── */
 html.light footer {
   background: linear-gradient(180deg, #FAF7F0 0%, #F5EDD8 100%) !important;

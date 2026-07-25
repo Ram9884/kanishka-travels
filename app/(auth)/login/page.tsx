@@ -1,17 +1,33 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { createClient } from '@/lib/supabase/client';
-import { Crown, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
+import { 
+  Crown, 
+  Mail, 
+  Lock, 
+  ArrowRight, 
+  AlertCircle, 
+  ShieldCheck, 
+  Sparkles,
+  Eye,
+  EyeOff,
+} from 'lucide-react';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
-export default function LoginPage() {
+function LoginFormContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get('redirect') || '/my-bookings';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,75 +44,189 @@ export default function LoginPage() {
       setError(loginError.message);
       setLoading(false);
     } else {
-      router.push('/my-bookings');
+      router.push(redirectPath);
       router.refresh();
     }
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center bg-[#0A1128] text-white px-4 py-12">
-      <div className="max-w-md w-full rounded-2xl bg-slate-900/90 border border-[#A16207]/40 p-8 shadow-2xl backdrop-blur-xl">
-        <div className="text-center space-y-3 mb-8">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1E3A8A] to-[#7A1F2B] p-0.5 border border-[#A16207]/50 mx-auto flex items-center justify-center">
-            <Crown className="w-6 h-6 text-[#A16207]" />
+    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Outer Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="auth-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12"
+      >
+        {/* Left Column: Brand Story Banner (5 cols) */}
+        <div className="auth-left-banner lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+          {/* Subtle Ambient Light Sheen */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#D4AF37]/10 blur-[100px] rounded-full pointer-events-none" />
+
+          <div className="space-y-6 relative z-10">
+            {/* Crown Logo Badge */}
+            <div className="inline-flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl icon-container-gold flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                <Crown className="w-6 h-6 text-slate-950" />
+              </div>
+              <div>
+                <span className="font-serif text-2xl font-bold tracking-tight auth-brand-title block leading-none">
+                  Kanishka <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Travels</span>
+                </span>
+                <span className="text-[10px] font-mono uppercase tracking-widest auth-gold-text block mt-1">
+                  Executive Cab Portal
+                </span>
+              </div>
+            </div>
+
+            {/* Headline */}
+            <div className="space-y-2 pt-4">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest auth-gold-text flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                Customer Access
+              </span>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight leading-snug auth-heading">
+                Manage your travel bookings with complete ease.
+              </h2>
+              <p className="text-xs sm:text-sm font-sans font-light leading-relaxed auth-subtitle">
+                Log in to check ride status, review itinerary details, or initiate instant luxury outstation reservations.
+              </p>
+            </div>
+
+            {/* Value Props */}
+            <div className="space-y-3 pt-4">
+              {[
+                'Direct Owner Coordination by S. Ramesh',
+                'Zero Advance Payment Required',
+                'Verified Chauffeur Fleet',
+              ].map((prop) => (
+                <div key={prop} className="flex items-center gap-2.5 text-xs font-medium auth-body-text">
+                  <div className="w-5 h-5 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  </div>
+                  <span>{prop}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1 className="text-2xl font-bold font-serif text-white">Customer Login</h1>
-          <p className="text-xs text-slate-400">Log in to view your bookings or request a new trip</p>
+
+          {/* Footer note */}
+          <div className="pt-8 border-t border-[#D4AF37]/20 text-[11px] font-mono relative z-10 flex items-center justify-between auth-footer-text">
+            <span>Proprietor S. Ramesh</span>
+            <span className="auth-gold-text font-semibold">Chennai · 24/7</span>
+          </div>
         </div>
 
-        {error && (
-          <div className="mb-6 p-3.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>{error}</span>
-          </div>
-        )}
-
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-              <Mail className="w-3.5 h-3.5 text-[#A16207]" /> Email Address
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="customer@example.com"
-              className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none placeholder:text-slate-500"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-              <Lock className="w-3.5 h-3.5 text-[#A16207]" /> Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none placeholder:text-slate-500"
-              required
-            />
+        {/* Right Column: Interactive Login Portal (7 cols) */}
+        <div className="auth-right-form lg:col-span-7 p-8 sm:p-12 flex flex-col justify-center space-y-6">
+          {/* Header & Tab Switcher */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between border-b border-[#D4AF37]/20 pb-3">
+              <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight auth-heading">
+                Sign In
+              </h1>
+              <Link
+                href={`/signup${redirectPath ? `?redirect=${encodeURIComponent(redirectPath)}` : ''}`}
+                className="text-xs font-mono text-[#D4AF37] dark:text-[#F5D77F] hover:underline transition-colors flex items-center gap-1 font-semibold"
+              >
+                <span>New Customer? Register</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+            <p className="text-xs font-sans font-light auth-subtitle">
+              Enter your registered email address and password to log in.
+            </p>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#A16207] to-[#D4AF37] text-white font-semibold text-sm shadow-lg hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
-          >
-            <span>{loading ? 'Logging in...' : 'Sign In'}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </form>
+          {/* Error Alert */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-200 text-xs flex items-center gap-3"
+            >
+              <AlertCircle className="w-4 h-4 text-rose-500 shrink-0" />
+              <span>{error}</span>
+            </motion.div>
+          )}
 
-        <div className="mt-6 pt-6 border-t border-slate-800 text-center text-xs text-slate-400">
-          <span>Don&apos;t have an account? </span>
-          <Link href="/signup" className="text-[#F5D77F] font-semibold hover:underline">
-            Register Now
-          </Link>
+          {/* Form */}
+          <form onSubmit={handleLogin} className="space-y-5">
+            {/* Email Field */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-mono uppercase tracking-widest auth-label font-semibold">
+                Email Address
+              </label>
+              <div className="relative">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#D4AF37]">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="customer@example.com"
+                  className="auth-input w-full pl-10 pr-4 py-3.5 rounded-xl text-sm focus:outline-none transition-all font-sans"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Password Field */}
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <label className="block text-xs font-mono uppercase tracking-widest auth-label font-semibold">
+                  Password
+                </label>
+              </div>
+              <div className="relative">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#D4AF37]">
+                  <Lock className="w-4 h-4" />
+                </div>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="auth-input w-full pl-10 pr-12 py-3.5 rounded-xl text-sm focus:outline-none transition-all font-sans"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#A1A1AA] hover:text-[#D4AF37] transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-[0_4px_20px_rgba(212,175,55,0.35)] hover:scale-[1.01] hover:brightness-110 active:scale-[0.99] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5 disabled:opacity-50 mt-2"
+            >
+              <span>{loading ? 'Authenticating...' : 'Sign In to Portal'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
+
+          {/* Quick WhatsApp Support Link */}
+          <div className="pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between text-xs text-[#A1A1AA]">
+            <span>Need help with sign in?</span>
+            <WhatsAppButton variant="badge" label="Direct Owner Assistance" />
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center text-xs font-mono text-[#D4AF37]">Loading Portal...</div>}>
+      <LoginFormContent />
+    </Suspense>
   );
 }

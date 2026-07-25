@@ -47,7 +47,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold tracking-wider uppercase mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] dark:text-[#F5D77F] text-xs font-semibold tracking-wider uppercase mb-4"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Curated South India Journeys</span>
@@ -57,7 +57,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#F8F5EE] tracking-tight leading-tight"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-[#F8F5EE] tracking-tight leading-tight"
           >
             Signature <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Journeys</span>
           </motion.h2>
@@ -66,7 +66,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-4 text-base sm:text-lg text-[#F8F5EE] font-medium leading-relaxed"
+            className="mt-4 text-base sm:text-lg text-slate-700 dark:text-[#F8F5EE] font-medium leading-relaxed"
           >
             Handpicked pilgrimage, hill station, and heritage routes from Chennai with dedicated luxury drivers.
           </motion.p>
@@ -97,7 +97,7 @@ function DestinationCard({ destination, index }: { destination: Destination; ind
       variants={cardVariants}
       whileHover={{ y: -6, scale: 1.02 }}
       transition={{ duration: 0.3 }}
-      className={`destination-card-gsap group relative rounded-2xl overflow-hidden bg-[#1A1A1D]/90 backdrop-blur-2xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)] transition-all duration-300 flex flex-col justify-between ${
+      className={`destination-card-gsap destination-card-container group relative rounded-3xl overflow-hidden border transition-all duration-300 flex flex-col justify-between ${
         isLarge ? 'md:col-span-2 lg:col-span-1' : ''
       }`}
     >
@@ -111,23 +111,23 @@ function DestinationCard({ destination, index }: { destination: Destination; ind
           className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        {/* Dark Charcoal Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1D] via-[#1A1A1D]/40 to-transparent" />
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
         {/* Subtitle Badge */}
         <div className="absolute top-4 left-4 z-10">
-          <span className="px-3 py-1 rounded-full bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/30 text-[11px] font-medium text-[#F5D77F] tracking-wide shadow-md">
+          <span className="px-3 py-1 rounded-full bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 text-[11px] font-medium text-[#F5D77F] tracking-wide shadow-md">
             {destination.subtitle}
           </span>
         </div>
 
         {/* Travel Time Tag */}
-        <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/30 text-[11px] font-mono text-[#F8F5EE] shadow-md">
+        <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 text-[11px] font-mono text-[#F8F5EE] shadow-md">
           <Clock className="w-3 h-3 text-[#D4AF37]" />
           <span>{destination.travelTime}</span>
         </div>
 
-        {/* Real Distance Tag from Chennai */}
+        {/* Distance Tag from Chennai */}
         <div className="absolute bottom-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 shadow-lg">
           <Navigation className="w-3.5 h-3.5 text-[#D4AF37]" />
           <span className="text-xs font-mono font-bold text-[#F8F5EE] tracking-wide">
@@ -136,26 +136,26 @@ function DestinationCard({ destination, index }: { destination: Destination; ind
         </div>
       </div>
 
-      {/* Content Body — Luxury Charcoal #1A1A1D */}
-      <div className="p-6 flex-1 flex flex-col justify-between bg-[#1A1A1D] border-t border-[#D4AF37]/15">
+      {/* Content Body */}
+      <div className="destination-card-body p-6 flex-1 flex flex-col justify-between border-t border-[#D4AF37]/20">
         <div>
-          <h3 className="text-xl font-extrabold text-[#F5D77F] group-hover:text-white transition-colors duration-300 flex items-center gap-2">
+          <h3 className="destination-card-title text-xl font-extrabold flex items-center gap-2 transition-colors duration-300">
             <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0" />
-            <span className="text-[#F5D77F] tracking-wide">{destination.name}</span>
+            <span className="tracking-wide">{destination.name}</span>
           </h3>
-          <p className="mt-3 text-sm text-[#A1A1AA] leading-relaxed line-clamp-2 font-normal">
+          <p className="destination-card-desc mt-3 text-sm leading-relaxed line-clamp-2 font-normal">
             {destination.description}
           </p>
         </div>
 
         {/* Action Button */}
-        <div className="mt-6 pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between">
+        <div className="mt-6 pt-4 border-t border-[#D4AF37]/20 flex items-center justify-between">
           <Link
             href={`/book?destination=${destination.id}`}
-            className="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-[#25262B] hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#A16207] border border-[#D4AF37]/30 hover:border-[#D4AF37] text-xs font-bold uppercase tracking-wider text-[#F8F5EE] hover:text-slate-950 transition-all duration-300 shadow-md group-hover:shadow-[#D4AF37]/20"
+            className="destination-card-btn w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md"
           >
             <span>Explore Packages</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#D4AF37] group-hover:text-slate-950 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>
