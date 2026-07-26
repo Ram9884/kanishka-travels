@@ -3,13 +3,14 @@
 import React, { createContext, useContext, useRef, useEffect, ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTheme } from '@/components/ThemeProvider';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 interface ControllerContextType {
-  videoRef: React.RefObject<HTMLVideoElement | null>;
+  videoRef: React.RefObject<HTMLDivElement | null>;
   videoContainerRef: React.RefObject<HTMLDivElement | null>;
   videoOverlayRef: React.RefObject<HTMLDivElement | null>;
   heroSectionRef: React.RefObject<HTMLElement | null>;
@@ -28,7 +29,8 @@ export function useScrollStoryController() {
 }
 
 export function ScrollStoryControllerProvider({ children }: { children: ReactNode }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const { theme } = useTheme();
+  const videoRef = useRef<HTMLDivElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const videoOverlayRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
@@ -37,6 +39,11 @@ export function ScrollStoryControllerProvider({ children }: { children: ReactNod
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+
+    if (theme === 'light') {
+      ScrollTrigger.refresh();
+      return;
+    }
 
     // Respect prefers-reduced-motion
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -85,7 +92,7 @@ export function ScrollStoryControllerProvider({ children }: { children: ReactNod
       clearTimeout(refreshTimer);
       ctx.revert();
     };
-  }, []);
+  }, [theme]);
 
   return (
     <ControllerContext.Provider

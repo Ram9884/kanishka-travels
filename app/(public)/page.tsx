@@ -8,41 +8,45 @@ import PremiumTestimonials from '@/components/testimonials/PremiumTestimonials';
 import FAQAccordion from '@/components/faq/FAQAccordion';
 import SectionDivider from '@/components/ui/SectionDivider';
 
+import { ScrollStoryControllerProvider } from '@/components/animation/ScrollStoryController';
+
 export default function HomePage() {
   return (
-    <div className="relative w-full">
-      {/* 1. Hero Section */}
-      <HeroSection />
+    <ScrollStoryControllerProvider>
+      <div className="relative w-full">
+        {/* 1. Hero Section */}
+        <HeroSection />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 2. Popular Destinations */}
-      <PopularDestinations />
+        {/* 2. Popular Destinations */}
+        <PopularDestinations />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 4. Why Kanishka Travels */}
-      <WhyChooseUs />
+        {/* 4. Why Kanishka Travels */}
+        <WhyChooseUs />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 5. Booking Timeline */}
-      <BookingTimeline />
+        {/* 5. Booking Timeline */}
+        <BookingTimeline />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 6. Animated Statistics */}
-      <AnimatedStats />
+        {/* 6. Animated Statistics */}
+        <AnimatedStats />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 7. Premium Testimonials */}
-      <PremiumTestimonials />
+        {/* 7. Premium Testimonials */}
+        <PremiumTestimonials />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      {/* 8. Premium FAQ Accordion */}
-      <FAQAccordion />
-    </div>
+        {/* 8. Premium FAQ Accordion */}
+        <FAQAccordion />
+      </div>
+    </ScrollStoryControllerProvider>
   );
 }

@@ -70,7 +70,9 @@ export default function Navbar() {
           ? theme === 'dark'
             ? 'bg-[#0B0B0D]/90 backdrop-blur-2xl border-[#D4AF37]/25 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
             : 'bg-white/90 backdrop-blur-2xl border-[#B8860B]/25 shadow-[0_10px_30px_rgba(184,134,11,0.10)]'
-          : 'bg-gradient-to-b from-black/70 via-black/30 to-transparent border-transparent'
+          : theme === 'dark'
+            ? 'bg-gradient-to-b from-black/70 via-black/30 to-transparent border-transparent'
+            : 'bg-white/55 backdrop-blur-xl border-[#B8860B]/15 shadow-[0_8px_28px_rgba(255,255,255,0.18)]'
       }`}
       initial={{ y: -90, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -82,12 +84,16 @@ export default function Navbar() {
           <div className="flex-1 flex justify-start">
             <Link href="/" className="flex items-center gap-3 group cursor-pointer">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D4AF37] via-[#F5D77F] to-[#A16207] p-[1.5px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] group-hover:scale-105 transition-transform duration-300">
-                <div className="w-full h-full bg-[#0B0B0D] rounded-[9.5px] flex items-center justify-center">
+                <div className={`w-full h-full rounded-[9.5px] flex items-center justify-center ${
+                  theme === 'dark' ? 'bg-[#0B0B0D]' : 'bg-white'
+                }`}>
                   <Crown className="w-5 h-5 text-[#F5D77F] group-hover:rotate-12 transition-transform duration-300" />
                 </div>
               </div>
               <div>
-                <span className="font-serif text-xl font-bold tracking-tight text-[#F8F5EE] group-hover:text-[#F5D77F] transition-colors block leading-none">
+                <span className={`font-serif text-xl font-bold tracking-tight group-hover:text-[#F5D77F] transition-colors block leading-none ${
+                  theme === 'dark' ? 'text-[#F8F5EE]' : 'text-[#1A1A1D]'
+                }`}>
                   KANISHKA <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">TRAVELS</span>
                 </span>
               </div>
@@ -105,7 +111,9 @@ export default function Navbar() {
                   className={`relative text-xs sm:text-sm font-semibold transition-all duration-300 py-1 ${
                     isActive
                       ? 'text-[#F5D77F]'
-                      : 'text-[#F8F5EE] hover:text-[#F5D77F]'
+                      : theme === 'dark'
+                        ? 'text-[#F8F5EE] hover:text-[#F5D77F]'
+                        : 'text-[#1A1A1D] hover:text-[#B8860B]'
                   }`}
                 >
                   <span>{link.name}</span>
@@ -127,7 +135,9 @@ export default function Navbar() {
             <button
               onClick={toggleTheme}
               title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Theme`}
-              className="p-3 rounded-xl bg-[#0B0B0D]/80 border border-[#D4AF37]/30 hover:border-[#D4AF37] text-[#F5D77F] hover:scale-105 transition-all duration-300 cursor-pointer shadow-md"
+              className={`p-3 rounded-xl border border-[#D4AF37]/30 hover:border-[#D4AF37] text-[#F5D77F] hover:scale-105 transition-all duration-300 cursor-pointer shadow-md ${
+                theme === 'dark' ? 'bg-[#0B0B0D]/80' : 'bg-white/80'
+              }`}
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? (
@@ -139,14 +149,18 @@ export default function Navbar() {
 
             {user ? (
               <div className="flex items-center gap-3">
-                <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1A1A1D] border border-[#D4AF37]/30 text-xs font-semibold text-[#F8F5EE]">
+                <div className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#D4AF37]/30 text-xs font-semibold ${
+                  theme === 'dark' ? 'bg-[#1A1A1D] text-[#F8F5EE]' : 'bg-white/85 text-[#1A1A1D]'
+                }`}>
                   <User className="w-4 h-4 text-[#D4AF37]" />
                   <span className="max-w-[130px] truncate">{userName}</span>
                 </div>
 
                 <Link
                   href="/my-bookings"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#25262B] border border-[#D4AF37]/40 text-xs font-bold text-[#F5D77F] hover:border-[#D4AF37] hover:bg-[#D4AF37]/15 transition-all duration-300 cursor-pointer shadow-md"
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#D4AF37]/40 text-xs font-bold hover:border-[#D4AF37] hover:bg-[#D4AF37]/15 transition-all duration-300 cursor-pointer shadow-md ${
+                    theme === 'dark' ? 'bg-[#25262B] text-[#F5D77F]' : 'bg-white/85 text-[#8A6408]'
+                  }`}
                 >
                   <Calendar className="w-4 h-4 text-[#D4AF37]" />
                   <span>My Bookings</span>
@@ -176,14 +190,18 @@ export default function Navbar() {
           <div className="flex lg:hidden items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-[#0B0B0D]/80 border border-[#D4AF37]/30 text-[#F5D77F] cursor-pointer"
+              className={`p-2.5 rounded-xl border border-[#D4AF37]/30 text-[#F5D77F] cursor-pointer ${
+                theme === 'dark' ? 'bg-[#0B0B0D]/80' : 'bg-white/85'
+              }`}
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <Sun className="w-5 h-5 text-[#F5D77F]" /> : <Moon className="w-5 h-5 text-[#B8860B]" />}
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-[#1A1A1D] border border-[#D4AF37]/30 text-[#F8F5EE] hover:text-[#F5D77F] cursor-pointer"
+              className={`p-2.5 rounded-xl border border-[#D4AF37]/30 hover:text-[#F5D77F] cursor-pointer ${
+                theme === 'dark' ? 'bg-[#1A1A1D] text-[#F8F5EE]' : 'bg-white/85 text-[#1A1A1D]'
+              }`}
               aria-label="Toggle Navigation"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
