@@ -16,7 +16,7 @@ export default function ServicesHero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/35 text-[#F5D77F] text-xs font-mono tracking-widest uppercase"
+          className="services-hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono tracking-widest uppercase"
         >
           <Compass className="w-3.5 h-3.5 animate-spin-slow" />
           <span>Bespoke Chauffeur Services</span>
@@ -27,7 +27,7 @@ export default function ServicesHero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight"
+          className="services-hero-title font-serif text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight"
         >
           The Art of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Travel</span>
         </motion.h1>
@@ -37,7 +37,7 @@ export default function ServicesHero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-base sm:text-lg md:text-xl text-[#F8F5EE]/75 max-w-3xl mx-auto leading-relaxed font-sans font-light"
+          className="services-hero-subtitle text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-sans font-light"
         >
           Every booking request is personally coordinated by S. Ramesh. Operating clean, premium vehicles with vetted professional highway chauffeurs.
         </motion.p>

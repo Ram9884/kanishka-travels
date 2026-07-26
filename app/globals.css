@@ -1602,6 +1602,36 @@ html.light .destinations-section-subtitle {
   color: #4A3B2C !important;
 }
 
+/* ─── Services Hero Parity ───────────────────────────────────────────────── */
+.services-hero-badge {
+  background: rgba(212, 175, 55, 0.10);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #F5D77F;
+}
+
+.services-hero-title {
+  color: #FFFFFF;
+}
+
+.services-hero-subtitle {
+  color: rgba(248, 245, 238, 0.85);
+}
+
+html.light .services-hero-badge {
+  background: rgba(184, 134, 11, 0.12) !important;
+  border-color: rgba(184, 134, 11, 0.35) !important;
+  color: #B8860B !important;
+}
+
+html.light .services-hero-title {
+  color: #1A1108 !important;
+}
+
+html.light .services-hero-subtitle {
+  color: #4A3B2C !important;
+}
+
+
 
 
 
