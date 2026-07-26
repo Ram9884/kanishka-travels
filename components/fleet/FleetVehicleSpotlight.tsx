@@ -141,8 +141,8 @@ export default function FleetVehicleSpotlight() {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      const blocks = gsap.utils.toArray('.vehicle-spotlight-block');
-      blocks.forEach((block: any) => {
+      const blocks = gsap.utils.toArray<HTMLElement>('.vehicle-spotlight-block');
+      blocks.forEach((block) => {
         const img = block.querySelector('.spotlight-img');
         if (img) {
           gsap.to(img, {
@@ -199,14 +199,16 @@ export default function FleetVehicleSpotlight() {
               {/* Image Column */}
               <div className={`lg:col-span-6 relative overflow-hidden rounded-3xl border border-[#D4AF37]/20 shadow-2xl h-[350px] sm:h-[460px] group ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                 <div className="absolute inset-0 bg-black/30 z-10 group-hover:bg-black/15 transition-colors duration-500" />
-                <Image
-                  src={vehicle.image}
-                  alt={vehicle.name}
-                  fill
-                  unoptimized={true}
-                  className="spotlight-img absolute top-[-10%] left-0 w-full h-[120%] object-cover object-center scale-105 transition-transform duration-700"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+                <div className="spotlight-img absolute top-[-10%] left-0 h-[120%] w-full scale-105 transition-transform duration-700">
+                  <Image
+                    src={vehicle.image}
+                    alt={vehicle.name}
+                    fill
+                    quality={70}
+                    className="object-cover object-center"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
                 {/* Overlay tags */}
                 <div className="absolute top-5 left-5 z-20 flex gap-2">
                   <span className="px-3 py-1.5 rounded-full bg-[#0B0B0D]/90 border border-[#D4AF37]/30 text-[#F8F5EE]/80 text-[10px] font-mono tracking-widest uppercase">

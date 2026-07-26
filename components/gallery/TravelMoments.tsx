@@ -97,6 +97,7 @@ function GalleryCard({ item }: { item: GalleryItem }) {
         src={item.image}
         alt={item.title}
         fill
+        quality={70}
         className="gallery-image-gsap object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out opacity-85 group-hover:opacity-100"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         loading="lazy"

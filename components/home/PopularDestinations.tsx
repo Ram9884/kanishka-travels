@@ -78,6 +78,7 @@ export default function PopularDestinations() {
                       src={dest.image}
                       alt={dest.name}
                       fill
+                      quality={70}
                       sizes="(min-width: 768px) 33vw, 100vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                     />

@@ -467,7 +467,7 @@ function Step4({
                   src={v.image}
                   alt={v.name}
                   fill
-                  unoptimized={true}
+                  quality={60}
                   className="object-cover object-center"
                   sizes="80px"
                 />
@@ -774,7 +774,26 @@ function BookingWizardContent() {
       .single();
 
     if (err)   { setError(err.message); setLoading(false); }
-    else if (data) { setSuccessRef(data.booking_reference); setLoading(false); }
+    else if (data) {
+      // Send email notification for new booking
+      void fetch('/api/notify/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'booking',
+          data: {
+            booking_reference: data.booking_reference,
+            service: serviceType,
+            pickup_location: pickupLocation,
+            drop_location: dropLocation,
+            pickup_date: pickupDate,
+            pickup_time: pickupTime,
+          },
+        }),
+      }).catch(console.error);
+      setSuccessRef(data.booking_reference);
+      setLoading(false);
+    }
   };
 
   if (successBookingRef) {

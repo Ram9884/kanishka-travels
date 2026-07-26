@@ -44,6 +44,15 @@ function LoginFormContent() {
       setError(loginError.message);
       setLoading(false);
     } else {
+      // Send email notification for login
+      void fetch('/api/notify/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'login',
+          data: { email },
+        }),
+      }).catch(console.error);
       router.push(redirectPath);
       router.refresh();
     }

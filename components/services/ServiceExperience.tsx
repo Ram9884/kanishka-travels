@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -117,8 +118,8 @@ export default function ServiceExperience() {
     if (typeof window === 'undefined') return;
 
     const ctx = gsap.context(() => {
-      const blocks = gsap.utils.toArray('.experience-block');
-      blocks.forEach((block: any) => {
+      const blocks = gsap.utils.toArray<HTMLElement>('.experience-block');
+      blocks.forEach((block) => {
         const image = block.querySelector('.parallax-img');
         if (image) {
           gsap.to(image, {
@@ -154,11 +155,16 @@ export default function ServiceExperience() {
               isEven ? 'lg:order-1' : 'lg:order-2'
             }`}>
               <div className="absolute inset-0 bg-black/35 z-10 group-hover:bg-black/20 transition-colors duration-500" />
-              <img
-                src={exp.image}
-                alt={exp.title}
-                className="parallax-img absolute top-[-10%] left-0 w-full h-[120%] object-cover scale-105 transition-transform duration-700"
-              />
+              <div className="parallax-img absolute top-[-10%] left-0 h-[120%] w-full scale-105 transition-transform duration-700">
+                <Image
+                  src={exp.image}
+                  alt={exp.title}
+                  fill
+                  quality={70}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
               <div className="absolute bottom-5 left-5 z-20">
                 <span className="px-3.5 py-1.5 rounded-full bg-[#0B0B0D]/90 border border-[#D4AF37]/35 text-[#F5D77F] text-xs font-mono tracking-widest uppercase">
                   {exp.badge}

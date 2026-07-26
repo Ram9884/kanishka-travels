@@ -1,80 +1,13 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import GlobalVideoBackground from '@/components/home/GlobalVideoBackground';
 import BookingCard from '@/components/ui/BookingCard';
 import { ShieldCheck, Star, Award, Clock, Sparkles } from 'lucide-react';
-import { useScrollStoryController } from '@/components/animation/ScrollStoryController';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 export default function HeroSection() {
-  const { heroSectionRef, heroContentRef } = useScrollStoryController();
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const pillsRef = useRef<HTMLDivElement>(null);
-  const metricsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!heroSectionRef.current) return;
-
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isReducedMotion) return;
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      // 1. Headline GSAP 3D Entrance Reveal
-      if (headlineRef.current) {
-        const headlineLines = headlineRef.current.querySelectorAll('.hero-gsap-line');
-        tl.fromTo(
-          headlineLines,
-          { opacity: 0, y: 45, rotateX: 30, filter: 'blur(8px)' },
-          { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)', stagger: 0.18, duration: 1.1 }
-        );
-      }
-
-      // 2. Subtitle GSAP Fade Up
-      if (subtitleRef.current) {
-        tl.fromTo(
-          subtitleRef.current,
-          { opacity: 0, y: 25, filter: 'blur(6px)' },
-          { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8 },
-          '-=0.6'
-        );
-      }
-
-      // 3. Trust Pills GSAP Stagger
-      if (pillsRef.current) {
-        tl.fromTo(
-          pillsRef.current.children,
-          { opacity: 0, y: 20, scale: 0.92 },
-          { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.7 },
-          '-=0.5'
-        );
-      }
-
-      // 4. Trust Metrics GSAP Stagger
-      if (metricsRef.current) {
-        tl.fromTo(
-          metricsRef.current.children,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, stagger: 0.12, duration: 0.7 },
-          '-=0.4'
-        );
-      }
-    }, heroSectionRef);
-
-    return () => ctx.revert();
-  }, [heroSectionRef]);
-
   return (
     <section
-      ref={heroSectionRef}
       className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden border-none"
     >
       {/* Video Background bounded strictly inside Hero Section */}
@@ -118,7 +51,6 @@ export default function HeroSection() {
 
       {/* Content */}
       <div
-        ref={heroContentRef}
         className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 flex flex-col items-center"
       >
         <div className="w-full flex flex-col items-center text-center space-y-8">
@@ -127,12 +59,11 @@ export default function HeroSection() {
           <div className="relative">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[280px] bg-[#D4AF37]/15 blur-[120px] rounded-full pointer-events-none z-0" />
             <h1
-              ref={headlineRef}
               className="relative z-10 font-serif text-5xl sm:text-6xl lg:text-[5.5rem] font-bold text-white leading-[1.05] tracking-tight max-w-4xl perspective-1000"
             >
-              <span className="hero-gsap-line block dark:text-[#F5D77F]">Your Trip...</span>
+              <span className="block dark:text-[#F5D77F]">Your Trip...</span>
               <span
-                className="hero-gsap-line block bg-gradient-to-r from-[#F5D77F] via-[#CA8A04] to-[#EAB308] bg-clip-text text-transparent italic hero-headline-gradient"
+                className="block bg-gradient-to-r from-[#F5D77F] via-[#CA8A04] to-[#EAB308] bg-clip-text text-transparent italic hero-headline-gradient"
               >
                 Our Responsibility!
               </span>
@@ -141,7 +72,6 @@ export default function HeroSection() {
 
           {/* Subtitle */}
           <p
-            ref={subtitleRef}
             className="text-base sm:text-lg max-w-2xl leading-relaxed font-sans font-light"
             style={{ color: 'rgba(240,235,225,0.85)', letterSpacing: '0.01em' }}
           >
@@ -149,7 +79,7 @@ export default function HeroSection() {
           </p>
 
           {/* Trust pills */}
-          <div ref={pillsRef} className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             {[
               { icon: <Award className="w-3.5 h-3.5" style={{ color: '#CA8A04' }} />, label: '100% Punctuality' },
               { icon: <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />, label: 'Verified Cabs' },
@@ -175,7 +105,6 @@ export default function HeroSection() {
 
           {/* Trust metrics */}
           <div
-            ref={metricsRef}
             className="w-full max-w-md pt-7 grid grid-cols-3 gap-6"
             style={{ borderTop: '1px solid rgba(202,138,4,0.25)' }}
           >

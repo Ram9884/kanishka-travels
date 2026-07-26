@@ -1,54 +1,12 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Car, Shield, Star } from 'lucide-react';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 export default function FleetHero() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-
-  useEffect(() => {
-    if (!heroRef.current || !titleRef.current || !subtitleRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // Subtle parallax on scroll — title drifts upward gently
-      gsap.to(titleRef.current, {
-        yPercent: -18,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-
-      gsap.to(subtitleRef.current, {
-        yPercent: -10,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={heroRef}
       className="relative w-full min-h-[55vh] flex flex-col items-center justify-center pt-36 pb-20 overflow-hidden bg-transparent"
     >
       {/* Top gradient overlay */}
@@ -68,7 +26,6 @@ export default function FleetHero() {
 
         {/* Main title */}
         <motion.h1
-          ref={titleRef}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
@@ -82,7 +39,6 @@ export default function FleetHero() {
 
         {/* Subtitle */}
         <motion.p
-          ref={subtitleRef}
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}

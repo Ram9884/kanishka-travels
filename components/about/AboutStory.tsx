@@ -101,6 +101,7 @@ export default function AboutStory() {
                 src="/images/fleet/innova-hycross.jpg"
                 alt="Kanishka Travels Executive Fleet"
                 fill
+                quality={70}
                 className="object-cover object-center scale-105 group-hover:scale-110 transition-transform duration-700"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />

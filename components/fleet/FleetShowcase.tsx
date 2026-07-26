@@ -121,7 +121,7 @@ function VehicleCard({ vehicle, index }: { vehicle: Vehicle; index: number }) {
           src={vehicle.image}
           alt={vehicle.name}
           fill
-          unoptimized={true}
+          quality={70}
           className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           sizes="(max-width: 768px) 300px, 380px"
         />

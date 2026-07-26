@@ -7,13 +7,9 @@ import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CallButton from '@/components/CallButton';
 
-import { useScrollStoryController } from '@/components/animation/ScrollStoryController';
-
 export default function FinalCTA() {
-  const { ctaSectionRef } = useScrollStoryController();
-
   return (
-    <section ref={ctaSectionRef} className="relative w-full py-28 bg-[#0B0B0D] overflow-hidden border-t border-[#D4AF37]/20">
+    <section className="relative w-full py-28 bg-[#0B0B0D] overflow-hidden border-t border-[#D4AF37]/20">
       {/* Cinematic Golden Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-gradient-to-r from-[#D4AF37]/10 via-[#F5D77F]/15 to-[#A16207]/10 blur-[160px] rounded-full pointer-events-none" />
 
