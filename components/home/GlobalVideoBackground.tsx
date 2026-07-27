@@ -55,7 +55,7 @@ export default function GlobalVideoBackground() {
         <div
           className={`absolute inset-0 transition-opacity duration-500 ${isLight ? 'opacity-100' : 'opacity-0'}`}
           style={{
-            background: 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.35))',
+            background: 'linear-gradient(180deg, rgba(255,251,235,0.22) 0%, rgba(254,243,199,0.18) 40%, rgba(255,237,213,0.32) 100%)',
           }}
         />
       </div>
