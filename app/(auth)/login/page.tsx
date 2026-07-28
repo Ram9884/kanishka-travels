@@ -134,13 +134,7 @@ function LoginFormContent() {
               <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight auth-heading">
                 Sign In
               </h1>
-              <Link
-                href={`/signup${redirectPath ? `?redirect=${encodeURIComponent(redirectPath)}` : ''}`}
-                className="text-xs font-mono text-[#D4AF37] dark:text-[#F5D77F] hover:underline transition-colors flex items-center gap-1 font-semibold"
-              >
-                <span>New Customer? Register</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+             
             </div>
             <p className="text-xs font-sans font-light auth-subtitle">
               Enter your registered email address and password to log in.
@@ -223,8 +217,18 @@ function LoginFormContent() {
 
           {/* Quick WhatsApp Support Link */}
           <div className="pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between text-xs text-[#A1A1AA]">
-            <span>Need help with sign in?</span>
+            {/* <span>Need help with sign in?</span> */}
+
             <WhatsAppButton variant="badge" label="Direct Owner Assistance" />
+            
+             <Link
+                href={`/signup${redirectPath ? `?redirect=${encodeURIComponent(redirectPath)}` : ''}`}
+                className="text-xs font-mono text-[#D4AF37] dark:text-[#F5D77F] hover:underline transition-colors flex items-center gap-1 font-semibold"
+              >
+                <span>New Customer? Register</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            
           </div>
         </div>
       </motion.div>

@@ -135,13 +135,9 @@ function SignupFormContent() {
               <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight auth-heading">
                 Create Account
               </h1>
-              <Link
-                href={`/login${redirectPath ? `?redirect=${encodeURIComponent(redirectPath)}` : ''}`}
-                className="text-xs font-mono text-[#D4AF37] dark:text-[#F5D77F] hover:underline transition-colors flex items-center gap-1 font-semibold"
-              >
-                <span>Already Registered? Sign In</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+
+              <span>Need assistance creating an account?</span>
+             
             </div>
             <p className="text-xs font-sans font-light auth-subtitle">
               Fill in your contact details to set up your Kanishka Travels portal.
@@ -263,8 +259,15 @@ function SignupFormContent() {
 
           {/* Quick WhatsApp Support Link */}
           <div className="pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between text-xs text-[#A1A1AA]">
-            <span>Need assistance creating an account?</span>
+           
             <WhatsAppButton variant="badge" label="Direct Owner Assistance" />
+             <Link
+                href={`/login${redirectPath ? `?redirect=${encodeURIComponent(redirectPath)}` : ''}`}
+                className="text-xs font-mono text-[#D4AF37] dark:text-[#F5D77F] hover:underline transition-colors flex items-center gap-1 font-semibold"
+              >
+                <span>Already Registered? Sign In</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
           </div>
         </div>
       </motion.div>
