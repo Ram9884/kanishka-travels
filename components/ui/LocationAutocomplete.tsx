@@ -113,12 +113,12 @@ export default function LocationAutocomplete({
         placeholder={placeholder}
         required={required}
         autoComplete="off"
-        className={`w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none placeholder:text-slate-500 transition-colors ${className}`}
+        className={`booking-field w-full rounded-xl px-4 py-3 text-sm focus:outline-none transition-all duration-200 ${className}`}
       />
 
       {/* Suggestion Dropdown */}
       {isOpen && suggestions.length > 0 && (
-        <div className="absolute left-0 right-0 top-full mt-1.5 z-50 rounded-xl bg-slate-900/95 border border-[#A16207]/50 shadow-2xl backdrop-blur-xl overflow-hidden max-h-60 overflow-y-auto">
+        <div className="location-dropdown absolute left-0 right-0 top-full mt-1.5 z-50 rounded-xl shadow-2xl backdrop-blur-xl overflow-hidden max-h-60 overflow-y-auto">
           {suggestions.map((item, idx) => {
             const Icon = item.icon;
             return (
@@ -126,15 +126,15 @@ export default function LocationAutocomplete({
                 key={idx}
                 type="button"
                 onClick={() => handleSelect(item.name)}
-                className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-[#1E3A8A]/50 transition-colors border-b border-slate-800/60 last:border-none cursor-pointer group"
+                className="location-dropdown-item w-full text-left px-4 py-3 flex items-center justify-between transition-colors border-b last:border-none cursor-pointer group"
               >
                 <div className="flex items-center gap-2.5">
                   <Icon className="w-4 h-4 text-[#A16207] group-hover:scale-110 transition-transform shrink-0" />
-                  <span className="text-xs font-semibold text-white group-hover:text-[#F5D77F] transition-colors">
+                  <span className="location-item-name text-xs font-semibold transition-colors">
                     {item.name}
                   </span>
                 </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400 group-hover:text-slate-200">
+                <span className="location-item-tag text-[10px] font-mono px-2 py-0.5 rounded">
                   {item.type}
                 </span>
               </button>

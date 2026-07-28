@@ -588,7 +588,128 @@ html.light .fleet-cta-desc {
 }
 
 
-/* ─── Light Theme: Booking Wizard ───────────────────────────────────────── */
+/* ─── Booking Wizard: Dark Base Styles ───────────────────────────────────── */
+.booking-step-title {
+  color: #F8F5EE;
+}
+
+.booking-step-subtitle {
+  color: rgba(248, 245, 238, 0.55);
+}
+
+.booking-field {
+  background: rgba(14, 14, 16, 0.80);
+  border: 1px solid rgba(212, 175, 55, 0.20);
+  color: #F8F5EE;
+  backdrop-filter: blur(8px);
+}
+
+.booking-field::placeholder {
+  color: #6B7280;
+}
+
+.booking-field:focus {
+  border-color: rgba(212, 175, 55, 0.60);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.15);
+}
+
+.booking-service-card {
+  background: rgba(14, 14, 16, 0.60);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.booking-service-card--active {
+  background: rgba(212, 175, 55, 0.10);
+}
+
+.booking-service-card--idle:hover {
+  background: rgba(26, 26, 29, 0.80);
+}
+
+.booking-service-label {
+  color: rgba(248, 245, 238, 0.90);
+}
+
+.booking-service-desc {
+  color: #A1A1AA;
+}
+
+.booking-vehicle-card {
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.booking-vehicle-card--active {
+  background: rgba(212, 175, 55, 0.10);
+}
+
+.booking-vehicle-card--idle {
+  background: rgba(14, 14, 16, 0.60);
+}
+
+.booking-vehicle-card--idle:hover {
+  background: rgba(26, 26, 29, 0.60);
+}
+
+.booking-summary-card {
+  background: rgba(11, 11, 13, 0.90);
+  border-color: rgba(212, 175, 55, 0.20);
+}
+
+.booking-trust-item {
+  background: rgba(14, 14, 16, 0.60);
+}
+
+.booking-back-btn {
+  color: rgba(248, 245, 238, 0.60);
+}
+
+.booking-back-btn:hover {
+  color: #F8F5EE;
+}
+
+.booking-stepper-btn {
+  background: rgba(14, 14, 16, 0.80);
+}
+
+.booking-time-btn {
+  background: rgba(14, 14, 16, 0.60);
+  border-color: rgba(212, 175, 55, 0.15);
+  color: #A1A1AA;
+}
+
+.booking-time-btn:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  color: #F8F5EE;
+}
+
+/* Location autocomplete dropdown */
+.location-dropdown {
+  background: rgba(11, 11, 13, 0.96);
+  border: 1px solid rgba(212, 175, 55, 0.40);
+}
+
+.location-dropdown-item {
+  border-color: rgba(30, 30, 35, 0.60);
+}
+
+.location-dropdown-item:hover {
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.location-item-name {
+  color: #F8F5EE;
+}
+
+.location-dropdown-item:hover .location-item-name {
+  color: #F5D77F;
+}
+
+.location-item-tag {
+  background: rgba(26, 26, 29, 0.90);
+  color: #71717A;
+}
+
+/* ─── Booking Wizard: Light Theme Overrides ───────────────────────────────── */
 html.light .booking-step-title {
   color: #1A1108 !important;
 }
@@ -597,24 +718,130 @@ html.light .booking-step-subtitle {
   color: #4A3B2C !important;
 }
 
-html.light .booking-summary-card {
-  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
-  border-color: rgba(184, 134, 11, 0.25) !important;
-}
-
 html.light .booking-field {
-  background: rgba(255, 255, 255, 0.90) !important;
-  border-color: rgba(184, 134, 11, 0.25) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(184, 134, 11, 0.30) !important;
   color: #1A1108 !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.06) !important;
 }
 
 html.light .booking-field:focus {
   border-color: rgba(184, 134, 11, 0.65) !important;
-  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.10) !important;
+  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.12) !important;
 }
 
 html.light .booking-field::placeholder {
   color: #9CA3AF !important;
+}
+
+html.light .booking-service-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.22) !important;
+  box-shadow: 0 4px 14px rgba(184, 134, 11, 0.08) !important;
+}
+
+html.light .booking-service-card--active {
+  background: linear-gradient(145deg, #FFF8E8 0%, #FDF3D4 100%) !important;
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 6px 20px rgba(184, 134, 11, 0.20) !important;
+}
+
+html.light .booking-service-card--idle:hover {
+  background: linear-gradient(145deg, #FFFDF7 0%, #FAF6EE 100%) !important;
+  border-color: rgba(184, 134, 11, 0.45) !important;
+}
+
+html.light .booking-service-label {
+  color: #1A1108 !important;
+}
+
+html.light .booking-service-desc {
+  color: #5C4A2A !important;
+}
+
+html.light .booking-vehicle-card {
+  border: 1px solid rgba(184, 134, 11, 0.22) !important;
+}
+
+html.light .booking-vehicle-card--active {
+  background: linear-gradient(145deg, #FFF8E8 0%, #FDF3D4 100%) !important;
+  border-color: rgba(184, 134, 11, 0.70) !important;
+  box-shadow: 0 6px 20px rgba(184, 134, 11, 0.20) !important;
+}
+
+html.light .booking-vehicle-card--idle {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  box-shadow: 0 4px 14px rgba(184, 134, 11, 0.08) !important;
+}
+
+html.light .booking-vehicle-card--idle:hover {
+  background: linear-gradient(145deg, #FFFDF7 0%, #FAF6EE 100%) !important;
+  border-color: rgba(184, 134, 11, 0.45) !important;
+}
+
+html.light .booking-summary-card {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border-color: rgba(184, 134, 11, 0.25) !important;
+  box-shadow: 0 8px 24px rgba(184, 134, 11, 0.10) !important;
+}
+
+html.light .booking-trust-item {
+  background: rgba(250, 246, 238, 0.80) !important;
+  border-color: rgba(184, 134, 11, 0.18) !important;
+}
+
+html.light .booking-back-btn {
+  color: #78350F !important;
+}
+
+html.light .booking-back-btn:hover {
+  color: #1A1108 !important;
+}
+
+html.light .booking-stepper-btn {
+  background: rgba(255, 255, 255, 0.90) !important;
+  border-color: rgba(184, 134, 11, 0.30) !important;
+}
+
+html.light .booking-time-btn {
+  background: rgba(255, 255, 255, 0.80) !important;
+  border-color: rgba(184, 134, 11, 0.20) !important;
+  color: #5C4A2A !important;
+}
+
+html.light .booking-time-btn:hover {
+  border-color: rgba(184, 134, 11, 0.55) !important;
+  color: #1A1108 !important;
+  background: rgba(250, 246, 238, 0.95) !important;
+}
+
+/* Location autocomplete: light mode */
+html.light .location-dropdown {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+  box-shadow: 0 12px 32px rgba(184, 134, 11, 0.16) !important;
+}
+
+html.light .location-dropdown-item {
+  border-color: rgba(184, 134, 11, 0.10) !important;
+}
+
+html.light .location-dropdown-item:hover {
+  background: rgba(184, 134, 11, 0.07) !important;
+}
+
+html.light .location-item-name {
+  color: #1A1108 !important;
+}
+
+html.light .location-dropdown-item:hover .location-item-name {
+  color: #B8860B !important;
+}
+
+html.light .location-item-tag {
+  background: rgba(250, 245, 232, 0.95) !important;
+  color: #78350F !important;
 }
 
 

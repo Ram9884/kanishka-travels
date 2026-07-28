@@ -148,37 +148,48 @@ export default function Navbar() {
             </button>
 
             {user ? (
-              <div className="flex items-center gap-3">
-                <div className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#D4AF37]/30 text-xs font-semibold ${
-                  theme === 'dark' ? 'bg-[#1A1A1D] text-[#F8F5EE]' : 'bg-white/85 text-[#1A1A1D]'
+              <div className="flex items-center gap-2.5">
+                {/* User name pill */}
+                <div className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border text-xs font-semibold transition-all duration-300 ${
+                  theme === 'dark'
+                    ? 'bg-[#1A1A1D]/90 border-[#D4AF37]/30 text-[#F8F5EE] backdrop-blur-sm'
+                    : 'bg-amber-50/90 border-[#B8860B]/35 text-[#1A1108] shadow-[0_2px_12px_rgba(184,134,11,0.10)] backdrop-blur-sm'
                 }`}>
-                  <User className="w-4 h-4 text-[#D4AF37]" />
-                  <span className="max-w-[130px] truncate">{userName}</span>
+                  <User className={`w-3.5 h-3.5 shrink-0 ${theme === 'dark' ? 'text-[#D4AF37]' : 'text-[#B8860B]'}`} />
+                  <span className="max-w-[110px] truncate">{userName}</span>
                 </div>
 
+                {/* My Bookings */}
                 <Link
                   href="/my-bookings"
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[#D4AF37]/40 text-xs font-bold hover:border-[#D4AF37] hover:bg-[#D4AF37]/15 transition-all duration-300 cursor-pointer shadow-md ${
-                    theme === 'dark' ? 'bg-[#25262B] text-[#F5D77F]' : 'bg-white/85 text-[#8A6408]'
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border text-xs font-bold hover:scale-[1.03] transition-all duration-300 cursor-pointer ${
+                    theme === 'dark'
+                      ? 'bg-[#25262B]/90 border-[#D4AF37]/35 text-[#F5D77F] hover:border-[#D4AF37] hover:bg-[#D4AF37]/12 shadow-md backdrop-blur-sm'
+                      : 'bg-white/90 border-[#B8860B]/35 text-[#78350F] hover:border-[#B8860B] hover:bg-amber-50 shadow-[0_2px_12px_rgba(184,134,11,0.12)] backdrop-blur-sm'
                   }`}
                 >
-                  <Calendar className="w-4 h-4 text-[#D4AF37]" />
+                  <Calendar className={`w-3.5 h-3.5 shrink-0 ${theme === 'dark' ? 'text-[#D4AF37]' : 'text-[#B8860B]'}`} />
                   <span>My Bookings</span>
                 </Link>
 
+                {/* Logout */}
                 <button
                   onClick={handleLogout}
-                  title="Logout"
-                  className="p-2.5 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/30 transition-all duration-300 cursor-pointer"
-                  aria-label="Log Out"
+                  title="Sign Out"
+                  className={`p-2.5 rounded-xl border transition-all duration-300 cursor-pointer group ${
+                    theme === 'dark'
+                      ? 'text-[#71717A] border-transparent hover:text-rose-400 hover:bg-rose-500/10 hover:border-rose-500/30'
+                      : 'text-[#92400E]/60 border-[#B8860B]/20 bg-amber-50/60 hover:text-rose-600 hover:bg-rose-50 hover:border-rose-300/60 shadow-sm'
+                  }`}
+                  aria-label="Sign Out"
                 >
-                  <LogOut className="w-4 h-4" />
+                  <LogOut className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
                 </button>
               </div>
             ) : (
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-[0_4px_25px_rgba(212,175,55,0.3)] hover:scale-105 transition-all duration-300 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-[0_4px_25px_rgba(212,175,55,0.3)] hover:scale-105 hover:shadow-[0_6px_30px_rgba(212,175,55,0.45)] transition-all duration-300 cursor-pointer"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>BOOK LUXURY CAB</span>
@@ -216,7 +227,11 @@ export default function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className="lg:hidden bg-[#0B0B0D]/95 backdrop-blur-2xl border-b border-[#D4AF37]/30 px-6 pt-4 pb-8 space-y-5"
+          className={`lg:hidden backdrop-blur-2xl border-b border-[#D4AF37]/30 px-6 pt-4 pb-8 space-y-5 ${
+            theme === 'dark'
+              ? 'bg-[#0B0B0D]/95'
+              : 'bg-white/92'
+          }`}
         >
           <nav className="flex flex-col gap-4 text-center">
             {navLinks.map((link) => (
@@ -224,7 +239,11 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-serif text-xl font-bold text-[#F8F5EE] hover:text-[#F5D77F] py-1 transition-colors"
+                className={`font-serif text-xl font-bold py-1 transition-colors ${
+                  theme === 'dark'
+                    ? 'text-[#F8F5EE] hover:text-[#F5D77F]'
+                    : 'text-[#1A1A1D] hover:text-[#B8860B]'
+                }`}
               >
                 {link.name}
               </Link>
@@ -233,30 +252,58 @@ export default function Navbar() {
 
           <div className="pt-4 border-t border-[#D4AF37]/20 flex flex-col gap-3">
             {user ? (
-              <div className="space-y-3 text-center">
-                <div className="text-xs text-[#A1A1AA] font-mono flex items-center justify-center gap-2">
-                  <User className="w-4 h-4 text-[#D4AF37]" />
-                  <span>Logged in as <strong className="text-[#F8F5EE]">{userName}</strong></span>
+              <div className="space-y-3">
+                {/* Logged-in user info */}
+                <div className={`flex items-center gap-3 px-4 py-3 rounded-xl border ${
+                  theme === 'dark'
+                    ? 'bg-[#1A1A1D]/80 border-[#D4AF37]/20'
+                    : 'bg-amber-50/80 border-[#B8860B]/25'
+                }`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
+                    theme === 'dark' ? 'bg-[#D4AF37]/15' : 'bg-[#B8860B]/12'
+                  }`}>
+                    <User className={`w-4 h-4 ${theme === 'dark' ? 'text-[#D4AF37]' : 'text-[#B8860B]'}`} />
+                  </div>
+                  <div className="min-w-0">
+                    <p className={`text-[10px] font-mono uppercase tracking-wider ${
+                      theme === 'dark' ? 'text-[#71717A]' : 'text-[#92400E]/60'
+                    }`}>Signed in as</p>
+                    <p className={`text-sm font-bold truncate ${
+                      theme === 'dark' ? 'text-[#F8F5EE]' : 'text-[#1A1108]'
+                    }`}>{userName}</p>
+                  </div>
                 </div>
+
                 <Link
                   href="/my-bookings"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-3 rounded-xl bg-[#25262B] text-[#F5D77F] font-bold text-sm border border-[#D4AF37]/40 block uppercase tracking-wider"
+                  className={`w-full text-center py-3 rounded-xl font-bold text-sm border uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
+                    theme === 'dark'
+                      ? 'bg-[#25262B] border-[#D4AF37]/40 text-[#F5D77F] hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]'
+                      : 'bg-white border-[#B8860B]/40 text-[#78350F] hover:bg-amber-50 hover:border-[#B8860B]'
+                  }`}
                 >
+                  <Calendar className="w-4 h-4" />
                   My Bookings Portal
                 </Link>
+
                 <button
                   onClick={() => { handleLogout(); setMobileMenuOpen(false); }}
-                  className="w-full text-center py-3 rounded-xl border border-rose-500/40 bg-rose-500/10 text-rose-300 font-bold text-sm block uppercase tracking-wider"
+                  className={`w-full text-center py-3 rounded-xl border font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
+                    theme === 'dark'
+                      ? 'border-rose-500/35 bg-rose-500/8 text-rose-400 hover:bg-rose-500/15'
+                      : 'border-rose-300/60 bg-rose-50 text-rose-600 hover:bg-rose-100 hover:border-rose-400/70'
+                  }`}
                 >
-                  Log Out
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
                 </button>
               </div>
             ) : (
               <Link
                 href="/book"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-lg"
+                className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-lg hover:shadow-[0_6px_25px_rgba(212,175,55,0.40)] transition-all duration-300"
               >
                 BOOK LUXURY CAB
               </Link>

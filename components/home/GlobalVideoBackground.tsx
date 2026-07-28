@@ -13,9 +13,8 @@ export default function GlobalVideoBackground() {
     <div ref={videoContainerRef} className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
       <div ref={videoRef} className="absolute inset-0 h-full w-full transform-gpu will-change-transform">
         <video
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-            isLight ? 'opacity-0' : 'opacity-100'
-          }`}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${isLight ? 'opacity-0' : 'opacity-100'
+            }`}
           autoPlay
           muted
           loop
@@ -27,9 +26,8 @@ export default function GlobalVideoBackground() {
         </video>
 
         <video
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-            isLight ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${isLight ? 'opacity-100' : 'opacity-0'
+            }`}
           autoPlay
           muted
           loop
@@ -44,12 +42,12 @@ export default function GlobalVideoBackground() {
       {/* Dynamic Master Overlay */}
       <div
         ref={videoOverlayRef}
-        className={`absolute inset-0 ${isLight ? 'opacity-100' : 'bg-black opacity-35'}`}
+        className={`absolute inset-0 ${isLight ? 'opacity-100' : 'bg-black opacity-55'}`}
       >
         <div
           className={`absolute inset-0 transition-opacity duration-500 ${isLight ? 'opacity-0' : 'opacity-100'}`}
           style={{
-            background: 'linear-gradient(to bottom, rgba(8,14,31,0.50) 0%, rgba(8,14,31,0.35) 30%, rgba(8,14,31,0.92) 100%)',
+            background: 'linear-gradient(to bottom, rgba(8,14,31,0.65) 0%, rgba(8,14,31,0.45) 30%, rgba(8,14,31,0.95) 100%)',
           }}
         />
         <div

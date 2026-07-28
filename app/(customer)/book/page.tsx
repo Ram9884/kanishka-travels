@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import LocationAutocomplete from '@/components/ui/LocationAutocomplete';
+import { useTheme } from '@/components/ThemeProvider';
 import {
   Navigation, Plane, Car, Landmark, Heart, CalendarDays,
   CheckCircle2, ShieldCheck, Phone, BadgeCheck, Crown,
@@ -89,7 +90,7 @@ const stepVariants = {
 // ─── Field Style ──────────────────────────────────────────────────────────────
 
 const fieldCls =
-  'w-full rounded-xl bg-[#0E0E10]/80 border border-[#D4AF37]/20 text-white px-4 py-3 text-sm placeholder:text-[#6B7280] focus:border-[#D4AF37]/60 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/15 transition-all duration-200 backdrop-blur-sm booking-field';
+  'booking-field w-full rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/15 transition-all duration-200';
 
 // ─── Step 1 ────────────────────────────────────────────────────────────────
 
@@ -103,10 +104,10 @@ function Step1({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="booking-step-title font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+        <h2 className="booking-step-title font-serif text-2xl sm:text-3xl font-bold leading-tight">
           What kind of journey are you planning?
         </h2>
-        <p className="booking-step-subtitle mt-1.5 text-sm text-[#F8F5EE]/55 font-light">
+        <p className="booking-step-subtitle mt-1.5 text-sm font-light">
           Select the service that best describes your trip.
         </p>
       </div>
@@ -122,10 +123,10 @@ function Step1({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.07, duration: 0.35 }}
-              className={`relative p-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 group overflow-hidden ${
+              className={`booking-service-card relative p-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 group overflow-hidden ${
                 active
-                  ? 'border-[#D4AF37]/80 bg-[#D4AF37]/10 shadow-[0_0_25px_rgba(212,175,55,0.2)]'
-                  : 'border-[#D4AF37]/15 bg-[#0E0E10]/60 hover:border-[#D4AF37]/40 hover:bg-[#1A1A1D]/80'
+                  ? 'booking-service-card--active border-[#D4AF37]/80 shadow-[0_0_25px_rgba(212,175,55,0.2)]'
+                  : 'booking-service-card--idle hover:border-[#D4AF37]/40'
               }`}
             >
               {active && (
@@ -136,10 +137,10 @@ function Step1({
               }`}>
                 <Icon className="w-4 h-4" strokeWidth={1.8} />
               </div>
-              <p className={`text-xs font-bold leading-snug transition-colors duration-200 ${active ? 'text-[#F5D77F]' : 'text-white/90'}`}>
+              <p className={`text-xs font-bold leading-snug transition-colors duration-200 ${active ? 'text-[#F5D77F]' : 'booking-service-label'}`}>
                 {label}
               </p>
-              <p className="text-[10px] text-[#A1A1AA] mt-0.5 leading-snug">{desc}</p>
+              <p className="booking-service-desc text-[10px] mt-0.5 leading-snug">{desc}</p>
               {active && (
                 <div className="absolute top-2.5 right-2.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#D4AF37]" />
@@ -177,10 +178,10 @@ function Step2({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="booking-step-title font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+        <h2 className="booking-step-title font-serif text-2xl sm:text-3xl font-bold leading-tight">
           Where would you like to travel?
         </h2>
-        <p className="booking-step-subtitle mt-1.5 text-sm text-[#F8F5EE]/55 font-light">
+        <p className="booking-step-subtitle mt-1.5 text-sm font-light">
           Enter your pickup and drop location below.
         </p>
       </div>
@@ -245,7 +246,7 @@ function Step2({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#D4AF37]/20 text-[#F8F5EE]/60 hover:text-white hover:border-[#D4AF37]/40 text-xs font-medium transition-all duration-200 cursor-pointer"
+          className="booking-back-btn inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/40 text-xs font-medium transition-all duration-200 cursor-pointer"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Back
         </button>
@@ -279,10 +280,10 @@ function Step3({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="booking-step-title font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+        <h2 className="booking-step-title font-serif text-2xl sm:text-3xl font-bold leading-tight">
           When are you travelling?
         </h2>
-        <p className="booking-step-subtitle mt-1.5 text-sm text-[#F8F5EE]/55 font-light">
+        <p className="booking-step-subtitle mt-1.5 text-sm font-light">
           Set your travel date, departure time, and passenger count.
         </p>
       </div>
@@ -342,7 +343,7 @@ function Step3({
                   className={`px-3 py-1.5 rounded-lg text-[11px] font-mono font-medium border cursor-pointer transition-all duration-200 ${
                     pickupTime === t
                       ? 'bg-[#D4AF37]/20 border-[#D4AF37]/70 text-[#F5D77F]'
-                      : 'bg-[#0E0E10]/60 border-[#D4AF37]/15 text-[#A1A1AA] hover:border-[#D4AF37]/35 hover:text-white'
+                      : 'booking-time-btn'
                   }`}
                 >
                   {label}
@@ -367,18 +368,18 @@ function Step3({
             <button
               type="button"
               onClick={() => setPassengerCount(Math.max(1, passengerCount - 1))}
-              className="w-10 h-10 rounded-xl border border-[#D4AF37]/25 bg-[#0E0E10]/80 text-[#D4AF37] hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/10 transition-all duration-200 cursor-pointer flex items-center justify-center"
+              className="booking-stepper-btn w-10 h-10 rounded-xl border border-[#D4AF37]/25 text-[#D4AF37] hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/10 transition-all duration-200 cursor-pointer flex items-center justify-center"
             >
               <ChevronDown className="w-4 h-4" />
             </button>
             <div className="flex-1 text-center">
-              <span className="font-serif text-4xl font-bold text-white">{passengerCount}</span>
+              <span className="booking-step-title font-serif text-4xl font-bold">{passengerCount}</span>
               <p className="text-[10px] text-[#A1A1AA] mt-0.5">{passengerCount === 1 ? 'Passenger' : 'Passengers'}</p>
             </div>
             <button
               type="button"
               onClick={() => setPassengerCount(Math.min(26, passengerCount + 1))}
-              className="w-10 h-10 rounded-xl border border-[#D4AF37]/25 bg-[#0E0E10]/80 text-[#D4AF37] hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/10 transition-all duration-200 cursor-pointer flex items-center justify-center"
+              className="booking-stepper-btn w-10 h-10 rounded-xl border border-[#D4AF37]/25 text-[#D4AF37] hover:border-[#D4AF37]/60 hover:bg-[#D4AF37]/10 transition-all duration-200 cursor-pointer flex items-center justify-center"
             >
               <ChevronUp className="w-4 h-4" />
             </button>
@@ -390,7 +391,7 @@ function Step3({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#D4AF37]/20 text-[#F8F5EE]/60 hover:text-white hover:border-[#D4AF37]/40 text-xs font-medium transition-all duration-200 cursor-pointer"
+          className="booking-back-btn inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/40 text-xs font-medium transition-all duration-200 cursor-pointer"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Back
         </button>
@@ -438,10 +439,10 @@ function Step4({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="booking-step-title font-serif text-2xl sm:text-3xl font-bold text-white leading-tight">
+        <h2 className="booking-step-title font-serif text-2xl sm:text-3xl font-bold leading-tight">
           Choose your vehicle & confirm
         </h2>
-        <p className="booking-step-subtitle mt-1.5 text-sm text-[#F8F5EE]/55 font-light">
+        <p className="booking-step-subtitle mt-1.5 text-sm font-light">
           Select the vehicle that fits your journey best.
         </p>
       </div>
@@ -455,10 +456,10 @@ function Step4({
               key={v.id}
               type="button"
               onClick={() => setVehiclePreference(v.id)}
-              className={`w-full flex items-center gap-4 p-3.5 rounded-2xl border text-left cursor-pointer transition-all duration-300 ${
+              className={`booking-vehicle-card w-full flex items-center gap-4 p-3.5 rounded-2xl border text-left cursor-pointer transition-all duration-300 ${
                 active
-                  ? 'border-[#D4AF37]/80 bg-[#D4AF37]/10 shadow-[0_0_25px_rgba(212,175,55,0.15)]'
-                  : 'border-[#D4AF37]/15 bg-[#0E0E10]/60 hover:border-[#D4AF37]/35 hover:bg-[#1A1A1D]/60'
+                  ? 'booking-vehicle-card--active border-[#D4AF37]/80 shadow-[0_0_25px_rgba(212,175,55,0.15)]'
+                  : 'booking-vehicle-card--idle hover:border-[#D4AF37]/35'
               }`}
             >
               {/* Vehicle image */}
@@ -476,7 +477,7 @@ function Step4({
               {/* Info */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <p className={`text-sm font-bold truncate transition-colors duration-200 ${active ? 'text-[#F5D77F]' : 'text-white'}`}>
+                  <p className={`text-sm font-bold truncate transition-colors duration-200 ${active ? 'text-[#F5D77F]' : 'booking-step-title'}`}>
                     {v.name}
                   </p>
                   {v.tag && (
@@ -485,7 +486,7 @@ function Step4({
                     </span>
                   )}
                 </div>
-                <p className="text-[10px] text-[#A1A1AA]">{v.category}</p>
+                <p className="booking-step-subtitle text-[10px]">{v.category}</p>
                 <div className="flex flex-wrap gap-3 mt-1.5">
                   {[
                     { icon: Users, val: v.seats + ' Seats' },
@@ -525,7 +526,7 @@ function Step4({
       </div>
 
       {/* Journey summary card */}
-      <div className="booking-summary-card rounded-2xl bg-[#0B0B0D]/90 border border-[#D4AF37]/20 overflow-hidden">
+      <div className="booking-summary-card rounded-2xl border border-[#D4AF37]/20 overflow-hidden">
         <div className="px-5 py-3 border-b border-[#D4AF37]/10 flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
           <span className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]/80">Journey Summary</span>
@@ -542,8 +543,8 @@ function Step4({
             { label: 'Vehicle', value: selectedVehicle?.name ?? '—' },
           ].map(({ label, value }) => (
             <div key={label} className="flex items-center justify-between px-5 py-2.5">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#A1A1AA]">{label}</span>
-              <span className="text-xs font-semibold text-white text-right max-w-[55%] truncate">{value}</span>
+              <span className="booking-step-subtitle text-[10px] font-mono uppercase tracking-widest">{label}</span>
+              <span className="booking-step-title text-xs font-semibold text-right max-w-[55%] truncate">{value}</span>
             </div>
           ))}
         </div>
@@ -557,9 +558,9 @@ function Step4({
           { icon: BadgeCheck, label: 'Transparent Pricing' },
           { icon: Phone, label: 'WhatsApp Support' },
         ].map(({ icon: Icon, label }) => (
-          <div key={label} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#0E0E10]/60 border border-[#D4AF37]/10">
+          <div key={label} className="booking-trust-item flex items-center gap-2 px-3 py-2 rounded-xl border border-[#D4AF37]/10">
             <Icon className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" strokeWidth={2} />
-            <span className="text-[10px] text-[#F8F5EE]/65 font-medium">{label}</span>
+            <span className="booking-step-subtitle text-[10px] font-medium">{label}</span>
           </div>
         ))}
       </div>
@@ -568,7 +569,7 @@ function Step4({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#D4AF37]/20 text-[#F8F5EE]/60 hover:text-white hover:border-[#D4AF37]/40 text-xs font-medium transition-all duration-200 cursor-pointer"
+          className="booking-back-btn inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#D4AF37]/20 hover:border-[#D4AF37]/40 text-xs font-medium transition-all duration-200 cursor-pointer"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Back
         </button>
@@ -715,6 +716,8 @@ function SuccessScreen({
 function BookingWizardContent() {
   const router   = useRouter();
   const params   = useSearchParams();
+  const { theme } = useTheme();
+  const isLight  = theme === 'light';
 
   const [step, setStep]     = useState(1);
   const [direction, setDir] = useState(1);
@@ -812,7 +815,11 @@ function BookingWizardContent() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-transparent pt-20">
       {/* ─── Left Panel ─────────────────────────────── */}
-      <aside className="card-luxury-glass hidden lg:block lg:w-[28%] xl:w-[25%] sticky top-35 h-fit ml-[120px] px-8 py-10 rounded-2xl overflow-hidden group transition-all duration-500">
+      <aside className={`hidden lg:flex lg:w-72 xl:w-80 shrink-0 sticky top-24 h-fit self-start ml-6 xl:ml-12 2xl:ml-20 px-7 py-9 rounded-2xl overflow-hidden transition-all duration-500 ${
+        isLight
+          ? 'bg-white/90 border border-amber-200/60 shadow-[0_8px_32px_rgba(180,83,9,0.08)] backdrop-blur-xl'
+          : 'card-luxury-glass'
+      }`}>
         {/* Step tracker */}
         <div className="space-y-0">
           {STEPS.map((s, idx) => {
@@ -829,6 +836,8 @@ function BookingWizardContent() {
                         ? 'bg-[#D4AF37] border-[#D4AF37] text-[#0B0B0D]'
                         : active
                         ? 'bg-[#D4AF37]/15 border-[#D4AF37] text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.3)]'
+                        : isLight
+                        ? 'bg-amber-50 border-amber-200 text-[#92400E]/50'
                         : 'bg-[#1A1A1D] border-[#D4AF37]/20 text-[#A1A1AA]'
                     }`}>
                       {done ? <CheckCircle2 className="w-4 h-4" /> : s.num}
@@ -843,12 +852,18 @@ function BookingWizardContent() {
                   {/* Label */}
                   <div className="pt-1 pb-3">
                     <p className={`text-sm font-semibold transition-colors duration-300 ${
-                      active ? 'text-[#F5D77F]' : done ? 'text-white/80' : 'text-[#6B7280]'
+                      active
+                        ? 'text-[#F5D77F]'
+                        : done
+                        ? isLight ? 'text-[#1A1A1D]' : 'text-white/80'
+                        : isLight ? 'text-[#78350F]/55' : 'text-[#6B7280]'
                     }`}>
                       {s.label}
                     </p>
                     <p className={`text-[11px] transition-colors duration-300 ${
-                      active ? 'text-[#D4AF37]/70' : 'text-[#4B5563]'
+                      active
+                        ? 'text-[#D4AF37]/70'
+                        : isLight ? 'text-[#92400E]/45' : 'text-[#4B5563]'
                     }`}>
                       {s.sublabel}
                     </p>
@@ -863,7 +878,9 @@ function BookingWizardContent() {
       {/* ─── Right Panel ────────────────────────────── */}
       <div className="flex-1 flex flex-col">
         {/* Mobile step bar */}
-        <div className="lg:hidden sticky top-20 z-30 bg-[#0B0B0D]/95 border-b border-[#D4AF37]/15 px-4 py-3 backdrop-blur-xl">
+        <div className={`lg:hidden sticky top-20 z-30 border-b border-[#D4AF37]/15 px-4 py-3 backdrop-blur-xl ${
+          isLight ? 'bg-white/92' : 'bg-[#0B0B0D]/95'
+        }`}>
           <div className="flex items-center gap-2 mb-2">
             <div className="flex-1 flex gap-1.5">
               {STEPS.map((_, idx) => (
@@ -877,12 +894,12 @@ function BookingWizardContent() {
             </div>
             <span className="text-[10px] font-mono text-[#D4AF37] shrink-0">{step} / 4</span>
           </div>
-          <p className="text-xs font-semibold text-white">{STEPS[step - 1].label}</p>
+          <p className="booking-step-title text-xs font-semibold">{STEPS[step - 1].label}</p>
         </div>
 
         {/* Form panel */}
-        <div className="flex-1 flex items-start justify-center px-4 sm:px-8 lg:px-16 py-12 lg:py-16 overflow-y-auto">
-          <div className="w-full max-w-xl">
+        <div className="flex-1 flex items-start justify-center px-4 sm:px-8 lg:px-12 py-10 lg:py-14 overflow-y-auto">
+          <div className="w-full max-w-2xl">
             {error && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
