@@ -242,12 +242,11 @@ export default function FleetVehicleSpotlight() {
                 </p>
 
                 {/* Apple-style spec grid */}
-                <div className="grid grid-cols-2 gap-px border border-[#D4AF37]/15 rounded-2xl overflow-hidden">
+                <div className="grid grid-cols-3 gap-px border border-[#D4AF37]/15 rounded-2xl overflow-hidden">
                   {[
                     { icon: Users, label: 'Seats', value: vehicle.passengers },
                     { icon: Briefcase, label: 'Luggage', value: vehicle.luggage },
                     { icon: Wind, label: 'Comfort', value: vehicle.ac },
-                    { icon: Gauge, label: 'Rate', value: vehicle.ratePerKm },
                   ].map(({ icon: Icon, label, value }) => (
                     <div
                       key={label}

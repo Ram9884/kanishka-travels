@@ -1,64 +1,68 @@
 'use client';
 
 import React from 'react';
-import { useScrollStoryController } from '@/components/animation/ScrollStoryController';
 import { useTheme } from '@/components/ThemeProvider';
 
 export default function GlobalVideoBackground() {
-  const { videoRef, videoContainerRef, videoOverlayRef } = useScrollStoryController();
   const { theme } = useTheme();
   const isLight = theme === 'light';
 
   return (
-    <div ref={videoContainerRef} className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-      <div ref={videoRef} className="absolute inset-0 h-full w-full transform-gpu will-change-transform">
-        <video
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${isLight ? 'opacity-0' : 'opacity-100'
-            }`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        >
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
-        </video>
+    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
 
-        <video
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${isLight ? 'opacity-100' : 'opacity-0'
-            }`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-        >
-          <source src="/videos/hero-light.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      {/* Dynamic Master Overlay */}
-      <div
-        ref={videoOverlayRef}
-        className={`absolute inset-0 ${isLight ? 'opacity-100' : 'bg-black opacity-55'}`}
+      {/* Dark theme — hero.mp4 */}
+      <video
+        key="dark-video"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isLight ? 'opacity-0' : 'opacity-100'}`}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
       >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Light theme — hero-light.mp4 */}
+      <video
+        key="light-video"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${isLight ? 'opacity-100' : 'opacity-0'}`}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+      >
+        <source src="/videos/hero-light.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay — keeps text readable */}
+      {!isLight && (
         <div
-          className={`absolute inset-0 transition-opacity duration-500 ${isLight ? 'opacity-0' : 'opacity-100'}`}
+          className="absolute inset-0"
           style={{
-            background: 'linear-gradient(to bottom, rgba(8,14,31,0.65) 0%, rgba(8,14,31,0.45) 30%, rgba(8,14,31,0.95) 100%)',
+            background: 'linear-gradient(to bottom, rgba(5,5,8,0.55) 0%, rgba(5,5,8,0.30) 40%, rgba(5,5,8,0.88) 100%)',
           }}
         />
+      )}
+
+      {/* Light overlay */}
+      {isLight && (
         <div
-          className={`absolute inset-0 transition-opacity duration-500 ${isLight ? 'opacity-100' : 'opacity-0'}`}
+          className="absolute inset-0"
           style={{
-            background: 'linear-gradient(180deg, rgba(255,251,235,0.22) 0%, rgba(254,243,199,0.18) 40%, rgba(255,237,213,0.32) 100%)',
+            background: 'linear-gradient(180deg, rgba(255,251,235,0.25) 0%, rgba(254,243,199,0.18) 50%, rgba(255,237,213,0.35) 100%)',
           }}
         />
-      </div>
-      {/* Ambient Vignette Overlay */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.45) 100%)' }} />
+      )}
+
+      {/* Vignette edges */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.40) 100%)' }}
+      />
     </div>
   );
 }

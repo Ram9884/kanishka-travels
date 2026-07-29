@@ -7,17 +7,6 @@ import { Sparkles, Compass } from 'lucide-react';
 export default function ServicesHero() {
   return (
     <section className="relative w-full min-h-[50vh] flex flex-col items-center justify-center pt-32 pb-16 overflow-hidden bg-transparent">
-      {/* Background video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        src="/videos/hero.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
-      {/* Subtle overlay shading */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/50 to-transparent pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
         {/* Status Badge */}

@@ -105,23 +105,7 @@ export default function AboutStory() {
                 className="object-cover object-center scale-105 group-hover:scale-110 transition-transform duration-700"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0D] via-transparent to-black/30" />
-
-              {/* Floating feature card */}
-              <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-[#0B0B0D]/90 border border-[#D4AF37]/35 backdrop-blur-xl flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37]">
-                    <Sparkles className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-white">Direct Owner Guarantee</p>
-                    <p className="text-[10px] text-[#A1A1AA]">Zero Automated Chatbots or Middlemen</p>
-                  </div>
-                </div>
-                <span className="px-3 py-1 rounded-full bg-[#D4AF37] text-slate-950 font-extrabold text-[10px] uppercase tracking-wider">
-                  100% Personal
-                </span>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0D]/60 via-transparent to-black/30" />
             </div>
           </motion.div>
         </div>

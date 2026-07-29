@@ -51,8 +51,8 @@ export default function GlobalCinematicBackground() {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Create 45 ambient dust particles
-    const particleCount = prefersReduced ? 15 : 42;
+    // Create ambient dust particles (reduced count for performance)
+    const particleCount = prefersReduced ? 10 : 25;
     const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
@@ -150,7 +150,7 @@ export default function GlobalCinematicBackground() {
           const dy = p1.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 140) {
+          if (dist < 90) {
             const scale2 = 350 / (350 + p2.z);
             const x2 = centerX + p2.x * scale2;
             const y2 = centerY + p2.y * scale2;

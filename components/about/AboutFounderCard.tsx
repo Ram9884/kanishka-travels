@@ -44,21 +44,21 @@ export default function AboutFounderCard() {
 
           {/* Details grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs font-mono">
-            <div className="flex items-start gap-3.5 p-5 rounded-2xl bg-[#0B0B0D]/85 border border-[#D4AF37]/20">
+            <div className="about-info-box flex items-start gap-3.5 p-5 rounded-2xl bg-[#0B0B0D]/85 border border-[#D4AF37]/20">
               <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
               <div>
-                <p className="text-[#A1A1AA] uppercase tracking-widest text-[10px]">Main Office</p>
-                <p className="text-white font-medium font-sans mt-0.5 text-xs sm:text-sm">
+                <p className="about-info-box-title text-[#A1A1AA] uppercase tracking-widest text-[10px]">Main Office</p>
+                <p className="about-info-box-text text-white font-medium font-sans mt-0.5 text-xs sm:text-sm">
                   Iyyappanthangal, Chennai, Tamil Nadu – 600056
                 </p>
               </div>
             </div>
 
-            <div className="flex items-start gap-3.5 p-5 rounded-2xl bg-[#0B0B0D]/85 border border-[#D4AF37]/20">
+            <div className="about-info-box flex items-start gap-3.5 p-5 rounded-2xl bg-[#0B0B0D]/85 border border-[#D4AF37]/20">
               <Phone className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
               <div>
-                <p className="text-[#A1A1AA] uppercase tracking-widest text-[10px]">Phone Assistance</p>
-                <p className="text-white font-medium font-sans mt-0.5 text-xs sm:text-sm">
+                <p className="about-info-box-title text-[#A1A1AA] uppercase tracking-widest text-[10px]">Phone Assistance</p>
+                <p className="about-info-box-text text-white font-medium font-sans mt-0.5 text-xs sm:text-sm">
                   +91 96773 84267 · +91 98845 17451
                 </p>
               </div>

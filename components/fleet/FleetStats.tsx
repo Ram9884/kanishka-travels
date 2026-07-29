@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
 
 const STATS = [
   { icon: Car, target: 7, suffix: '', label: 'Premium Vehicles', desc: 'Across 6 unique categories' },
-  { icon: Route, target: 12, suffix: '+', label: 'Years of Service', desc: 'Serving Chennai since 2012' },
+  { icon: Route, target: 12, suffix: '+', label: 'Years of Service', desc: 'Serving Chennai since 2014' },
   { icon: MapPin, target: 5, suffix: '+', label: 'States Covered', desc: 'TN, AP, KA, KL & Puducherry' },
   { icon: Users, target: 5000, suffix: '+', label: 'Journeys Completed', desc: 'Families served with pride' },
 ];

@@ -47,7 +47,7 @@ export default function AboutHero() {
           className="about-hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/35 text-[#F5D77F] text-xs font-mono tracking-widest uppercase"
         >
           <Crown className="w-3.5 h-3.5" />
-          <span>Iyyappanthangal, Chennai · Est. 2012</span>
+          <span>Iyyappanthangal, Chennai · Est. 2014</span>
         </motion.div>
 
         {/* Main title */}

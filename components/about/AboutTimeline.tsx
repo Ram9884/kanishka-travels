@@ -12,10 +12,10 @@ if (typeof window !== 'undefined') {
 
 const MILESTONES = [
   {
-    year: '2012',
+    year: '2014',
     icon: Car,
-    title: 'The First Sedan in Iyyappanthangal',
-    desc: 'S. Ramesh purchases his first Maruti Dzire sedan in Iyyappanthangal, starting local Chennai transfers with a commitment to punctuality and neatness.',
+    title: 'The First Swift Dzire in Iyyappanthangal',
+    desc: 'S. Ramesh purchases his first Swift Dzire in Iyyappanthangal, starting local Chennai transfers with a commitment to punctuality and neatness.',
   },
   {
     year: '2015',

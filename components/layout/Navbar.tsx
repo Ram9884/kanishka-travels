@@ -56,11 +56,11 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Fleet', href: '/fleet' },
-    { name: 'Book a Trip', href: '/book' },
-    { name: 'About', href: '/about' },
+    { name: 'HOME', href: '/' },
+    { name: 'SERVICES', href: '/services' },
+    { name: 'VEHICLES', href: '/fleet' },
+    { name: 'BOOK A TRIP', href: '/book' },
+    { name: 'ABOUT', href: '/about' },
   ];
 
   return (
@@ -101,14 +101,14 @@ export default function Navbar() {
           </div>
 
           {/* Center Column: Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center justify-center gap-8 flex-1">
+          <nav className="hidden lg:flex items-center justify-center gap-5 xl:gap-8 flex-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative text-xs sm:text-sm font-semibold transition-all duration-300 py-1 ${
+                  className={`relative text-[12px] xl:text-[13px] font-crown font-bold tracking-[0.12em] transition-all duration-300 py-1 whitespace-nowrap ${
                     isActive
                       ? 'text-[#F5D77F]'
                       : theme === 'dark'

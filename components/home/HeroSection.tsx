@@ -2,15 +2,10 @@
 
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BookingCard from '@/components/ui/BookingCard';
 import { ShieldCheck, Award, Sparkles } from 'lucide-react';
 import { useScrollStoryController } from '@/components/animation/ScrollStoryController';
 import { useTheme } from '@/components/ThemeProvider';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 export default function HeroSection() {
   const { theme } = useTheme();
@@ -94,34 +89,32 @@ export default function HeroSection() {
             />
           </>
         ) : (
-          /* Dark: deep charcoal with gold ambient glows */
+          /* Dark: Video Background with Opacity for High Contrast Readability */
           <>
+            {/* Dark Base */}
+            <div className="absolute inset-0 bg-[#0B0B0D]" />
+            {/* Video with 70% opacity */}
+            <video
+              className="absolute inset-0 w-full h-full object-cover opacity-80"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+            >
+              <source src="/videos/hero.mp4" type="video/mp4" />
+            </video>
+            {/* Dark contrast gradient overlay */}
             <div
               className="absolute inset-0"
-              style={{ background: 'linear-gradient(160deg, #0B0B0D 0%, #101013 45%, #0D0D10 100%)' }}
-            />
-            {/* Gold ambient — top right */}
-            <div
-              className="absolute -top-20 right-0 w-[650px] h-[550px] opacity-20 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at top right, rgba(212,175,55,0.55), transparent 65%)' }}
-            />
-            {/* Navy ambient — bottom left */}
-            <div
-              className="absolute bottom-0 left-0 w-[700px] h-[500px] opacity-30 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at bottom left, rgba(26,26,29,0.9), transparent 70%)' }}
-            />
-            {/* Gold accent — bottom right */}
-            <div
-              className="absolute bottom-0 right-0 w-[500px] h-[400px] opacity-15 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at bottom right, rgba(202,138,4,0.50), transparent 65%)' }}
-            />
-            {/* Dot grid texture */}
-            <div
-              className="absolute inset-0 opacity-[0.18]"
               style={{
-                backgroundImage: 'radial-gradient(rgba(202,138,4,0.55) 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
+                background: 'linear-gradient(to bottom, rgba(11,11,13,0.65) 0%, rgba(11,11,13,0.45) 45%, rgba(11,11,13,0.95) 100%)',
               }}
+            />
+            {/* Ambient vignette */}
+            <div
+              className="absolute inset-0"
+              style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.65) 100%)' }}
             />
           </>
         )}

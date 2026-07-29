@@ -8,7 +8,7 @@ import AboutCTA from '@/components/about/AboutCTA';
 
 export const metadata = {
   title: 'About Us — S. Ramesh & Kanishka Travels Chennai',
-  description: 'Learn the story of Kanishka Travels, Chennai’s premier luxury cab service personally operated by S. Ramesh in Iyyappanthangal since 2012.',
+  description: 'Learn the story of Kanishka Travels, Chennai’s premier luxury cab service personally operated by S. Ramesh in Iyyappanthangal since 2014.',
 };
 
 export default function AboutPage() {
@@ -23,7 +23,7 @@ export default function AboutPage() {
       {/* 3. 4 Core Service Principles */}
       <AboutPillars />
 
-      {/* 4. Heritage Timeline (2012 - Present) */}
+      {/* 4. Heritage Timeline (2014 - Present) */}
       <AboutTimeline />
 
       {/* 5. Founder Profile & Contact Card */}

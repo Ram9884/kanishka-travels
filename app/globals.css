@@ -799,6 +799,20 @@ html.light .booking-back-btn:hover {
   color: #1A1108 !important;
 }
 
+html.light .about-info-box {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%) !important;
+  border: 1px solid rgba(184, 134, 11, 0.32) !important;
+  box-shadow: 0 4px 14px rgba(184, 134, 11, 0.08) !important;
+}
+
+html.light .about-info-box-title {
+  color: #5C4A2A !important;
+}
+
+html.light .about-info-box-text {
+  color: #1A1108 !important;
+}
+
 html.light .booking-stepper-btn {
   background: rgba(255, 255, 255, 0.90) !important;
   border-color: rgba(184, 134, 11, 0.30) !important;

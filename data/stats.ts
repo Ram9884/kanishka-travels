@@ -9,7 +9,7 @@ export interface StatItem {
 export const MILESTONE_STATS: StatItem[] = [
   {
     id: 'travellers',
-    value: 15000,
+    value: 1500,
     suffix: '+',
     label: 'Happy Travellers',
     description: 'Families & executives served across South India',
@@ -19,7 +19,7 @@ export const MILESTONE_STATS: StatItem[] = [
     value: 12,
     suffix: '+ Yrs',
     label: 'Industry Experience',
-    description: 'Personalized service since 2012 by S. Ramesh',
+    description: 'Personalized service since 2014 by S. Ramesh',
   },
   {
     id: 'rating',
@@ -32,7 +32,7 @@ export const MILESTONE_STATS: StatItem[] = [
     id: 'drivers',
     value: 100,
     suffix: '%',
-    label: 'Verified Chauffeurs',
+    label: 'Verified Drivers',
     description: 'Background checked highway professionals',
   },
 ];

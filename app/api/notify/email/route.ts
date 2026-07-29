@@ -35,6 +35,35 @@ export async function POST(req: Request) {
 
     const from = process.env.EMAIL_FROM || process.env.EMAIL_USER;
 
+    // Shared styled card helper
+    const contactCard = (name: string, email: string, phone: string) => `
+      <table style="width:100%;border-collapse:collapse;background:#fffbeb;border:1px solid #D4AF37;border-radius:10px;margin:16px 0;">
+        <tr>
+          <td style="padding:14px 18px;border-bottom:1px solid #f0d97a;">
+            <span style="font-size:11px;font-family:monospace;color:#92400e;text-transform:uppercase;letter-spacing:2px;">Customer Details</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:10px 18px 4px;">
+            <span style="font-size:12px;color:#78350f;font-weight:bold;">👤 Name</span><br/>
+            <span style="font-size:15px;color:#1a1a1d;font-weight:700;">${name || '—'}</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:4px 18px;">
+            <span style="font-size:12px;color:#78350f;font-weight:bold;">📧 Email</span><br/>
+            <span style="font-size:14px;color:#1a1a1d;">${email || '—'}</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:4px 18px 14px;">
+            <span style="font-size:12px;color:#78350f;font-weight:bold;">📱 Mobile</span><br/>
+            <span style="font-size:14px;color:#1a1a1d;font-weight:700;">${phone || '—'}</span>
+          </td>
+        </tr>
+      </table>
+    `;
+
     let subject = '';
     let html = '';
 
@@ -46,24 +75,64 @@ export async function POST(req: Request) {
         drop_location,
         pickup_date,
         pickup_time,
+        customer_name,
+        customer_email,
+        customer_phone,
       } = data;
-      subject = `New Booking – Ref ${booking_reference}`;
+      subject = `🚗 New Booking – Ref ${booking_reference} | ${customer_name || customer_email}`;
       html = `
-        <p>A new booking has been created.</p>
-        <ul>
-          <li><strong>Reference:</strong> ${booking_reference}</li>
-          <li><strong>Service:</strong> ${service}</li>
-          <li><strong>From:</strong> ${pickup_location}</li>
-          <li><strong>To:</strong> ${drop_location}</li>
-          <li><strong>Date:</strong> ${pickup_date}</li>
-          <li><strong>Time:</strong> ${pickup_time}</li>
-        </ul>
-        <p>Please review and confirm the request.</p>
+        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;">
+          <h2 style="color:#D4AF37;margin-bottom:4px;">New Booking Request</h2>
+          <p style="color:#555;font-size:13px;margin-top:0;">A new booking has been submitted on Kanishka Travels.</p>
+
+          ${contactCard(customer_name, customer_email, customer_phone)}
+
+          <table style="width:100%;border-collapse:collapse;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-top:8px;">
+            <tr style="background:#f9fafb;">
+              <td style="padding:10px 16px;font-size:11px;font-family:monospace;color:#6b7280;text-transform:uppercase;letter-spacing:1.5px;" colspan="2">Booking Details</td>
+            </tr>
+            <tr style="border-top:1px solid #f3f4f6;">
+              <td style="padding:9px 16px;font-size:12px;color:#6b7280;font-weight:600;width:40%;">Reference</td>
+              <td style="padding:9px 16px;font-size:13px;font-weight:700;color:#111;">${booking_reference}</td>
+            </tr>
+            <tr style="border-top:1px solid #f3f4f6;background:#fafafa;">
+              <td style="padding:9px 16px;font-size:12px;color:#6b7280;font-weight:600;">Service</td>
+              <td style="padding:9px 16px;font-size:13px;font-weight:700;color:#111;">${service}</td>
+            </tr>
+            <tr style="border-top:1px solid #f3f4f6;">
+              <td style="padding:9px 16px;font-size:12px;color:#6b7280;font-weight:600;">Pickup From</td>
+              <td style="padding:9px 16px;font-size:13px;color:#111;">${pickup_location}</td>
+            </tr>
+            <tr style="border-top:1px solid #f3f4f6;background:#fafafa;">
+              <td style="padding:9px 16px;font-size:12px;color:#6b7280;font-weight:600;">Destination</td>
+              <td style="padding:9px 16px;font-size:13px;color:#111;">${drop_location}</td>
+            </tr>
+            <tr style="border-top:1px solid #f3f4f6;">
+              <td style="padding:9px 16px;font-size:12px;color:#6b7280;font-weight:600;">Date</td>
+              <td style="padding:9px 16px;font-size:13px;color:#111;">${pickup_date}</td>
+            </tr>
+            <tr style="border-top:1px solid #f3f4f6;background:#fafafa;">
+              <td style="padding:9px 16px;font-size:12px;color:#6b7280;font-weight:600;">Time</td>
+              <td style="padding:9px 16px;font-size:13px;color:#111;">${pickup_time}</td>
+            </tr>
+          </table>
+
+          <p style="margin-top:20px;font-size:12px;color:#888;">Please review and confirm the request with the customer.</p>
+        </div>
       `;
     } else if (type === 'login') {
-      const { email } = data;
-      subject = `User Login Notification – ${email}`;
-      html = `<p>User <strong>${email}</strong> has just logged in to Kanishka Travels.</p>`;
+      const { email, full_name, phone } = data;
+      subject = `🔑 Login Alert – ${full_name || email}`;
+      html = `
+        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:24px;">
+          <h2 style="color:#D4AF37;margin-bottom:4px;">User Login Notification</h2>
+          <p style="color:#555;font-size:13px;margin-top:0;">A customer has just signed in to Kanishka Travels.</p>
+
+          ${contactCard(full_name, email, phone)}
+
+          <p style="margin-top:12px;font-size:12px;color:#888;">No action required unless this login looks suspicious.</p>
+        </div>
+      `;
     } else {
       return NextResponse.json({ error: 'Unsupported notification type' }, { status: 400 });
     }

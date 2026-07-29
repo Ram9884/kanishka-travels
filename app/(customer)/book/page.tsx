@@ -19,12 +19,12 @@ import { animate } from 'animejs';
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const SERVICES = [
-  { id: 'outstation', label: 'Outstation Trip', desc: 'TN · AP · Karnataka · Kerala', icon: Navigation },
-  { id: 'airport',    label: 'Airport Transfer', desc: 'MAA Chennai International', icon: Plane },
-  { id: 'local',      label: 'Local City Ride', desc: 'Hourly & Daily City Travel', icon: Car },
-  { id: 'temple',     label: 'Temple Pilgrimage', desc: 'Tirupati · Rameswaram · Madurai', icon: Landmark },
-  { id: 'wedding',    label: 'Wedding Travel', desc: 'Decorated Luxury Convoys', icon: Heart },
-  { id: 'monthly',    label: 'Monthly Rental', desc: 'Dedicated Chauffeur Contract', icon: CalendarDays },
+  { id: 'outstation', label: 'Outstation Trip',    desc: 'TN · AP · Karnataka · Kerala',       icon: Navigation, color: 'from-[#D4AF37]/30 to-[#F5D77F]/10 text-[#F5D77F]' },
+  { id: 'airport',    label: 'Airport Transfer',   desc: 'MAA Chennai International',            icon: Plane,       color: 'from-blue-500/20 to-blue-400/5 text-blue-300' },
+  { id: 'local',      label: 'Local City Ride',    desc: 'Hourly & Daily City Travel',           icon: Car,         color: 'from-emerald-500/20 to-emerald-400/5 text-emerald-300' },
+  { id: 'temple',     label: 'Temple Pilgrimage',  desc: 'Tirupati · Rameswaram · Madurai',     icon: Landmark,    color: 'from-orange-500/25 to-orange-400/5 text-orange-300' },
+  { id: 'wedding',    label: 'Wedding Travel',     desc: 'Decorated Luxury Convoys',             icon: Heart,       color: 'from-pink-500/20 to-pink-400/5 text-pink-300' },
+  { id: 'monthly',    label: 'Monthly Rental',     desc: 'Dedicated Chauffeur Contract',         icon: CalendarDays,color: 'from-violet-500/20 to-violet-400/5 text-violet-300' },
 ];
 
 const VEHICLES = [
@@ -113,7 +113,7 @@ function Step1({
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {SERVICES.map(({ id, label, desc, icon: Icon }, idx) => {
+        {SERVICES.map(({ id, label, desc, icon: Icon, color }, idx) => {
           const active = serviceType === id;
           return (
             <motion.button
@@ -132,8 +132,8 @@ function Step1({
               {active && (
                 <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 to-transparent pointer-events-none" />
               )}
-              <div className={`w-8 h-8 rounded-lg mb-3 flex items-center justify-center transition-colors duration-300 ${
-                active ? 'bg-[#D4AF37]/25 text-[#F5D77F]' : 'bg-[#1A1A1D] text-[#D4AF37]/60 group-hover:text-[#D4AF37]'
+              <div className={`w-8 h-8 rounded-lg mb-3 flex items-center justify-center bg-gradient-to-br transition-all duration-300 ${
+                active ? 'from-[#D4AF37]/40 to-[#F5D77F]/15 text-[#F5D77F] scale-110' : `${color} opacity-80 group-hover:opacity-100 group-hover:scale-105`
               }`}>
                 <Icon className="w-4 h-4" strokeWidth={1.8} />
               </div>
@@ -156,7 +156,7 @@ function Step1({
           type="button"
           onClick={onNext}
           disabled={!serviceType}
-          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F5D77F] text-[#0E0E10] font-bold text-xs uppercase tracking-widest shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:scale-100"
+          className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF10] to-[#F5D77A] text-[#0E0E10] font-bold text-xs uppercase tracking-widest shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed disabled:scale-100"
         >
           <span>Continue</span>
           <ArrowRight className="w-4 h-4" />
@@ -168,13 +168,23 @@ function Step1({
 
 // ─── Step 2 ────────────────────────────────────────────────────────────────
 
+const AIRPORT_NAME = 'Chennai International Airport (MAA)';
+
 function Step2({
-  pickupLocation, setPickupLocation, dropLocation, setDropLocation, onNext, onBack,
+  serviceType, pickupLocation, setPickupLocation, dropLocation, setDropLocation, onNext, onBack,
 }: {
+  serviceType: string;
   pickupLocation: string; setPickupLocation: (v: string) => void;
   dropLocation: string; setDropLocation: (v: string) => void;
   onNext: () => void; onBack: () => void;
 }) {
+  // Auto-fill airport when service type is 'airport'
+  React.useEffect(() => {
+    if (serviceType === 'airport') {
+      if (!pickupLocation) setPickupLocation(AIRPORT_NAME);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serviceType]);
   return (
     <div className="space-y-6">
       <div>
@@ -501,9 +511,8 @@ function Step4({
                 </div>
               </div>
 
-              {/* Rate + check */}
+              {/* Check icon when selected */}
               <div className="shrink-0 flex flex-col items-end gap-2">
-                <span className="text-xs font-bold font-mono text-[#D4AF37]">{v.rate}</span>
                 {active && <CheckCircle2 className="w-4 h-4 text-[#D4AF37]" />}
               </div>
             </button>
@@ -730,7 +739,7 @@ function BookingWizardContent() {
   const [serviceType,       setServiceType]       = useState(params?.get('service')  || 'outstation');
   const [pickupLocation,    setPickupLocation]     = useState(params?.get('pickup')   || '');
   const [dropLocation,      setDropLocation]       = useState(params?.get('drop')     || '');
-  const [pickupDate,        setPickupDate]         = useState(params?.get('date')     || '');
+  const [pickupDate,        setPickupDate]         = useState(params?.get('date')     || new Date().toISOString().split('T')[0]);
   const [pickupTime,        setPickupTime]         = useState('06:00');
   const [returnDate,        setReturnDate]         = useState('');
   const [passengerCount,    setPassengerCount]     = useState(4);
@@ -778,7 +787,14 @@ function BookingWizardContent() {
 
     if (err)   { setError(err.message); setLoading(false); }
     else if (data) {
-      // Send email notification for new booking
+      // Fetch current user's contact details for the notification email
+      const supabase2 = createClient();
+      const { data: { user } } = await supabase2.auth.getUser();
+      const customerEmail = user?.email || '';
+      const customerName  = user?.user_metadata?.full_name || '';
+      const customerPhone = user?.user_metadata?.phone || '';
+
+      // Send email notification for new booking — includes customer name, email & mobile
       void fetch('/api/notify/email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -791,6 +807,9 @@ function BookingWizardContent() {
             drop_location: dropLocation,
             pickup_date: pickupDate,
             pickup_time: pickupTime,
+            customer_name: customerName,
+            customer_email: customerEmail,
+            customer_phone: customerPhone,
           },
         }),
       }).catch(console.error);
@@ -815,7 +834,7 @@ function BookingWizardContent() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-transparent pt-20">
       {/* ─── Left Panel ─────────────────────────────── */}
-      <aside className={`hidden lg:flex lg:w-72 xl:w-80 shrink-0 sticky top-24 h-fit self-start ml-6 xl:ml-12 2xl:ml-20 px-7 py-9 rounded-2xl overflow-hidden transition-all duration-500 ${
+      <aside className={`hidden lg:flex lg:w-72 xl:w-80 shrink-0 self-start ml-28 xl:ml-25 2xl:ml-38 mt-16 mb-10 px-7 py-9 rounded-2xl overflow-hidden transition-all duration-500 ${
         isLight
           ? 'bg-white/90 border border-amber-200/60 shadow-[0_8px_32px_rgba(180,83,9,0.08)] backdrop-blur-xl'
           : 'card-luxury-glass'
@@ -930,6 +949,7 @@ function BookingWizardContent() {
                   )}
                   {step === 2 && (
                     <Step2
+                      serviceType={serviceType}
                       pickupLocation={pickupLocation}
                       setPickupLocation={setPickupLocation}
                       dropLocation={dropLocation}

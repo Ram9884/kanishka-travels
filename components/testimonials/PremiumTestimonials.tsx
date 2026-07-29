@@ -194,17 +194,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
 
       {/* User Footer Profile Info */}
       <div className="mt-8 pt-5 border-t border-[#D4AF37]/20 flex items-center justify-between relative z-10">
-        <div className="flex items-center gap-3.5">
-          <div className="relative w-11 h-11 rounded-full overflow-hidden border-2 border-[#D4AF37]/50 shrink-0 shadow-[0_0_14px_rgba(212,175,55,0.25)] bg-[#121316]">
-            <Image
-              src={testimonial.avatar}
-              alt={testimonial.name}
-              fill
-              unoptimized={testimonial.avatar.startsWith('http')}
-              className="object-cover"
-              sizes="44px"
-            />
-          </div>
+        <div className="flex items-center gap-2.5">
           <div>
             <div className="flex items-center gap-1.5">
               <h3 className="testimonial-author-name text-xs sm:text-sm font-bold text-white group-hover:text-[#F5D77F] transition-colors">

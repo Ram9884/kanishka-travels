@@ -27,7 +27,7 @@ function LoginFormContent() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectPath = searchParams.get('redirect') || '/my-bookings';
+  const redirectPath = searchParams.get('redirect') || '/';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,13 +44,19 @@ function LoginFormContent() {
       setError(loginError.message);
       setLoading(false);
     } else {
-      // Send email notification for login
+      // Fetch user metadata (name, phone stored during signup)
+      const supabase2 = createClient();
+      const { data: { user } } = await supabase2.auth.getUser();
+      const fullName = user?.user_metadata?.full_name || '';
+      const phone    = user?.user_metadata?.phone || '';
+
+      // Send email notification for login — includes name, email & mobile
       void fetch('/api/notify/email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           type: 'login',
-          data: { email },
+          data: { email, full_name: fullName, phone },
         }),
       }).catch(console.error);
       router.push(redirectPath);

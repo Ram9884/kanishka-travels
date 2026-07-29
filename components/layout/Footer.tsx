@@ -123,7 +123,7 @@ export default function Footer() {
                 <div>
                   <p className="footer-card-title text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider font-semibold">Main Office</p>
                   <p className="footer-card-text font-medium font-sans mt-0.5 leading-snug">
-                    Por, Chennai.<br />
+                    Iyyappanthangal, Chennai.<br />
                   </p>
                 </div>
               </div>
