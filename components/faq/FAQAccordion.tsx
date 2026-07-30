@@ -54,7 +54,7 @@ export default function FAQAccordion() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 cursor-pointer ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition-all duration-300 cursor-pointer min-h-[36px] flex items-center justify-center ${
                 activeCategory === cat
                   ? 'bg-gradient-to-r from-[#D4AF37] to-[#A16207] text-slate-950 shadow-lg font-bold'
                   : 'faq-tab-inactive'

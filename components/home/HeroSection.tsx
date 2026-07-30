@@ -123,9 +123,9 @@ export default function HeroSection() {
       {/* ── Content ── */}
       <div
         ref={heroContentRef}
-        className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 flex flex-col items-center"
+        className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-14 sm:pb-20 flex flex-col items-center"
       >
-        <div className="w-full flex flex-col items-center text-center space-y-8">
+        <div className="w-full flex flex-col items-center text-center space-y-6 sm:space-y-8">
 
           {/* Headline */}
           <div className="relative">
@@ -133,8 +133,9 @@ export default function HeroSection() {
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-0"
               style={{
-                width: '560px',
-                height: '290px',
+                width: '100%',
+                maxWidth: '560px',
+                height: '240px',
                 background: isLight
                   ? 'radial-gradient(ellipse, rgba(217,119,6,0.12), transparent 70%)'
                   : 'radial-gradient(ellipse, rgba(212,175,55,0.10), transparent 70%)',
@@ -144,7 +145,7 @@ export default function HeroSection() {
 
             <h1
               ref={headlineRef}
-              className="relative z-10 font-serif text-5xl sm:text-6xl lg:text-[5.5rem] font-bold leading-[1.05] tracking-tight max-w-4xl perspective-1000"
+              className="relative z-10 font-serif text-3.5xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold leading-[1.08] sm:leading-[1.05] tracking-tight max-w-4xl perspective-1000"
             >
               {/* Line 1 */}
               <span

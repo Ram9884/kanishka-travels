@@ -6,7 +6,8 @@ import { useRouter, usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { createClient } from '@/lib/supabase/client';
 import { useTheme } from '@/components/ThemeProvider';
-import { Crown, Menu, X, User, LogOut, Calendar, Sun, Moon, Sparkles } from 'lucide-react';
+import { Crown, Menu, X, User, LogOut, Calendar, Sun, Moon, Sparkles, Phone } from 'lucide-react';
+import { WhatsAppIcon, PRIMARY_NUMBER } from '@/components/WhatsAppButton';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -233,24 +234,57 @@ export default function Navbar() {
               : 'bg-white/92'
           }`}
         >
-          <nav className="flex flex-col gap-4 text-center">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`font-serif text-xl font-bold py-1 transition-colors ${
-                  theme === 'dark'
-                    ? 'text-[#F8F5EE] hover:text-[#F5D77F]'
-                    : 'text-[#1A1A1D] hover:text-[#B8860B]'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+          <nav className="flex flex-col gap-3 text-center">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`font-serif text-lg font-bold py-2.5 min-h-[44px] flex items-center justify-center rounded-xl transition-all ${
+                    isActive
+                      ? theme === 'dark'
+                        ? 'bg-[#D4AF37]/15 text-[#F5D77F] border border-[#D4AF37]/40'
+                        : 'bg-amber-100 text-[#78350F] border border-[#B8860B]/40'
+                      : theme === 'dark'
+                        ? 'text-[#F8F5EE] hover:text-[#F5D77F] hover:bg-white/5'
+                        : 'text-[#1A1A1D] hover:text-[#B8860B] hover:bg-black/5'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="pt-4 border-t border-[#D4AF37]/20 flex flex-col gap-3">
+            {/* Direct Contact Row in Mobile Drawer */}
+            <div className="grid grid-cols-2 gap-2 pt-1">
+              <a
+                href={`tel:+91${PRIMARY_NUMBER.slice(2)}`}
+                className={`py-2.5 px-3 min-h-[44px] rounded-xl border flex items-center justify-center gap-2 text-xs font-bold transition-all ${
+                  theme === 'dark'
+                    ? 'bg-[#1A1A1D] border-[#D4AF37]/35 text-[#F5D77F] hover:bg-[#D4AF37]/15'
+                    : 'bg-amber-50 border-[#B8860B]/35 text-[#78350F] hover:bg-amber-100'
+                }`}
+              >
+                <Phone className="w-4 h-4 text-[#D4AF37]" />
+                <span>Call Owner</span>
+              </a>
+              <a
+                href={`https://wa.me/${PRIMARY_NUMBER}?text=${encodeURIComponent(
+                  "Hi S. Ramesh, I'd like to enquire about booking a cab with Kanishka Travels."
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2.5 px-3 min-h-[44px] rounded-xl bg-[#25D366]/15 border border-[#25D366]/40 text-[#25D366] font-bold text-xs flex items-center justify-center gap-2 hover:bg-[#25D366]/25 transition-all"
+              >
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+
             {user ? (
               <div className="space-y-3">
                 {/* Logged-in user info */}
@@ -277,7 +311,7 @@ export default function Navbar() {
                 <Link
                   href="/my-bookings"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`w-full text-center py-3 rounded-xl font-bold text-sm border uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
+                  className={`w-full text-center py-3 min-h-[44px] rounded-xl font-bold text-xs border uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
                     theme === 'dark'
                       ? 'bg-[#25262B] border-[#D4AF37]/40 text-[#F5D77F] hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]'
                       : 'bg-white border-[#B8860B]/40 text-[#78350F] hover:bg-amber-50 hover:border-[#B8860B]'
@@ -289,7 +323,7 @@ export default function Navbar() {
 
                 <button
                   onClick={() => { handleLogout(); setMobileMenuOpen(false); }}
-                  className={`w-full text-center py-3 rounded-xl border font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 ${
+                  className={`w-full text-center py-3 min-h-[44px] rounded-xl border font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer ${
                     theme === 'dark'
                       ? 'border-rose-500/35 bg-rose-500/8 text-rose-400 hover:bg-rose-500/15'
                       : 'border-rose-300/60 bg-rose-50 text-rose-600 hover:bg-rose-100 hover:border-rose-400/70'
@@ -303,7 +337,7 @@ export default function Navbar() {
               <Link
                 href="/book"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center py-3.5 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-lg hover:shadow-[0_6px_25px_rgba(212,175,55,0.40)] transition-all duration-300"
+                className="w-full text-center py-3.5 min-h-[44px] flex items-center justify-center rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-lg hover:shadow-[0_6px_25px_rgba(212,175,55,0.40)] transition-all duration-300"
               >
                 BOOK LUXURY CAB
               </Link>

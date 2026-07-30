@@ -7,7 +7,10 @@ export type AnalyticsEvent =
   | 'booking_started'
   | 'booking_submitted'
   | 'destination_viewed'
-  | 'faq_opened';
+  | 'faq_opened'
+  | 'mobile_dock_call_click'
+  | 'mobile_dock_whatsapp_click'
+  | 'mobile_dock_book_click';
 
 export const trackEvent = (event: AnalyticsEvent, properties?: Record<string, any>) => {
   if (typeof window === 'undefined') return;

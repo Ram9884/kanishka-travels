@@ -35,19 +35,19 @@ export default function PopularDestinations() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-20 bg-transparent overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-12 sm:py-20 bg-transparent overflow-hidden">
       {/* Subtle Ambient Gold Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] dark:text-[#F5D77F] text-xs font-semibold tracking-wider uppercase mb-4"
+            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] dark:text-[#F5D77F] text-[11px] sm:text-xs font-semibold tracking-wider uppercase mb-3 sm:mb-4"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Curated South India Journeys</span>
@@ -57,7 +57,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="destinations-section-title font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
+            className="destinations-section-title font-serif text-2.5xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
           >
             Signature <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Journeys</span>
           </motion.h2>
@@ -66,7 +66,7 @@ export default function PopularDestinations() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="destinations-section-subtitle mt-4 text-base sm:text-lg font-medium leading-relaxed"
+            className="destinations-section-subtitle mt-3 sm:mt-4 text-sm sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto"
           >
             Handpicked pilgrimage, hill station, and heritage routes from Chennai with dedicated luxury drivers.
           </motion.p>
@@ -78,7 +78,7 @@ export default function PopularDestinations() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch"
         >
           {POPULAR_DESTINATIONS.map((dest, idx) => (
             <DestinationCard key={dest.id} destination={dest} index={idx} />
@@ -102,7 +102,7 @@ function DestinationCard({ destination, index }: { destination: Destination; ind
       }`}
     >
       {/* Image Container with Zoom Effect */}
-      <div className="relative w-full h-64 sm:h-72 overflow-hidden bg-[#0B0B0D]">
+      <div className="relative w-full h-56 sm:h-72 overflow-hidden bg-[#0B0B0D]">
         <Image
           src={destination.image}
           alt={destination.name}
@@ -115,45 +115,43 @@ function DestinationCard({ destination, index }: { destination: Destination; ind
         {/* Vignette Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-        {/* Subtitle Badge */}
-        <div className="absolute top-4 left-4 z-10">
-          <span className="px-3 py-1 rounded-full bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 text-[11px] font-medium text-[#F5D77F] tracking-wide shadow-md">
+        {/* Top Badges Bar (Flex Container prevents overlap) */}
+        <div className="absolute top-3 sm:top-4 left-3 sm:left-4 right-3 sm:right-4 z-10 flex items-center justify-between gap-2">
+          <span className="px-2.5 sm:px-3 py-1 rounded-full bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 text-[10px] sm:text-[11px] font-semibold text-[#F5D77F] tracking-wide shadow-md truncate max-w-[65%]">
             {destination.subtitle}
+          </span>
+          <span className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 text-[10px] sm:text-[11px] font-mono text-[#F8F5EE] shadow-md shrink-0">
+            <Clock className="w-3 h-3 text-[#D4AF37]" />
+            <span>{destination.travelTime}</span>
           </span>
         </div>
 
-        {/* Travel Time Tag */}
-        <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 text-[11px] font-mono text-[#F8F5EE] shadow-md">
-          <Clock className="w-3 h-3 text-[#D4AF37]" />
-          <span>{destination.travelTime}</span>
-        </div>
-
         {/* Distance Tag from Chennai */}
-        <div className="absolute bottom-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 shadow-lg">
+        <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0B0B0D]/90 backdrop-blur-md border border-[#D4AF37]/40 shadow-lg">
           <Navigation className="w-3.5 h-3.5 text-[#D4AF37]" />
-          <span className="text-xs font-mono font-bold text-[#F8F5EE] tracking-wide">
+          <span className="text-[11px] sm:text-xs font-mono font-bold text-[#F8F5EE] tracking-wide">
             {destination.distance}
           </span>
         </div>
       </div>
 
       {/* Content Body */}
-      <div className="destination-card-body p-6 flex-1 flex flex-col justify-between border-t border-[#D4AF37]/20">
+      <div className="destination-card-body p-4 sm:p-6 flex-1 flex flex-col justify-between border-t border-[#D4AF37]/20">
         <div>
-          <h3 className="destination-card-title text-xl font-extrabold flex items-center gap-2 transition-colors duration-300">
+          <h3 className="destination-card-title text-lg sm:text-xl font-extrabold flex items-center gap-2 transition-colors duration-300">
             <MapPin className="w-4 h-4 text-[#D4AF37] shrink-0" />
             <span className="tracking-wide">{destination.name}</span>
           </h3>
-          <p className="destination-card-desc mt-3 text-sm leading-relaxed line-clamp-2 font-normal">
+          <p className="destination-card-desc mt-2 sm:mt-3 text-xs sm:text-sm leading-relaxed line-clamp-2 font-normal">
             {destination.description}
           </p>
         </div>
 
         {/* Action Button */}
-        <div className="mt-6 pt-4 border-t border-[#D4AF37]/20 flex items-center justify-between">
+        <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-[#D4AF37]/20 flex items-center justify-between">
           <Link
             href={`/book?destination=${destination.id}`}
-            className="destination-card-btn w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md"
+            className="destination-card-btn w-full inline-flex items-center justify-center gap-2.5 px-4 sm:px-5 py-3 min-h-[44px] rounded-xl text-xs font-extrabold uppercase tracking-wider transition-all duration-300 shadow-md"
           >
             <span>Explore Packages</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

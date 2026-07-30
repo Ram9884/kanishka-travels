@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import MobileBottomBar from '@/components/layout/MobileBottomBar';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import JourneyLine from '@/components/motion/JourneyLine';
 
@@ -11,6 +12,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       <JourneyLine />
       <main className="flex-1 pt-0">{children}</main>
       <WhatsAppButton variant="floating" />
+      <MobileBottomBar />
       <Footer />
     </div>
   );
