@@ -9,7 +9,7 @@ import { Crown, ShieldCheck, Clock, UserCheck, PhoneCall, Quote } from 'lucide-r
 const REASONS = [
   {
     icon: PhoneCall,
-    title: 'Personal Attention by S. Ramesh',
+    title: 'Personal Attention by S.Ramesh',
     description: 'Every booking request is personally reviewed, confirmed, and coordinated by S. Ramesh — zero automated call centers or chatbots.',
   },
   {
