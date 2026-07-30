@@ -32,22 +32,24 @@ export default function BookingCard() {
             : '0 12px 40px rgba(0,0,0,0.55), inset 0 1px 1px rgba(245,215,127,0.08)',
         }}
       >
-        <div className="flex flex-col gap-4 items-center">
-          <div className="flex flex-col sm:flex-row w-full gap-2.5">
+        <div className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-3 items-stretch">
             <PremiumButton
               href="/book"
-              className="w-full sm:flex-1 py-3 justify-center bg-gradient-to-r from-[#F5D77F] to-[#CA8A04] text-[#081221] hover:brightness-90 min-h-[44px]"
+              className="w-full h-full py-3.5 px-4 justify-center bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#CA8A04] text-[#081221] font-bold text-sm hover:brightness-105 min-h-[48px] shadow-[0_4px_18px_rgba(212,175,55,0.3)]"
               aria-label="Book your trip"
             >
-              Book Your Trip <ArrowRight className="w-3.5 h-3.5 inline-block ml-1" />
+              <span>Book Your Trip</span>
+              <ArrowRight className="w-4 h-4 ml-1 shrink-0" />
             </PremiumButton>
+
             <CallButton
               variant="outline"
               label="Call Now"
-              className={`w-full sm:flex-1 py-3 justify-center min-h-[44px] ${
+              className={`w-full h-full py-3.5 px-4 justify-center font-bold text-sm min-h-[48px] rounded-xl transition-all duration-300 ${
                 isLight
-                  ? 'bg-[#92400E]/10 text-[#7C2D12] border-[#B45309]/40 hover:bg-[#92400E]/20'
-                  : 'bg-white/10 text-[#F5D77F] hover:bg-[#F5D77F]/20'
+                  ? 'bg-amber-500/10 text-[#7C2D12] border border-[#B45309]/40 hover:bg-amber-500/20'
+                  : 'bg-white/10 text-[#F5D77F] border border-[#D4AF37]/35 hover:bg-[#F5D77F]/20'
               }`}
             />
           </div>

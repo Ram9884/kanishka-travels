@@ -160,7 +160,8 @@ export default function ServiceExperience() {
                   src={exp.image}
                   alt={exp.title}
                   fill
-                  quality={70}
+                  priority={idx < 2}
+                  quality={75}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />

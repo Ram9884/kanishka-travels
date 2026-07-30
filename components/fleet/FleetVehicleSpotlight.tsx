@@ -204,7 +204,8 @@ export default function FleetVehicleSpotlight() {
                     src={vehicle.image}
                     alt={vehicle.name}
                     fill
-                    quality={70}
+                    priority={idx < 2}
+                    quality={75}
                     className="object-cover object-center"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />

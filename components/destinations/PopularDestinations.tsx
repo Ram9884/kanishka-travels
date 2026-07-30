@@ -107,8 +107,8 @@ function DestinationCard({ destination, index }: { destination: Destination; ind
           src={destination.image}
           alt={destination.name}
           fill
-          quality={70}
-          unoptimized={destination.image.startsWith('http')}
+          priority={index < 2}
+          quality={75}
           className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />

@@ -145,7 +145,7 @@ export default function HeroSection() {
 
             <h1
               ref={headlineRef}
-              className="relative z-10 font-serif text-2.5xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold leading-[1.08] sm:leading-[1.05] tracking-tight max-w-4xl perspective-1000"
+              className="relative z-10 font-serif text-4xl xs:text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold leading-[1.08] sm:leading-[1.05] tracking-tight max-w-4xl perspective-1000"
             >
               {/* Line 1 */}
               <span
@@ -184,7 +184,7 @@ export default function HeroSection() {
             Executive airport transfers, local Chennai rides, outstation tour packages, and sacred
             temple pilgrimages — personally coordinated by{' '}
             <strong style={{ color: isLight ? '#1A1108' : '#F8F5EE', fontWeight: 700 }}>
-              S. Ramesh
+              Ramesh
             </strong>{' '}
             with care.
           </p>
