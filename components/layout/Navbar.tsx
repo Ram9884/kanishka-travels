@@ -79,20 +79,20 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="w-full px-6 sm:px-12 lg:px-16">
+      <div className="w-full px-3.5 sm:px-10 lg:px-16">
         <div className="flex items-center justify-between h-20 w-full">
           {/* Left Column: Brand Logo */}
           <div className="flex-1 flex justify-start">
-            <Link href="/" className="flex items-center gap-3 group cursor-pointer">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D4AF37] via-[#F5D77F] to-[#A16207] p-[1.5px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] group-hover:scale-105 transition-transform duration-300">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer max-w-[220px] sm:max-w-none">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#D4AF37] via-[#F5D77F] to-[#A16207] p-[1.5px] shadow-[0_4px_20px_rgba(212,175,55,0.3)] group-hover:scale-105 transition-transform duration-300 shrink-0">
                 <div className={`w-full h-full rounded-[9.5px] flex items-center justify-center ${
                   theme === 'dark' ? 'bg-[#0B0B0D]' : 'bg-white'
                 }`}>
-                  <Crown className="w-5 h-5 text-[#F5D77F] group-hover:rotate-12 transition-transform duration-300" />
+                  <Crown className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#F5D77F] group-hover:rotate-12 transition-transform duration-300" />
                 </div>
               </div>
-              <div>
-                <span className={`font-serif text-xl font-bold tracking-tight group-hover:text-[#F5D77F] transition-colors block leading-none ${
+              <div className="min-w-0">
+                <span className={`font-serif text-lg sm:text-xl font-bold tracking-tight group-hover:text-[#F5D77F] transition-colors block leading-none truncate ${
                   theme === 'dark' ? 'text-[#F8F5EE]' : 'text-[#1A1A1D]'
                 }`}>
                   KANISHKA <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">TRAVELS</span>
@@ -228,7 +228,7 @@ export default function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
-          className={`lg:hidden backdrop-blur-2xl border-b border-[#D4AF37]/30 px-6 pt-4 pb-8 space-y-5 ${
+          className={`lg:hidden backdrop-blur-2xl border-b border-[#D4AF37]/30 px-5 sm:px-6 pt-4 pb-8 space-y-5 max-h-[85vh] overflow-y-auto ${
             theme === 'dark'
               ? 'bg-[#0B0B0D]/95'
               : 'bg-white/92'

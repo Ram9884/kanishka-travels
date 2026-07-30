@@ -47,7 +47,7 @@ export default function PremiumTestimonials() {
   };
 
   return (
-    <section className="relative w-full py-24 bg-transparent overflow-hidden">
+    <section className="relative w-full py-12 sm:py-24 bg-transparent overflow-hidden">
       {/* Radial Background Glow */}
       <div className="absolute top-1/3 left-1/3 w-[600px] h-[350px] bg-[#D4AF37]/8 blur-[150px] rounded-full pointer-events-none" />
 
@@ -167,7 +167,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: Testimonial; ind
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       whileHover={{ y: -6, scale: 1.015 }}
-      className="premium-testimonial-card snap-start shrink-0 w-[310px] sm:w-[360px] md:w-[400px] p-7 sm:p-8 rounded-2xl flex flex-col justify-between group relative overflow-hidden"
+      className="premium-testimonial-card snap-start shrink-0 w-[280px] sm:w-[360px] md:w-[400px] p-5 sm:p-8 rounded-2xl flex flex-col justify-between group relative overflow-hidden"
     >
       {/* Background Decorative Accent Glow */}
       <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#D4AF37]/10 rounded-full blur-2xl pointer-events-none group-hover:bg-[#D4AF37]/20 transition-all duration-500" />

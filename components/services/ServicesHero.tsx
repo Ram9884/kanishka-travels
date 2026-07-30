@@ -6,7 +6,7 @@ import { Sparkles, Compass } from 'lucide-react';
 
 export default function ServicesHero() {
   return (
-    <section className="relative w-full min-h-[50vh] flex flex-col items-center justify-center pt-32 pb-16 overflow-hidden bg-transparent">
+    <section className="relative w-full min-h-[50vh] flex flex-col items-center justify-center pt-28 sm:pt-32 pb-12 sm:pb-16 overflow-hidden bg-transparent">
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
         {/* Status Badge */}
@@ -25,7 +25,7 @@ export default function ServicesHero() {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="services-hero-title font-serif text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight"
+          className="services-hero-title font-serif text-3.5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight"
         >
           The Art of <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Travel</span>
         </motion.h1>

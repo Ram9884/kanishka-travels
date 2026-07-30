@@ -29,7 +29,7 @@ export default function MobileBottomBar() {
         <a
           href={telUrl}
           onClick={() => trackEvent('mobile_dock_call_click')}
-          className={`flex flex-col items-center justify-center py-2 px-1 rounded-xl border transition-all active:scale-95 cursor-pointer ${
+          className={`flex flex-col items-center justify-center py-2 px-1 min-h-[44px] rounded-xl border transition-all active:scale-95 cursor-pointer ${
             isDark
               ? 'bg-[#1A1A1D]/90 border-[#D4AF37]/30 text-[#F5D77F] hover:bg-[#D4AF37]/15'
               : 'bg-amber-50/90 border-[#B8860B]/35 text-[#78350F] hover:bg-amber-100'
@@ -46,7 +46,7 @@ export default function MobileBottomBar() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackEvent('mobile_dock_whatsapp_click')}
-          className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-[#25D366]/15 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/25 transition-all active:scale-95 cursor-pointer"
+          className="flex flex-col items-center justify-center py-2 px-1 min-h-[44px] rounded-xl bg-[#25D366]/15 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/25 transition-all active:scale-95 cursor-pointer"
           aria-label="Chat on WhatsApp with S. Ramesh"
         >
           <WhatsAppIcon className="w-4 h-4 mb-1 text-[#25D366]" />
@@ -57,7 +57,7 @@ export default function MobileBottomBar() {
         <Link
           href="/book"
           onClick={() => trackEvent('mobile_dock_book_click')}
-          className="flex flex-col items-center justify-center py-2 px-1 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-[#0B0B0D] font-extrabold shadow-[0_2px_12px_rgba(212,175,55,0.35)] hover:brightness-105 transition-all active:scale-95 cursor-pointer"
+          className="flex flex-col items-center justify-center py-2 px-1 min-h-[44px] rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-[#0B0B0D] font-extrabold shadow-[0_2px_12px_rgba(212,175,55,0.35)] hover:brightness-105 transition-all active:scale-95 cursor-pointer"
         >
           <div className="flex items-center gap-1 mb-1">
             <Sparkles className="w-3.5 h-3.5 fill-[#0B0B0D]" />

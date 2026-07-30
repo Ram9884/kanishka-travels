@@ -7,7 +7,7 @@ import { Car, Shield, Star } from 'lucide-react';
 export default function FleetHero() {
   return (
     <section
-      className="relative w-full min-h-[55vh] flex flex-col items-center justify-center pt-36 pb-20 overflow-hidden bg-transparent"
+      className="relative w-full min-h-[55vh] flex flex-col items-center justify-center pt-28 sm:pt-36 pb-12 sm:pb-20 overflow-hidden bg-transparent"
     >
       {/* Top gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none z-0" />
@@ -29,7 +29,7 @@ export default function FleetHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="fleet-hero-title font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight"
+          className="fleet-hero-title font-serif text-3.5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight"
         >
           The Right Vehicle{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">

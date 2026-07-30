@@ -917,7 +917,7 @@ function BookingWizardContent() {
         </div>
 
         {/* Form panel */}
-        <div className="flex-1 flex items-start justify-center px-4 sm:px-8 lg:px-12 py-6 sm:py-10 lg:py-14 pb-28 lg:pb-14 overflow-y-auto">
+        <div className="flex-1 flex items-start justify-center px-4 sm:px-8 lg:px-12 py-6 sm:py-10 lg:py-14 pb-safe-dock overflow-y-auto">
           <div className="w-full max-w-2xl">
             {error && (
               <motion.div

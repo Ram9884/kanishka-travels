@@ -36,7 +36,7 @@ export default function AboutHero() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full min-h-[50vh] flex flex-col items-center justify-center pt-36 pb-16 overflow-hidden bg-transparent"
+      className="relative w-full min-h-[50vh] flex flex-col items-center justify-center pt-28 sm:pt-36 pb-12 sm:pb-16 overflow-hidden bg-transparent"
     >
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
         {/* Location badge */}
@@ -56,7 +56,7 @@ export default function AboutHero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="about-hero-title font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight"
+          className="about-hero-title font-serif text-3.5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight"
         >
           A Decade of{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">

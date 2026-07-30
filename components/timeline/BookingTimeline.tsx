@@ -16,13 +16,13 @@ export default function BookingTimeline() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 bg-transparent overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-12 sm:py-24 bg-transparent overflow-hidden">
       {/* Soft Radial Gold Glow Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ export default function BookingTimeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="timeline-section-title font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight"
+            className="timeline-section-title font-serif text-2.5xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight"
           >
             Your Journey in <span className="timeline-section-highlight text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Four Simple Steps</span>
           </motion.h2>
@@ -47,7 +47,7 @@ export default function BookingTimeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="timeline-section-p mt-4 text-base sm:text-lg text-slate-300 font-normal leading-relaxed"
+            className="timeline-section-p mt-4 text-sm sm:text-lg text-slate-300 font-normal leading-relaxed"
           >
             No complex app signups or automated bots. Experience direct personal service in 4 simple steps.
           </motion.p>
@@ -59,9 +59,9 @@ export default function BookingTimeline() {
           <div ref={lineRef} className="timeline-line-desktop hidden lg:block absolute top-[52px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent z-0 origin-left" />
 
           {/* Connecting Line Mobile */}
-          <div className="timeline-line-mobile lg:hidden absolute top-[40px] bottom-[40px] left-[39px] w-[2px] bg-gradient-to-b from-transparent via-[#D4AF37] to-transparent z-0" />
+          <div className="timeline-line-mobile lg:hidden absolute top-[30px] bottom-[30px] left-[27px] w-[2px] bg-gradient-to-b from-transparent via-[#D4AF37] to-transparent z-0" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 relative z-10">
             {BOOKING_TIMELINE_STEPS.map((step, idx) => {
               const Icon = step.icon;
               return (
@@ -75,11 +75,11 @@ export default function BookingTimeline() {
                   className="flex lg:flex-col items-start lg:items-center text-left lg:text-center group"
                 >
                   {/* Step Number Circle Icon */}
-                  <div className="relative shrink-0 mr-6 lg:mr-0 lg:mb-6">
-                    <div className="timeline-step-circle w-20 h-20 rounded-2xl bg-[#0B0B0D]/90 border border-[#D4AF37]/40 group-hover:border-[#D4AF37] group-hover:bg-[#25262B] flex flex-col items-center justify-center text-[#D4AF37] shadow-xl transition-all duration-300">
-                      <Icon className="w-7 h-7 mb-1 group-hover:scale-110 transition-transform" strokeWidth={2} />
-                      <span className="text-[10px] font-mono font-bold text-[#F5D77F] tracking-widest uppercase">
-                        Step 0{step.stepNumber}
+                  <div className="relative shrink-0 mr-4 sm:mr-6 lg:mr-0 lg:mb-6">
+                    <div className="timeline-step-circle w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-[#0B0B0D]/90 border border-[#D4AF37]/40 group-hover:border-[#D4AF37] group-hover:bg-[#25262B] flex flex-col items-center justify-center text-[#D4AF37] shadow-xl transition-all duration-300">
+                      <Icon className="w-5 h-5 sm:w-7 sm:h-7 mb-0.5 sm:mb-1 group-hover:scale-110 transition-transform" strokeWidth={2} />
+                      <span className="text-[9px] sm:text-[10px] font-mono font-bold text-[#F5D77F] tracking-widest uppercase">
+                        0{step.stepNumber}
                       </span>
                     </div>
                   </div>

@@ -7,12 +7,12 @@ import { MILESTONE_STATS, StatItem } from '@/data/stats';
 
 export default function AnimatedStats() {
   return (
-    <section className="relative w-full py-20 bg-transparent overflow-hidden border-y border-[#D4AF37]/15">
+    <section className="relative w-full py-10 sm:py-20 bg-transparent overflow-hidden border-y border-[#D4AF37]/15">
       {/* Subtle Ambient Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-[#D4AF37]/5 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -28,14 +28,14 @@ export default function AnimatedStats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="stats-title font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
+            className="stats-title font-serif text-2.5xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
           >
             Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Thousands of Travellers</span>
           </motion.h2>
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-6">
           {MILESTONE_STATS.map((stat, idx) => (
             <StatCard key={stat.id} stat={stat} index={idx} />
           ))}
@@ -82,7 +82,7 @@ function StatCard({ stat, index }: { stat: StatItem; index: number }) {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="stats-card-container p-6 rounded-2xl border transition-all duration-300 flex flex-col items-center text-center group"
+      className="stats-card-container p-3.5 sm:p-6 rounded-2xl border transition-all duration-300 flex flex-col items-center text-center group"
     >
       <div className="stats-card-icon w-12 h-12 rounded-xl border flex items-center justify-center text-[#D4AF37] mb-4 group-hover:scale-110 transition-all duration-300">
         <Icon className="w-6 h-6" strokeWidth={2} />

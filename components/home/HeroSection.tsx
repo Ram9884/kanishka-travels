@@ -145,7 +145,7 @@ export default function HeroSection() {
 
             <h1
               ref={headlineRef}
-              className="relative z-10 font-serif text-3.5xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold leading-[1.08] sm:leading-[1.05] tracking-tight max-w-4xl perspective-1000"
+              className="relative z-10 font-serif text-2.5xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold leading-[1.08] sm:leading-[1.05] tracking-tight max-w-4xl perspective-1000"
             >
               {/* Line 1 */}
               <span

@@ -20,13 +20,13 @@ export default function FAQAccordion() {
   };
 
   return (
-    <section className="relative w-full py-24 bg-transparent overflow-hidden">
+    <section className="relative w-full py-12 sm:py-24 bg-transparent overflow-hidden">
       {/* Background Radial Glow */}
       <div className="absolute top-1/3 right-1/4 w-[600px] h-[350px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -42,19 +42,19 @@ export default function FAQAccordion() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="faq-section-title font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
+            className="faq-section-title font-serif text-2.5xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight"
           >
             Everything You <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Need to Know</span>
           </motion.h2>
         </div>
 
         {/* Category Pills Filter */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-semibold transition-all duration-300 cursor-pointer min-h-[36px] flex items-center justify-center ${
+              className={`px-2.5 sm:px-4 py-1.5 rounded-xl text-[10px] sm:text-xs font-semibold transition-all duration-300 cursor-pointer min-h-[38px] flex items-center justify-center ${
                 activeCategory === cat
                   ? 'bg-gradient-to-r from-[#D4AF37] to-[#A16207] text-slate-950 shadow-lg font-bold'
                   : 'faq-tab-inactive'
