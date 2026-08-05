@@ -1,0 +1,5 @@
+Contact: mailto:kanishkaoct2011@gmail.com
+Contact: tel:+919677384267
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, ta
+Canonical: https://kanishkatravels.com/.well-known/security.txt

@@ -1,0 +1,11 @@
+/* TEAM */
+  Proprietor: S. Ramesh
+  Business: Kanishka Travels
+  Location: Iyyappanthangal, Chennai, Tamil Nadu, India
+  Contact: kanishkaoct2011@gmail.com / +91 96773 84267
+
+/* SITE */
+  Last update: 2026/08/05
+  Language: English / Tamil
+  Standards: HTML5, CSS3, Next.js App Router, TypeScript, Tailwind CSS
+  Components: React, Framer Motion, Lucide Icons

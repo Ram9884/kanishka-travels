@@ -202,7 +202,7 @@ export default function FleetVehicleSpotlight() {
                 <div className="spotlight-img absolute top-[-10%] left-0 h-[120%] w-full scale-105 transition-transform duration-700">
                   <Image
                     src={vehicle.image}
-                    alt={vehicle.name}
+                    alt={`${vehicle.name} luxury outstation cab in Chennai`}
                     fill
                     priority={idx < 2}
                     quality={75}

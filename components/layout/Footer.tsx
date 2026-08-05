@@ -10,8 +10,6 @@ import {
   ArrowUpRight,
   Sparkles
 } from 'lucide-react';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import CallButton from '@/components/CallButton';
 
 const QUICK_LINKS = [
   { name: 'Home', href: '/' },
@@ -23,16 +21,16 @@ const QUICK_LINKS = [
 ];
 
 const POPULAR_ROUTES = [
-  'Chennai → Tirupati Pilgrimage',
-  'Chennai → Ooty Hill Station',
-  'Chennai → Pondicherry Tour',
-  'Chennai → Kodaikanal Escape',
-  'MAA Airport 24/7 Drop',
+  { name: 'Chennai → Pondicherry Cab', href: '/routes/chennai-to-pondicherry-cab' },
+  { name: 'Chennai → Tirupati Taxi', href: '/routes/chennai-to-tirupati-taxi' },
+  { name: 'Chennai Airport 24/7 Taxi', href: '/routes/chennai-airport-taxi' },
+  { name: 'Chennai → Bangalore Cab', href: '/routes/chennai-to-bangalore-cab' },
+  { name: 'Chennai → Vellore Taxi', href: '/routes/chennai-to-vellore-taxi' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative w-full border-t overflow-hidden">
+    <footer className="relative w-full border-t overflow-hidden" aria-label="Site Footer">
       {/* Top 2px Gold Accent Hairline Sheen */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#F5D77F]/80 to-transparent z-20" />
 
@@ -45,7 +43,7 @@ export default function Footer() {
           
           {/* Column 1: Brand & Personal Promise (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
-            <Link href="/" className="inline-flex items-center gap-3 group">
+            <Link href="/" className="inline-flex items-center gap-3 group" aria-label="Kanishka Travels Homepage">
               <div className="w-11 h-11 rounded-2xl icon-container-gold flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
                 <Crown className="w-6 h-6 text-slate-950" />
               </div>
@@ -71,7 +69,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Navigation Links (2 cols) */}
-          <div className="lg:col-span-2 space-y-4">
+          <nav className="lg:col-span-2 space-y-4" aria-label="Footer Navigation">
             <h3 className="font-serif text-xs font-bold text-[#D4AF37] uppercase tracking-widest flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
               Navigation
@@ -89,23 +87,28 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Column 3: Popular Routes (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
+          <nav className="lg:col-span-3 space-y-4" aria-label="Popular Routes Navigation">
             <h3 className="font-serif text-xs font-bold text-[#D4AF37] uppercase tracking-widest flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
               Popular Routes
             </h3>
             <ul className="space-y-2.5 text-xs font-sans">
               {POPULAR_ROUTES.map((route) => (
-                <li key={route} className="flex items-center gap-2 hover:text-[#D4AF37] transition-colors duration-200">
-                  <span className="text-[#D4AF37] font-mono font-bold">›</span>
-                  <span className="font-medium">{route}</span>
+                <li key={route.href}>
+                  <Link
+                    href={route.href}
+                    className="flex items-center gap-2 hover:text-[#D4AF37] transition-colors duration-200 font-medium"
+                  >
+                    <span className="text-[#D4AF37] font-mono font-bold">›</span>
+                    <span>{route.name}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Column 4: Contact & Location Cards (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
@@ -136,11 +139,11 @@ export default function Footer() {
                 <div>
                   <p className="footer-card-title text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider font-semibold">Proprietor Phone</p>
                   <div className="flex flex-wrap items-center gap-x-1 mt-0.5 font-mono text-xs font-semibold">
-                    <a href="tel:+919677384267" className="footer-card-text hover:text-[#D4AF37] transition-colors">
+                    <a href="tel:+919677384267" aria-label="Call S. Ramesh at 9677384267" className="footer-card-text hover:text-[#D4AF37] transition-colors">
                       96773 84267
                     </a>
                     <span className="footer-card-text">,</span>
-                    <a href="tel:+919884517451" className="footer-card-text hover:text-[#D4AF37] transition-colors">
+                    <a href="tel:+919884517451" aria-label="Call S. Ramesh at 9884517451" className="footer-card-text hover:text-[#D4AF37] transition-colors">
                       98845 17451
                     </a>
                   </div>
@@ -173,4 +176,3 @@ export default function Footer() {
     </footer>
   );
 }
-

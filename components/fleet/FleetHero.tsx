@@ -9,9 +9,6 @@ export default function FleetHero() {
     <section
       className="relative w-full min-h-[55vh] flex flex-col items-center justify-center pt-28 sm:pt-36 pb-12 sm:pb-20 overflow-hidden bg-transparent"
     >
-      {/* Top gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none z-0" />
-
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
         {/* Status badge */}
         <motion.div

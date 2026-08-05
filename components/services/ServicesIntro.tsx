@@ -26,7 +26,7 @@ export default function ServicesIntro() {
             </div>
 
             <h2 className="service-intro-title font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-wide leading-tight">
-              Chauffeur-Driven Luxury for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Every Occasion</span>
+              Executive Chauffeur Service for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Every Occasion</span>
             </h2>
 
             <p className="service-intro-desc text-sm sm:text-base text-[#F8F5EE]/80 max-w-2xl mx-auto leading-relaxed font-sans font-light">

@@ -7,6 +7,20 @@ import { ShieldCheck, Award, Sparkles } from 'lucide-react';
 import { useScrollStoryController } from '@/components/animation/ScrollStoryController';
 import { useTheme } from '@/components/ThemeProvider';
 
+import { PerspectiveBackground } from '@/components/originkit/ui/hero-03/perspective-background';
+import DarkGalleryTunnel from '@/components/originkit/ui/hero-13/gallery-tunnel';
+
+const DARK_FLEET_IMAGES = [
+  { src: "/images/fleet/innova-crysta.jpg", alt: "Toyota Innova Crysta" },
+  { src: "/images/fleet/innova-hycross.jpg", alt: "Toyota Innova Hycross" },
+  { src: "/images/fleet/swift-dzire.jpg", alt: "Swift Dzire" },
+  { src: "/images/fleet/kia-carens.jpg", alt: "Kia Carens" },
+  { src: "/images/fleet/maruti-ertiga.jpg", alt: "Maruti Ertiga" },
+  { src: "/images/fleet/toyota-etios.jpg", alt: "Toyota Etios" },
+  { src: "/images/fleet/tempo-traveller.jpg", alt: "Tempo Traveller" },
+  { src: "/images/fleet/mini-bus.jpg", alt: "Luxury Mini Bus" },
+];
+
 export default function HeroSection() {
   const { theme } = useTheme();
   const isLight = theme === 'light';
@@ -61,7 +75,7 @@ export default function HeroSection() {
       {/* ── Static Background ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {isLight ? (
-          /* Light: warm ivory-to-gold gradient */
+          /* Light: Originkit Hero 03 Perspective Background */
           <>
             <div
               className="absolute inset-0"
@@ -69,52 +83,44 @@ export default function HeroSection() {
                 background: 'linear-gradient(160deg, #FAF7F0 0%, #F5EDD8 35%, #EDE5CC 65%, #E8DFC4 100%)',
               }}
             />
+            {/* Originkit Hero 03 3D Tunnel */}
+            <PerspectiveBackground />
             {/* Warm amber glow — top right */}
             <div
-              className="absolute -top-32 right-0 w-[700px] h-[600px] opacity-40 pointer-events-none"
+              className="absolute -top-32 right-0 w-[700px] h-[600px] opacity-40 pointer-events-none z-10"
               style={{ background: 'radial-gradient(ellipse at top right, rgba(212,160,23,0.35), transparent 65%)' }}
-            />
-            {/* Warm glow — bottom left */}
-            <div
-              className="absolute bottom-0 left-0 w-[600px] h-[500px] opacity-30 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at bottom left, rgba(180,83,9,0.22), transparent 65%)' }}
-            />
-            {/* Dot grid texture */}
-            <div
-              className="absolute inset-0 opacity-[0.07]"
-              style={{
-                backgroundImage: 'radial-gradient(rgba(146,64,14,0.6) 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
-              }}
             />
           </>
         ) : (
-          /* Dark: Video Background with Opacity for High Contrast Readability */
+          /* Dark: Originkit Hero 13 3D Car Gallery Tunnel */
           <>
             {/* Dark Base */}
             <div className="absolute inset-0 bg-[#0B0B0D]" />
-            {/* Video with 70% opacity */}
-            <video
-              className="absolute inset-0 w-full h-full object-cover opacity-80"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-            >
-              <source src="/videos/hero.mp4" type="video/mp4" />
-            </video>
+            {/* Originkit Hero 13 3D Tunnel */}
+            <div className="absolute inset-0 opacity-70">
+              <DarkGalleryTunnel
+                images={DARK_FLEET_IMAGES}
+                background="#0B0B0D"
+                lineColor="#D4AF37"
+                lineOpacity={25}
+                grid={6}
+                speed={40}
+                boost={80}
+                fade={100}
+                label={false}
+              />
+            </div>
             {/* Dark contrast gradient overlay */}
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-10"
               style={{
-                background: 'linear-gradient(to bottom, rgba(11,11,13,0.65) 0%, rgba(11,11,13,0.45) 45%, rgba(11,11,13,0.95) 100%)',
+                background: 'linear-gradient(to bottom, rgba(11,11,13,0.75) 0%, rgba(11,11,13,0.50) 45%, rgba(11,11,13,0.95) 100%)',
               }}
             />
             {/* Ambient vignette */}
             <div
-              className="absolute inset-0"
-              style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.65) 100%)' }}
+              className="absolute inset-0 z-10"
+              style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.75) 100%)' }}
             />
           </>
         )}
@@ -149,22 +155,30 @@ export default function HeroSection() {
             >
               {/* Line 1 */}
               <span
-                className="hero-gsap-line block"
-                style={{ color: isLight ? '#1A1108' : '#F8F5EE' }}
+                className="hero-gsap-line block font-bold tracking-tight"
+                style={{
+                  color: isLight ? '#1153e0ff' : '#FFFFFF',
+                  textShadow: isLight
+                    ? '0 1px 3px rgba(255,255,255,0.9), 0 4px 20px rgba(255,255,255,0.6)'
+                    : '0 2px 16px rgba(0,0,0,0.9)',
+                }}
               >
                 Your Trip...
               </span>
 
               {/* Line 2 — gradient gold */}
               <span
-                className="hero-gsap-line block italic"
+                className="hero-gsap-line block italic pb-1"
                 style={{
                   backgroundImage: isLight
-                    ? 'linear-gradient(135deg, #78350F 0%, #92400E 40%, #B45309 70%, #78350F 100%)'
-                    : 'linear-gradient(135deg, #F5D77F 0%, #D4AF37 45%, #EAB308 80%, #F5D77F 100%)',
+                    ? 'linear-gradient(135deg, #92400E 0%, #D97706 40%, #B45309 70%, #78350F 100%)'
+                    : 'linear-gradient(135deg, #FFF099 0%, #F5D77F 35%, #D4AF37 70%, #F59E0B 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
+                  filter: isLight
+                    ? 'drop-shadow(0 2px 8px rgba(255,255,255,0.8))'
+                    : 'drop-shadow(0 4px 20px rgba(212,175,55,0.35))',
                 }}
               >
                 Our Responsibility!

@@ -83,7 +83,7 @@ const EXPERIENCES = [
   },
   {
     id: 'wedding-travel',
-    title: 'Luxury Wedding Convoys',
+    title: 'Executive Wedding Convoys',
     description: 'Elegant sedans and matched multi-vehicle executive fleets to transport family and guests comfortably, coordinated directly by Ramesh during the event.',
     image: '/images/gallery/wedding_convoy.jpg',
     icon: Heart,

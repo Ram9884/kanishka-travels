@@ -20,7 +20,7 @@ export default function ServicesCTA() {
 
         <h2 className="services-cta-title font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
           Ready for Your Next <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Luxury Journey?</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Next Journey?</span>
         </h2>
 
         <p className="services-cta-desc text-sm sm:text-base text-[#F8F5EE]/75 max-w-xl mx-auto leading-relaxed">

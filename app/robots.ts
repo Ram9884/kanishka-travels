@@ -1,14 +1,15 @@
 import { MetadataRoute } from 'next';
+import { siteConfig } from '@/lib/seo.config';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://kanishkatravels.com';
-
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/admin', '/api/'],
-    },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/admin/', '/api/'],
+      },
+    ],
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }
