@@ -4,8 +4,9 @@
 import { useReducedMotion } from "framer-motion";
 import GalleryTunnel from "@/components/originkit/ui/hero-13/gallery-tunnel";
 
-/** Fleet vehicle photos for the 3D perspective tunnel */
+/** Combined Fleet Vehicles & City Landmark Places for the 3D perspective tunnel */
 const TUNNEL_IMAGES = [
+  // Fleet Vehicles
   { src: "/images/fleet/innova-crysta.jpg", alt: "Toyota Innova Crysta" },
   { src: "/images/fleet/innova-hycross.jpg", alt: "Toyota Innova Hycross" },
   { src: "/images/fleet/swift-dzire.jpg", alt: "Swift Dzire" },
@@ -14,11 +15,20 @@ const TUNNEL_IMAGES = [
   { src: "/images/fleet/toyota-etios.jpg", alt: "Toyota Etios" },
   { src: "/images/fleet/tempo-traveller.jpg", alt: "Tempo Traveller" },
   { src: "/images/fleet/mini-bus.jpg", alt: "Luxury Mini Bus" },
+
+  // Important City Landmarks & Key Destination Places
+  { src: "/images/destinations/chennai-central.jpg", alt: "Chennai Central Railway Station" },
+  { src: "/images/destinations/tirupati.png", alt: "Tirupati Balaji Temple" },
+  { src: "/images/destinations/pondicherry.png", alt: "Pondicherry Promenade" },
+  { src: "/images/destinations/mahabalipuram.jpg", alt: "Mahabalipuram Shore Temple" },
+  { src: "/images/destinations/ooty.png", alt: "Ooty Tea Gardens" },
+  { src: "/images/destinations/kodaikanal.jpg", alt: "Kodaikanal Lake" },
+  { src: "/images/gallery/airport.jpg", alt: "Chennai International Airport" },
 ];
 
 /**
  * Light-theme animated Three.js gallery tunnel.
- * Same speed & grid design as dark theme — warm ivory palette.
+ * Features both luxury fleet cars and key city landmarks.
  */
 export const PerspectiveBackground = () => {
   const reduceMotion = useReducedMotion();
@@ -28,7 +38,6 @@ export const PerspectiveBackground = () => {
       aria-hidden="true"
       className="absolute inset-0 overflow-hidden"
     >
-      {/* Same speed/grid/design as dark theme, but warm ivory background & no grid line */}
       <GalleryTunnel
         background="#FAF7F0"
         lineColor="#D4AF37"

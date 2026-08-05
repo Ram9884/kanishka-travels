@@ -11,6 +11,7 @@ import { PerspectiveBackground } from '@/components/originkit/ui/hero-03/perspec
 import DarkGalleryTunnel from '@/components/originkit/ui/hero-13/gallery-tunnel';
 
 const DARK_FLEET_IMAGES = [
+  // Fleet Vehicles
   { src: "/images/fleet/innova-crysta.jpg", alt: "Toyota Innova Crysta" },
   { src: "/images/fleet/innova-hycross.jpg", alt: "Toyota Innova Hycross" },
   { src: "/images/fleet/swift-dzire.jpg", alt: "Swift Dzire" },
@@ -19,6 +20,15 @@ const DARK_FLEET_IMAGES = [
   { src: "/images/fleet/toyota-etios.jpg", alt: "Toyota Etios" },
   { src: "/images/fleet/tempo-traveller.jpg", alt: "Tempo Traveller" },
   { src: "/images/fleet/mini-bus.jpg", alt: "Luxury Mini Bus" },
+
+  // Important City Landmarks & Key Destination Places
+  { src: "/images/destinations/chennai-central.jpg", alt: "Chennai Central Railway Station" },
+  { src: "/images/destinations/tirupati.png", alt: "Tirupati Balaji Temple" },
+  { src: "/images/destinations/pondicherry.png", alt: "Pondicherry Promenade" },
+  { src: "/images/destinations/mahabalipuram.jpg", alt: "Mahabalipuram Shore Temple" },
+  { src: "/images/destinations/ooty.png", alt: "Ooty Tea Gardens" },
+  { src: "/images/destinations/kodaikanal.jpg", alt: "Kodaikanal Lake" },
+  { src: "/images/gallery/airport.jpg", alt: "Chennai International Airport" },
 ];
 
 export default function HeroSection() {
