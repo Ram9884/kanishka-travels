@@ -2,11 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { 
-  Crown, 
-  Phone, 
-  MapPin, 
-  ShieldCheck, 
+import {
+  Crown,
+  Phone,
+  MapPin,
+  ShieldCheck,
   ArrowUpRight,
   Sparkles
 } from 'lucide-react';
@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-safe-dock relative z-10">
         {/* Main Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-[#D4AF37]/20">
-          
+
           {/* Column 1: Brand & Personal Promise (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
             <Link href="/" className="inline-flex items-center gap-3 group" aria-label="Kanishka Travels Homepage">
@@ -77,8 +77,8 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs font-sans">
               {QUICK_LINKS.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    href={link.href} 
+                  <Link
+                    href={link.href}
                     className="hover:text-[#D4AF37] transition-colors duration-200 flex items-center gap-1 group font-medium"
                   >
                     <span>{link.name}</span>
@@ -116,7 +116,7 @@ export default function Footer() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
               Contact & Location
             </h3>
-            
+
             <div className="space-y-2.5 text-xs">
               {/* Office Location Card */}
               <div className="footer-card flex items-start gap-2.5 p-2.5 sm:p-3 rounded-md border border-[#D4AF37]/30">
