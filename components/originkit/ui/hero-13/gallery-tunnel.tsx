@@ -337,7 +337,14 @@ export default function ImageBox(props: Partial<ImageBoxProps>) {
         const resize = () => {
             const w = Math.max(1, frame.clientWidth);
             const h = Math.max(1, frame.clientHeight);
-            camera.aspect = w / h;
+            const aspect = w / h;
+            camera.aspect = aspect;
+            if (aspect < 1) {
+                // Expand FOV on portrait/mobile screens so tunnel sides and car cards remain wide & visible
+                camera.fov = Math.min(68, Math.max(45, 45 / (aspect * 1.15)));
+            } else {
+                camera.fov = 45;
+            }
             camera.updateProjectionMatrix();
             renderer.setSize(w, h, false);
         };
