@@ -1,27 +1,11 @@
 import { siteConfig } from './seo.config';
-import { TESTIMONIALS } from '@/data/testimonials';
 import { FAQ_ITEMS, FAQItem } from '@/data/faq';
 
 export function getTaxiServiceSchema() {
-  const reviews = TESTIMONIALS.map((t) => ({
-    '@type': 'Review',
-    author: {
-      '@type': 'Person',
-      name: t.name,
-    },
-    datePublished: t.date,
-    reviewBody: t.review,
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: t.rating,
-      bestRating: 5,
-      worstRating: 1,
-    },
-  }));
-
-  // aggregateRating intentionally omitted: Google's guidelines prohibit self-serving
-  // AggregateRating sourced from third-party platforms (e.g. Google Business Profile)
-  // on LocalBusiness / TaxiService schemas. Only on-site collected ratings are eligible.
+  // Review and aggregateRating intentionally omitted:
+  // Google's guidelines prohibit self-serving Review / AggregateRating markup on
+  // LocalBusiness / TaxiService schemas. Individual reviews without aggregateRating
+  // also trigger a Search Console validation error. Testimonials remain visible in the UI.
 
   const servedAreas = siteConfig.serviceAreas.map((area) => ({
     '@type': 'Place',
@@ -86,7 +70,6 @@ export function getTaxiServiceSchema() {
         addressCountry: siteConfig.address.addressCountry,
       },
     },
-    review: reviews,
   };
 }
 

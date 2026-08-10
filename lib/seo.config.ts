@@ -7,12 +7,6 @@ export const siteConfig = {
   owner: 'S. Ramesh',
   foundingYear: 2014,
   yearsOfExperience: 12,
-  rating: {
-    ratingValue: 4.9,
-    reviewCount: 350,
-    bestRating: 5,
-    worstRating: 1,
-  },
   phone: '+91 96773 84267',
   rawPhone: '+919677384267',
   secondaryPhone: '+91 98845 17451',
