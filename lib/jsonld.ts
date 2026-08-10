@@ -9,7 +9,7 @@ export function getTaxiServiceSchema() {
       '@type': 'Person',
       name: t.name,
     },
-    datePublished: '2026-01-01',
+    datePublished: t.date,
     reviewBody: t.review,
     reviewRating: {
       '@type': 'Rating',
@@ -19,8 +19,9 @@ export function getTaxiServiceSchema() {
     },
   }));
 
-  const totalRatingSum = TESTIMONIALS.reduce((acc, curr) => acc + curr.rating, 0);
-  const avgRating = (totalRatingSum / (TESTIMONIALS.length || 1)).toFixed(1);
+  // aggregateRating intentionally omitted: Google's guidelines prohibit self-serving
+  // AggregateRating sourced from third-party platforms (e.g. Google Business Profile)
+  // on LocalBusiness / TaxiService schemas. Only on-site collected ratings are eligible.
 
   const servedAreas = siteConfig.serviceAreas.map((area) => ({
     '@type': 'Place',
@@ -84,13 +85,6 @@ export function getTaxiServiceSchema() {
         postalCode: siteConfig.address.postalCode,
         addressCountry: siteConfig.address.addressCountry,
       },
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: siteConfig.rating.ratingValue.toString(),
-      reviewCount: siteConfig.rating.reviewCount,
-      bestRating: siteConfig.rating.bestRating.toString(),
-      worstRating: siteConfig.rating.worstRating.toString(),
     },
     review: reviews,
   };
