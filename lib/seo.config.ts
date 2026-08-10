@@ -3,9 +3,16 @@ export const siteConfig = {
   slogan: 'Your Trip... Our Responsibility!',
   description:
     'Book Innova Crysta, Hycross, Swift Dzire & Tempo Traveller with Kanishka Travels. Premium outstation cabs & airport taxi service managed personally by S. Ramesh in Iyyappanthangal, Chennai.',
-  url: process.env.NEXT_PUBLIC_APP_URL || 'https://kanishkatravels.com',
+  url: process.env.NEXT_PUBLIC_APP_URL || 'https://kanishkatravels.in',
   owner: 'S. Ramesh',
   foundingYear: 2014,
+  yearsOfExperience: 12,
+  rating: {
+    ratingValue: 4.9,
+    reviewCount: 350,
+    bestRating: 5,
+    worstRating: 1,
+  },
   phone: '+91 96773 84267',
   rawPhone: '+919677384267',
   secondaryPhone: '+91 98845 17451',
@@ -72,7 +79,7 @@ export const siteConfig = {
     'Luxury Outstation Cabs Chennai',
   ],
   ogImage: {
-    url: 'https://kanishkatravels.com/og-image.jpg',
+    url: 'https://kanishkatravels.in/og-image.jpg',
     width: 1200,
     height: 630,
     alt: 'Kanishka Travels - Luxury Outstation Cab & Taxi Service in Chennai',

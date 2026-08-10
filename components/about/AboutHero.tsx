@@ -12,8 +12,8 @@ if (typeof window !== 'undefined') {
 }
 
 const STATS = [
-  { value: '10+', label: 'Years of Service' },
-  { value: '5K+', label: 'Journeys Completed' },
+  { value: '12+', label: 'Years of Service' },
+  { value: '1,500+', label: 'Journeys Completed' },
   { value: '100%', label: 'Owner Operated' },
   { value: '₹0', label: 'Advance Required' },
 ];

@@ -87,10 +87,10 @@ export function getTaxiServiceSchema() {
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: avgRating,
-      reviewCount: TESTIMONIALS.length,
-      bestRating: '5',
-      worstRating: '1',
+      ratingValue: siteConfig.rating.ratingValue.toString(),
+      reviewCount: siteConfig.rating.reviewCount,
+      bestRating: siteConfig.rating.bestRating.toString(),
+      worstRating: siteConfig.rating.worstRating.toString(),
     },
     review: reviews,
   };

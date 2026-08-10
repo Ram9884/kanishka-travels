@@ -48,7 +48,7 @@ export default function AnimatedStats() {
 function StatCard({ stat, index }: { stat: StatItem; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(stat.value);
 
   useEffect(() => {
     if (!isInView) return;

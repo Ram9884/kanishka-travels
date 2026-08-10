@@ -9,7 +9,7 @@ import CallButton from '@/components/CallButton';
 import { useTheme } from '@/components/ThemeProvider';
 
 const CREDENTIALS = [
-  { label: 'Years Operating', value: '10+' },
+  { label: 'Years Operating', value: '12+' },
   { label: 'Fleet Size', value: '9 Vehicles' },
   { label: 'Service Area', value: 'South India' },
   { label: 'Availability', value: '24 / 7' },

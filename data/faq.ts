@@ -1,3 +1,5 @@
+import { siteConfig } from '@/lib/seo.config';
+
 export interface FAQItem {
   id: string;
   category: 'Booking' | 'Cancellation' | 'Airport Pickup' | 'Payments' | 'Driver Details' | 'Vehicle Availability' | 'Corporate' | 'Family Trips';
@@ -10,7 +12,7 @@ export const FAQ_ITEMS: FAQItem[] = [
     id: 'faq-1',
     category: 'Booking',
     question: 'How do I book a cab with Kanishka Travels?',
-    answer: 'Booking is simple and direct. You can fill out our online booking request form, send a quick message on WhatsApp (+91 98400 00000), or call S. Ramesh directly. Every booking is confirmed immediately with vehicle & driver assignment.',
+    answer: `Booking is simple and direct. You can fill out our online booking request form, send a quick message on WhatsApp (${siteConfig.phone}), or call S. Ramesh directly. Every booking is confirmed immediately with vehicle & driver assignment.`,
   },
   {
     id: 'faq-2',
