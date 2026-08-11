@@ -1,139 +1,335 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { createClient } from '@/lib/supabase/client';
-import { Crown, User, Phone, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
+import {
+  Crown,
+  User,
+  Mail,
+  Phone,
+  Lock,
+  Eye,
+  EyeOff,
+  ShieldCheck,
+  Sparkles,
+  ArrowRight,
+  AlertCircle,
+  UserCheck,
+} from 'lucide-react';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
-export default function SignupPage() {
+function SignupFormContent() {
   const [fullName, setFullName] = useState('');
-  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get('redirect') || '/my-bookings';
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
+    setLoading(true);
 
-    const supabase = createClient();
-    const { error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          full_name: fullName,
-          phone,
-        },
-      },
-    });
+    const cleanName = fullName.trim();
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPhone = phone.trim();
 
-    if (signUpError) {
-      setError(signUpError.message);
+    if (!cleanName || !cleanEmail || !password) {
+      setError('Please fill in all required fields.');
       setLoading(false);
-    } else {
-      router.push('/my-bookings');
-      router.refresh();
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const supabase = createClient();
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email: cleanEmail,
+        password,
+        options: {
+          data: {
+            full_name: cleanName,
+            phone: cleanPhone,
+          },
+        },
+      });
+
+      if (signUpError) {
+        console.error('Signup error:', signUpError);
+        setError(signUpError.message || 'Failed to create account.');
+        setLoading(false);
+        return;
+      }
+
+      // Trigger owner notification email
+      const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+      void fetch(`${appUrl}/api/notify/email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'register',
+          data: {
+            email: cleanEmail,
+            full_name: cleanName,
+            phone: cleanPhone,
+          },
+        }),
+      }).catch(console.error);
+
+      // If user session created immediately, log in
+      if (data.session) {
+        router.push(redirectPath);
+        router.refresh();
+      } else {
+        // Try sign in directly
+        const { error: autoSignInErr } = await supabase.auth.signInWithPassword({
+          email: cleanEmail,
+          password,
+        });
+
+        if (!autoSignInErr) {
+          router.push(redirectPath);
+          router.refresh();
+        } else {
+          router.push(`/login?registered=true&redirect=${encodeURIComponent(redirectPath)}`);
+        }
+      }
+    } catch (err: any) {
+      setError(err?.message || 'Registration error. Please try again.');
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center bg-[#0A1128] text-white px-4 py-12">
-      <div className="max-w-md w-full rounded-2xl bg-slate-900/90 border border-[#A16207]/40 p-8 shadow-2xl backdrop-blur-xl">
-        <div className="text-center space-y-3 mb-8">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1E3A8A] to-[#7A1F2B] p-0.5 border border-[#A16207]/50 mx-auto flex items-center justify-center">
-            <Crown className="w-6 h-6 text-[#A16207]" />
+    <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="auth-card rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 border border-[#D4AF37]/20 shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+      >
+        {/* Left Column: Brand Story Banner (5 cols) */}
+        <div className="auth-left-banner lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-[#0F0F14] via-[#14141C] to-[#0A0A0D]">
+          {/* Subtle Ambient Light Sheen */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-[#D4AF37]/10 blur-[100px] rounded-full pointer-events-none" />
+
+          <div className="space-y-6 relative z-10">
+            {/* Crown Logo Badge */}
+            <div className="inline-flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl icon-container-gold flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                <Crown className="w-6 h-6 text-slate-950" />
+              </div>
+              <div>
+                <span className="font-serif text-2xl font-bold tracking-tight auth-brand-title block leading-none text-white">
+                  Kanishka <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Travels</span>
+                </span>
+                <span className="text-[10px] font-mono uppercase tracking-widest auth-gold-text block mt-1">
+                  Customer Registration
+                </span>
+              </div>
+            </div>
+
+            {/* Headline */}
+            <div className="space-y-2 pt-4">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest auth-gold-text flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                Join Kanishka Fleet
+              </span>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight leading-snug auth-heading text-white">
+                Create your account for personalized travel coordination.
+              </h2>
+              <p className="text-xs sm:text-sm font-sans font-light leading-relaxed auth-subtitle text-[#A1A1AA]">
+                Register once to manage all outstation, airport, and local ride requests directly with proprietor S. Ramesh.
+              </p>
+            </div>
+
+            {/* Value Props */}
+            <div className="space-y-3 pt-4">
+              {[
+                'Direct Ride Coordination by S. Ramesh',
+                'Zero Hidden Charges & Transparent Billing',
+                'Priority Outstation Cab Fleet Booking',
+              ].map((prop) => (
+                <div key={prop} className="flex items-center gap-2.5 text-xs font-medium text-slate-200">
+                  <div className="w-5 h-5 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  </div>
+                  <span>{prop}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1 className="text-2xl font-bold font-serif text-white">Create Account</h1>
-          <p className="text-xs text-slate-400">Required to submit and manage booking requests</p>
+
+          {/* Footer note */}
+          <div className="pt-8 border-t border-[#D4AF37]/20 text-[11px] font-mono relative z-10 flex items-center justify-between auth-footer-text text-[#71717A]">
+            <span>Proprietor S. Ramesh</span>
+            <span className="auth-gold-text font-semibold text-[#F5D77F]">Chennai · 24/7</span>
+          </div>
         </div>
 
-        {error && (
-          <div className="mb-6 p-3.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>{error}</span>
-          </div>
-        )}
-
-        <form onSubmit={handleSignup} className="space-y-4">
-          <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-              <User className="w-3.5 h-3.5 text-[#A16207]" /> Full Name
-            </label>
-            <input
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              placeholder="S. Parthiban"
-              className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none placeholder:text-slate-500"
-              required
-            />
+        {/* Right Column: Registration Form (7 cols) */}
+        <div className="auth-right-form lg:col-span-7 p-8 sm:p-12 flex flex-col justify-center space-y-6 bg-gradient-to-b from-[#13131A] to-[#0D0D12]">
+          {/* Header */}
+          <div className="space-y-2 border-b border-[#D4AF37]/20 pb-3">
+            <h1 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight auth-heading text-white">
+              Create Account
+            </h1>
+            <p className="text-xs font-sans font-light auth-subtitle text-[#A1A1AA]">
+              Fill in your details below to create your customer account.
+            </p>
           </div>
 
-          <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-              <Phone className="w-3.5 h-3.5 text-[#A16207]" /> Mobile Phone Number
-            </label>
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="9876543210"
-              className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none placeholder:text-slate-500"
-              required
-            />
+          {/* Error Alert */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2.5"
+            >
+              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+              <span>{error}</span>
+            </motion.div>
+          )}
+
+          {/* Form */}
+          <form onSubmit={handleSignup} className="space-y-4">
+            {/* Full Name */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-mono uppercase tracking-widest auth-label font-semibold text-slate-300">
+                Full Name
+              </label>
+              <div className="relative">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#D4AF37]">
+                  <User className="w-4 h-4" />
+                </div>
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="S. Parthiban"
+                  className="auth-input w-full pl-10 pr-4 py-3 rounded-xl text-sm focus:outline-none transition-all font-sans bg-[#1A1A24] border border-[#D4AF37]/30 text-white placeholder-slate-500"
+                  required
+                  autoFocus
+                />
+              </div>
+            </div>
+
+            {/* Mobile Phone (Optional / Contact) */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-mono uppercase tracking-widest auth-label font-semibold text-slate-300">
+                Mobile Phone Number
+              </label>
+              <div className="relative flex items-center">
+                <div className="absolute left-3.5 flex items-center gap-1.5 text-xs font-mono font-bold text-[#D4AF37] select-none border-r border-[#D4AF37]/20 pr-2.5">
+                  <span className="text-base">🇮🇳</span>
+                  <span>+91</span>
+                </div>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="9876543210"
+                  maxLength={10}
+                  className="auth-input w-full pl-24 pr-4 py-3 rounded-xl text-sm focus:outline-none transition-all font-mono tracking-wider bg-[#1A1A24] border border-[#D4AF37]/30 text-white placeholder-slate-500"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Email Address */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-mono uppercase tracking-widest auth-label font-semibold text-slate-300">
+                Email Address
+              </label>
+              <div className="relative">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#D4AF37]">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@example.com"
+                  className="auth-input w-full pl-10 pr-4 py-3 rounded-xl text-sm focus:outline-none transition-all font-sans bg-[#1A1A24] border border-[#D4AF37]/30 text-white placeholder-slate-500"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Password */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-mono uppercase tracking-widest auth-label font-semibold text-slate-300">
+                Create Password
+              </label>
+              <div className="relative">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#D4AF37]">
+                  <Lock className="w-4 h-4" />
+                </div>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="At least 6 characters"
+                  minLength={6}
+                  className="auth-input w-full pl-10 pr-12 py-3 rounded-xl text-sm focus:outline-none transition-all font-mono bg-[#1A1A24] border border-[#D4AF37]/30 text-white placeholder-slate-500"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#A16207] text-slate-950 font-extrabold text-xs uppercase tracking-widest shadow-[0_4px_20px_rgba(212,175,55,0.35)] hover:scale-[1.01] hover:brightness-110 active:scale-[0.99] transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5 disabled:opacity-50 mt-2"
+            >
+              <UserCheck className="w-4 h-4" />
+              <span>{loading ? 'Creating Account...' : 'Register Account'}</span>
+            </button>
+          </form>
+
+          {/* Quick WhatsApp Support Link */}
+          <div className="pt-4 border-t border-[#D4AF37]/15 flex items-center justify-between text-xs text-[#A1A1AA]">
+            <WhatsAppButton variant="badge" label="Direct Owner Assistance" />
+            <Link
+              href={`/login${redirectPath ? `?redirect=${encodeURIComponent(redirectPath)}` : ''}`}
+              className="text-xs font-mono text-[#D4AF37] hover:underline transition-colors flex items-center gap-1 font-semibold"
+            >
+              <span>Already Registered? Sign In</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
-
-          <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-              <Mail className="w-3.5 h-3.5 text-[#A16207]" /> Email Address
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="parthiban@example.com"
-              className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none placeholder:text-slate-500"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-              <Lock className="w-3.5 h-3.5 text-[#A16207]" /> Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="At least 6 characters"
-              className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none placeholder:text-slate-500"
-              minLength={6}
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#A16207] to-[#D4AF37] text-white font-semibold text-sm shadow-lg hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
-          >
-            <span>{loading ? 'Creating Account...' : 'Register & Continue'}</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </form>
-
-        <div className="mt-6 pt-6 border-t border-slate-800 text-center text-xs text-slate-400">
-          <span>Already registered? </span>
-          <Link href="/login" className="text-[#F5D77F] font-semibold hover:underline">
-            Log In
-          </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[60vh] flex items-center justify-center text-xs font-mono text-[#D4AF37]">Loading Portal...</div>}>
+      <SignupFormContent />
+    </Suspense>
   );
 }

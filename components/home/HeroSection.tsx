@@ -1,159 +1,269 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import ParallaxLayer from '@/components/motion/ParallaxLayer';
-import ScrollReveal from '@/components/motion/ScrollReveal';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import CallButton from '@/components/CallButton';
-import LocationAutocomplete from '@/components/ui/LocationAutocomplete';
-import { Crown, MapPin, Calendar, Compass, ShieldCheck, ArrowRight } from 'lucide-react';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import BookingCard from '@/components/ui/BookingCard';
+import { ShieldCheck, Award, Sparkles } from 'lucide-react';
+import { useScrollStoryController } from '@/components/animation/ScrollStoryController';
+import { useTheme } from '@/components/ThemeProvider';
+
+import { PerspectiveBackground } from '@/components/originkit/ui/hero-03/perspective-background';
+import DarkGalleryTunnel from '@/components/originkit/ui/hero-13/gallery-tunnel';
+
+const DARK_FLEET_IMAGES = [
+  // Fleet Vehicles
+  { src: "/images/fleet/innova-crysta.jpg", alt: "Toyota Innova Crysta" },
+  { src: "/images/fleet/innova-hycross.jpg", alt: "Toyota Innova Hycross" },
+  { src: "/images/fleet/swift-dzire.jpg", alt: "Swift Dzire" },
+  { src: "/images/fleet/kia-carens.jpg", alt: "Kia Carens" },
+  { src: "/images/fleet/maruti-ertiga.jpg", alt: "Maruti Ertiga" },
+  { src: "/images/fleet/toyota-etios.jpg", alt: "Toyota Etios" },
+  { src: "/images/fleet/tempo-traveller.jpg", alt: "Tempo Traveller" },
+  { src: "/images/fleet/mini-bus.jpg", alt: "Luxury Mini Bus" },
+
+  // Important City Landmarks & Key Destination Places
+  { src: "/images/destinations/chennai-central.jpg", alt: "Chennai Central Railway Station" },
+  { src: "/images/destinations/tirupati.png", alt: "Tirupati Balaji Temple" },
+  { src: "/images/destinations/pondicherry.png", alt: "Pondicherry Promenade" },
+  { src: "/images/destinations/mahabalipuram.jpg", alt: "Mahabalipuram Shore Temple" },
+  { src: "/images/destinations/ooty.png", alt: "Ooty Tea Gardens" },
+  { src: "/images/destinations/kodaikanal.jpg", alt: "Kodaikanal Lake" },
+  { src: "/images/gallery/airport.jpg", alt: "Chennai International Airport" },
+];
 
 export default function HeroSection() {
-  const [pickup, setPickup] = useState('');
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
+  const { heroSectionRef, heroContentRef } = useScrollStoryController();
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const pillsRef   = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!heroSectionRef.current) return;
+
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isReducedMotion) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      if (headlineRef.current) {
+        const lines = headlineRef.current.querySelectorAll('.hero-gsap-line');
+        tl.fromTo(
+          lines,
+          { opacity: 0, y: 40, rotateX: 25, filter: 'blur(6px)' },
+          { opacity: 1, y: 0, rotateX: 0, filter: 'blur(0px)', stagger: 0.18, duration: 1.0 }
+        );
+      }
+      if (subtitleRef.current) {
+        tl.fromTo(
+          subtitleRef.current,
+          { opacity: 0, y: 20, filter: 'blur(4px)' },
+          { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7 },
+          '-=0.5'
+        );
+      }
+      if (pillsRef.current) {
+        tl.fromTo(
+          pillsRef.current.children,
+          { opacity: 0, y: 16, scale: 0.93 },
+          { opacity: 1, y: 0, scale: 1, stagger: 0.1, duration: 0.6 },
+          '-=0.4'
+        );
+      }
+    }, heroSectionRef);
+
+    return () => ctx.revert();
+  }, [heroSectionRef, theme]);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0A1128] via-[#0F172A] to-[#1E3A8A]/30 py-20 px-4">
-      {/* Background Parallax Layers */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Layer 1: Ambient Stars & Glow */}
-        <ParallaxLayer speed={-5} className="absolute inset-0 opacity-40">
-          <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#1E3A8A]/40 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-[#A16207]/20 rounded-full blur-3xl"></div>
-        </ParallaxLayer>
-
-        {/* Layer 2: Temple Gopuram & Skyline Silhouette */}
-        <ParallaxLayer speed={-12} className="absolute bottom-0 left-0 right-0 h-64 opacity-15">
-          <svg className="w-full h-full text-amber-500" viewBox="0 0 1200 300" preserveAspectRatio="none" fill="currentColor">
-            <path d="M0 300 h1200 v-40 h-100 v-20 h-20 v-60 h-20 v60 h-20 v20 h-40 v-100 h-30 v-80 h-20 v-40 h-10 v-20 h-10 v20 h-10 v40 h-20 v80 h-30 v100 h-150 v-30 h-40 v30 h-200 v-80 h-30 v-40 h-20 v80 h-30 v40 h-300 v-60 h-40 v60 h-150 v40 z" />
-          </svg>
-        </ParallaxLayer>
+    <section
+      ref={heroSectionRef}
+      className="relative w-full min-h-[100svh] flex flex-col items-center justify-center overflow-hidden border-none"
+    >
+      {/* ── Static Background ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {isLight ? (
+          /* Light: Originkit Hero 03 Perspective Background */
+          <>
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(160deg, #FAF7F0 0%, #F5EDD8 35%, #EDE5CC 65%, #E8DFC4 100%)',
+              }}
+            />
+            {/* Originkit Hero 03 3D Tunnel */}
+            <PerspectiveBackground />
+            {/* Warm amber glow — top right */}
+            <div
+              className="absolute -top-32 right-0 w-[700px] h-[600px] opacity-40 pointer-events-none z-10"
+              style={{ background: 'radial-gradient(ellipse at top right, rgba(212,160,23,0.35), transparent 65%)' }}
+            />
+          </>
+        ) : (
+          /* Dark: Originkit Hero 13 3D Car Gallery Tunnel */
+          <>
+            {/* Dark Base */}
+            <div className="absolute inset-0 bg-[#0B0B0D]" />
+            {/* Originkit Hero 13 3D Tunnel */}
+            <div className="absolute inset-0 opacity-70">
+              <DarkGalleryTunnel
+                images={DARK_FLEET_IMAGES}
+                background="#0B0B0D"
+                lineColor="#D4AF37"
+                lineOpacity={25}
+                grid={6}
+                speed={40}
+                boost={80}
+                fade={100}
+                label={false}
+              />
+            </div>
+            {/* Dark contrast gradient overlay */}
+            <div
+              className="absolute inset-0 z-10"
+              style={{
+                background: 'linear-gradient(to bottom, rgba(11,11,13,0.75) 0%, rgba(11,11,13,0.50) 45%, rgba(11,11,13,0.95) 100%)',
+              }}
+            />
+            {/* Ambient vignette */}
+            <div
+              className="absolute inset-0 z-10"
+              style={{ background: 'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.75) 100%)' }}
+            />
+          </>
+        )}
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Left Column: Brand Statement */}
-        <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-          <ScrollReveal yOffset={20}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E3A8A]/60 border border-[#A16207]/40 text-[#F5D77F] text-xs font-mono font-medium shadow-inner">
-              <Crown className="w-4 h-4 text-[#A16207]" />
-              <span>S. Ramesh Presents • Iyyappanthangal, Chennai</span>
-            </div>
+      {/* ── Content ── */}
+      <div
+        ref={heroContentRef}
+        className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-14 sm:pb-20 flex flex-col items-center"
+      >
+        <div className="w-full flex flex-col items-center text-center space-y-6 sm:space-y-8">
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white font-['Playfair_Display',serif] leading-tight mt-2">
-              Your Trip... <br />
-              <span className="bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207] bg-clip-text text-transparent">
+          {/* Headline */}
+          <div className="relative">
+            {/* Warm glow behind headline */}
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-0"
+              style={{
+                width: '100%',
+                maxWidth: '560px',
+                height: '240px',
+                background: isLight
+                  ? 'radial-gradient(ellipse, rgba(217,119,6,0.12), transparent 70%)'
+                  : 'radial-gradient(ellipse, rgba(212,175,55,0.10), transparent 70%)',
+                filter: 'blur(60px)',
+              }}
+            />
+
+            <h1
+              ref={headlineRef}
+              className="relative z-10 font-serif text-4xl xs:text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold leading-[1.08] sm:leading-[1.05] tracking-tight max-w-4xl perspective-1000"
+            >
+              {/* Line 1 */}
+              <span
+                className="hero-gsap-line block font-bold tracking-tight"
+                style={{
+                  color: isLight ? '#1153e0ff' : '#FFFFFF',
+                  textShadow: isLight
+                    ? '0 1px 3px rgba(255,255,255,0.9), 0 4px 20px rgba(255,255,255,0.6)'
+                    : '0 2px 16px rgba(0,0,0,0.9)',
+                }}
+              >
+                Your Trip...
+              </span>
+
+              {/* Line 2 — gradient gold */}
+              <span
+                className="hero-gsap-line block italic pb-1"
+                style={{
+                  backgroundImage: isLight
+                    ? 'linear-gradient(135deg, #92400E 0%, #D97706 40%, #B45309 70%, #78350F 100%)'
+                    : 'linear-gradient(135deg, #FFF099 0%, #F5D77F 35%, #D4AF37 70%, #F59E0B 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  filter: isLight
+                    ? 'drop-shadow(0 2px 8px rgba(255,255,255,0.8))'
+                    : 'drop-shadow(0 4px 20px rgba(212,175,55,0.35))',
+                }}
+              >
                 Our Responsibility!
               </span>
             </h1>
+          </div>
 
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-sans leading-relaxed">
-              Premium airport transfers, local Chennai rides, outstation tour packages, and temple pilgrimages. Personally arranged and operated with 100% reliability.
-            </p>
+          {/* Subtitle */}
+          <p
+            ref={subtitleRef}
+            className="text-base sm:text-lg max-w-2xl leading-relaxed font-sans"
+            style={{
+              color: isLight ? '#5C4A2A' : 'rgba(248,245,238,0.80)',
+              letterSpacing: '0.01em',
+            }}
+          >
+            Executive airport transfers, local Chennai rides, outstation tour packages, and sacred
+            temple pilgrimages — personally coordinated by{' '}
+            <strong style={{ color: isLight ? '#1A1108' : '#F8F5EE', fontWeight: 700 }}>
+              Ramesh
+            </strong>{' '}
+            with care.
+          </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-              <Link
-                href="/book"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#A16207] to-[#D4AF37] text-white font-bold text-base shadow-xl hover:shadow-amber-500/20 hover:scale-[1.02] transition-all cursor-pointer border border-amber-300/40"
+          {/* Booking Card */}
+          <BookingCard />
+
+          {/* Trust pills */}
+          <div ref={pillsRef} className="flex flex-wrap items-center justify-center gap-3">
+            {[
+              { icon: <Award className="w-3.5 h-3.5" />,      label: '100% Punctuality',  iconColor: isLight ? '#B45309' : '#CA8A04' },
+              { icon: <ShieldCheck className="w-3.5 h-3.5" />, label: 'Verified Cabs',      iconColor: isLight ? '#166534' : '#34D399' },
+              { icon: <Sparkles className="w-3.5 h-3.5" />,    label: 'Zero Advance Fees', iconColor: isLight ? '#B45309' : '#CA8A04' },
+            ].map(({ icon, label, iconColor }) => (
+              <span
+                key={label}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono backdrop-blur-sm transition-all duration-300 hover:scale-105 cursor-default"
+                style={{
+                  background: isLight
+                    ? 'rgba(255,251,235,0.85)'
+                    : 'rgba(255,255,255,0.07)',
+                  border: isLight
+                    ? '1px solid rgba(180,83,9,0.30)'
+                    : '1px solid rgba(212,175,55,0.25)',
+                  color: isLight ? '#3C1A08' : 'rgba(248,245,238,0.88)',
+                  boxShadow: isLight
+                    ? '0 2px 10px rgba(180,83,9,0.10), inset 0 1px 0 rgba(255,255,255,0.85)'
+                    : '0 2px 8px rgba(0,0,0,0.25)',
+                }}
               >
-                <span>Book Your Trip</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-
-              <WhatsAppButton variant="inline" label="Chat with S. Ramesh" />
-              <CallButton variant="outline" label="Call Now" />
-            </div>
-
-            {/* Key Trust Signals */}
-            <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800 max-w-lg mx-auto lg:mx-0">
-              <div className="space-y-1">
-                <p className="text-xs text-slate-400 font-mono uppercase">Fleet</p>
-                <p className="text-sm font-semibold text-white">Sedan, SUV & Tempo</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-xs text-slate-400 font-mono uppercase">Pricing</p>
-                <p className="text-sm font-semibold text-[#F5D77F]">Direct Quote</p>
-              </div>
-              <div className="space-y-1">
-                <p className="text-xs text-slate-400 font-mono uppercase">Support</p>
-                <p className="text-sm font-semibold text-white">24/7 Phone</p>
-              </div>
-            </div>
-          </ScrollReveal>
+                <span style={{ color: iconColor }}>{icon}</span>
+                {label}
+              </span>
+            ))}
+          </div>
         </div>
+      </div>
 
-        {/* Right Column: Quick Booking Entry Card */}
-        <div className="lg:col-span-5">
-          <ScrollReveal yOffset={30} delay={0.1}>
-            <div className="rounded-2xl bg-slate-900/90 backdrop-blur-xl border border-[#A16207]/40 p-6 sm:p-8 shadow-2xl shadow-black/60 relative">
-              <div className="absolute -top-3 left-6 bg-[#A16207] text-white text-[11px] font-mono px-3 py-0.5 rounded-full uppercase tracking-wider font-semibold">
-                Quick Trip Request
-              </div>
-
-              <h2 className="text-xl font-bold text-white mb-1 font-serif">Where are you traveling?</h2>
-              <p className="text-xs text-slate-400 mb-6">Select trip type to start booking with Ramesh</p>
-
-              <form action="/book" method="GET" className="space-y-4">
-                <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-                    <Compass className="w-3.5 h-3.5 text-[#A16207]" /> Service Type
-                  </label>
-                  <select
-                    name="service"
-                    className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none cursor-pointer"
-                  >
-                    <option value="airport">Airport Pickup & Drop (MAA)</option>
-                    <option value="local">Local Chennai Taxi</option>
-                    <option value="outstation">Outstation Trip (Round-Trip)</option>
-                    <option value="temple">Temple Tour Package</option>
-                    <option value="corporate">Corporate Rental</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#A16207]" /> Pickup Location
-                  </label>
-                  <LocationAutocomplete
-                    name="pickup"
-                    value={pickup}
-                    onChange={setPickup}
-                    placeholder="Type area e.g. Porur, Airport, T. Nagar"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-[#A16207]" /> Travel Date
-                  </label>
-                  <input
-                    type="date"
-                    name="date"
-                    className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none text-slate-300 cursor-pointer"
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#1E3A8A] to-[#A16207] text-white font-semibold text-sm shadow-lg hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-2 mt-2"
-                >
-                  <span>Proceed to Select Vehicle</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </form>
-
-              <div className="mt-4 pt-4 border-t border-slate-800 text-center">
-                <p className="text-[11px] text-slate-400 flex items-center justify-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>No payment required now. Ramesh confirms quote personally.</span>
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 animate-bounce">
+        <span
+          className="text-[9px] font-mono uppercase tracking-[0.2em]"
+          style={{ color: isLight ? '#92400E' : 'rgba(245,215,127,0.55)' }}
+        >
+          Scroll
+        </span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ color: isLight ? '#B45309' : 'rgba(202,138,4,0.70)' }}>
+          <path
+            d="M12 5v14M5 12l7 7 7-7"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
     </section>
   );

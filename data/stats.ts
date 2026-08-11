@@ -1,0 +1,38 @@
+export interface StatItem {
+  id: string;
+  value: number;
+  suffix: string;
+  label: string;
+  description: string;
+}
+
+export const MILESTONE_STATS: StatItem[] = [
+  {
+    id: 'travellers',
+    value: 1500,
+    suffix: '+',
+    label: 'Happy Travellers',
+    description: 'Families & executives served across South India',
+  },
+  {
+    id: 'years',
+    value: 12,
+    suffix: '+ Yrs',
+    label: 'Industry Experience',
+    description: 'Personalized service since 2014 by S. Ramesh',
+  },
+  {
+    id: 'rating',
+    value: 4.9,
+    suffix: '★',
+    label: 'Google Review Rating',
+    description: 'Verified 5-star customer feedback score',
+  },
+  {
+    id: 'drivers',
+    value: 100,
+    suffix: '%',
+    label: 'Verified Drivers',
+    description: 'Background checked highway professionals',
+  },
+];

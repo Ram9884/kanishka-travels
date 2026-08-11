@@ -1,5 +1,7 @@
 'use client';
 
+import { trackEvent } from '@/lib/analytics';
+
 type WhatsAppButtonProps = {
   phone?: string;
   message?: string;
@@ -20,17 +22,24 @@ export default function WhatsAppButton({
 }: WhatsAppButtonProps) {
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
+  const handleClick = () => {
+    trackEvent('whatsapp_click', { phone, variant });
+  };
+
   if (variant === 'floating') {
     return (
       <a
         href={url}
+        onClick={handleClick}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3.5 text-white shadow-xl hover:scale-105 hover:bg-[#20bd5a] transition-all cursor-pointer border border-white/20"
-        aria-label="Chat on WhatsApp"
+        className="hidden lg:flex fixed bottom-5 right-5 z-50 items-center gap-2 rounded-full bg-gradient-to-r from-[#25D366] via-[#20bd5a] to-[#128C7E] px-4 py-2.5 text-white shadow-[0_4px_20px_rgba(37,211,102,0.45)] hover:shadow-[0_6px_28px_rgba(37,211,102,0.65)] hover:scale-105 transition-all duration-300 cursor-pointer border border-white/30 backdrop-blur-md"
+        aria-label="Chat with S. Ramesh on WhatsApp"
       >
-        <WhatsAppIcon className="w-6 h-6" />
-        <span className="hidden sm:inline font-semibold text-sm tracking-wide">Chat with S. Ramesh</span>
+        <WhatsAppIcon className="w-4.5 h-4.5" />
+        <span className="hidden sm:inline font-serif font-bold text-xs tracking-wider uppercase drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
+          Chat with S. Ramesh
+        </span>
       </a>
     );
   }
@@ -39,6 +48,7 @@ export default function WhatsAppButton({
     return (
       <a
         href={url}
+        onClick={handleClick}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -53,6 +63,7 @@ export default function WhatsAppButton({
     return (
       <a
         href={url}
+        onClick={handleClick}
         target="_blank"
         rel="noopener noreferrer"
         className={`inline-flex items-center gap-2 rounded-full bg-[#25D366]/15 border border-[#25D366]/40 px-3.5 py-1.5 text-xs text-[#25D366] font-semibold hover:bg-[#25D366]/25 transition-all cursor-pointer ${className}`}

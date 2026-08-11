@@ -5,9 +5,9 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0A1128] text-slate-100 relative">
+    <div className="min-h-screen flex flex-col bg-transparent text-[#F8F5EE] relative overflow-hidden">
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pt-24 pb-16">{children}</main>
       <WhatsAppButton variant="floating" />
       <Footer />
     </div>

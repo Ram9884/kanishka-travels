@@ -1,47 +1,47 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import GlobalCinematicBackground from '@/components/background/GlobalCinematicBackground';
+import JsonLdScript from '@/components/JsonLdScript';
+import { generatePageMetadata } from '@/lib/seo';
+import {
+  getTaxiServiceSchema,
+  getOrganizationSchema,
+  getWebSiteSchema,
+  getBreadcrumbSchema,
+  getFAQPageSchema,
+} from '@/lib/jsonld';
 
-export const metadata: Metadata = {
-  title: 'Kanishka Travels | Chennai Taxi & Outstation Cab Service',
-  description: 'Kanishka Travels is a Chennai-based taxi service offering local, airport and outstation travel, including one-way and round trips, corporate travel and tours. Personally managed by S. Ramesh.',
-  keywords: ['Kanishka Travels', 'Chennai Taxi', 'Outstation Cab Chennai', 'Airport Taxi Chennai', 'One Way Cab Chennai', 'Innova Crysta Rental', 'Tempo Traveller Chennai', 'S Ramesh Travels', 'Chennai to Bangalore Cab'],
-  metadataBase: new URL('https://kanishkatravels.in'),
-  icons: {
-    icon: [
-      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
-      { url: '/favicon.ico', sizes: 'any' },
-    ],
-    apple: [
-      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
-    ],
-  },
-  openGraph: {
-    title: 'Kanishka Travels | Chennai Taxi & Outstation Cab Service',
-    description: 'Kanishka Travels is a Chennai-based taxi service offering local, airport and outstation travel, including one-way and round trips, corporate travel and tours.',
-    url: 'https://kanishkatravels.in',
-    siteName: 'Kanishka Travels',
-    locale: 'en_IN',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary',
-    title: 'Kanishka Travels | Chennai Taxi & Outstation Cab Service',
-    description: 'Chennai-based taxi service for local, airport and outstation travel. One-way & round trips, corporate travel and tours.',
-  },
-  alternates: {
-    canonical: 'https://kanishkatravels.in',
-  },
-};
+export const metadata: Metadata = generatePageMetadata({
+  path: '/',
+});
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const globalSchemas = [
+    getTaxiServiceSchema(),
+    getOrganizationSchema(),
+    getWebSiteSchema(),
+    getBreadcrumbSchema('/'),
+    getFAQPageSchema(),
+  ];
+
   return (
-    <html lang="en" className="h-full antialiased dark">
-      <body className="min-h-full bg-[#0A1128] text-slate-100 font-sans selection:bg-[#A16207] selection:text-white">
-        {children}
+    <html lang="en" className="h-full antialiased dark" suppressHydrationWarning>
+      <head>
+        <JsonLdScript data={globalSchemas} id="root-global-schemas" />
+      </head>
+      <body
+        className="min-h-full bg-[#0B0B0D] text-[#F8F5EE] font-sans selection:bg-[#D4AF37] selection:text-slate-950 relative"
+        suppressHydrationWarning
+      >
+        <ThemeProvider>
+          <GlobalCinematicBackground />
+          <div className="relative z-10">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );

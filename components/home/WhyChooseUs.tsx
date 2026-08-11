@@ -1,81 +1,94 @@
 'use client';
 
 import React from 'react';
-import ScrollReveal from '@/components/motion/ScrollReveal';
+import { motion } from 'framer-motion';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CallButton from '@/components/CallButton';
-import { Crown, ShieldCheck, Clock, UserCheck, HeartHandshake, PhoneCall } from 'lucide-react';
+import { Crown, ShieldCheck, Clock, UserCheck, PhoneCall, Quote } from 'lucide-react';
 
 const REASONS = [
   {
     icon: PhoneCall,
-    title: 'Personalized Service by S. Ramesh',
-    description: 'Every booking is personally reviewed, confirmed, and managed by S. Ramesh — no middleman or automated call center.',
+    title: 'Personal Attention by S.Ramesh',
+    description: 'Every booking request is personally reviewed, confirmed, and coordinated by S. Ramesh — zero automated call centers or chatbots.',
   },
   {
     icon: ShieldCheck,
-    title: 'No Surprise Charges',
-    description: 'Transparent booking terms discussed upfront before trip departure. Clear agreement on tolls, permits, and driver bata.',
+    title: 'Zero Hidden Charges',
+    description: 'Transparent trip terms discussed upfront before departure. Clear agreement on tolls, state permits, and driver bata.',
   },
   {
     icon: UserCheck,
     title: 'Experienced Highway Drivers',
-    description: 'Polite, well-trained drivers who know Tamil Nadu, AP, Karnataka, and Kerala routes inside out.',
+    description: 'Polite, verified drivers with extensive route knowledge across Tamil Nadu, Andhra Pradesh, Karnataka, and Kerala.',
   },
   {
     icon: Clock,
     title: '100% Punctuality Guarantee',
-    description: 'On-time pickup for early morning airport flights and long-distance outstation pilgrimages.',
+    description: 'On-time pickup guaranteed for early 4 AM airport flights and long-distance outstation pilgrimages.',
   },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 bg-[#0F172A] text-white px-4 border-t border-slate-800 relative">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section className="relative w-full py-12 sm:py-24 bg-transparent text-white px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background Radial Glow */}
+      <div className="absolute top-1/3 left-1/4 w-[600px] h-[350px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Left Column */}
           <div className="lg:col-span-5 space-y-6">
-            <ScrollReveal yOffset={20}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#A16207]/15 border border-[#A16207]/40 text-[#F5D77F] text-xs font-mono">
-                <Crown className="w-4 h-4 text-[#A16207]" />
-                <span>Our Heritage & Trust</span>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="kanishka-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider mb-4">
+                <Crown className="w-4 h-4 text-[#D4AF37]" strokeWidth={2} />
+                <span>Our Service Heritage</span>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-bold font-serif leading-tight">
-                Why Chennai Families & Corporates Trust <span className="text-[#A16207]">Kanishka Travels</span>
+              <h2 className="kanishka-section-title font-serif text-2.5xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-white">
+                The <span className="kanishka-section-highlight text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#A16207]">Experience</span>
               </h2>
 
-              <p className="text-slate-300 text-sm leading-relaxed">
-                Operating out of Iyyappanthangal, Chennai, we believe travel is not just about moving between places — it is about trust, safety, and personal care for your loved ones.
+              <p className="kanishka-section-p mt-4 text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                Operating out of Iyyappanthangal, Chennai, we believe travel is not just about moving between places — it is about personal trust, safety, and care for your family.
               </p>
 
-              <blockquote className="border-l-2 border-[#A16207] pl-4 py-2 my-4 text-xs italic text-[#F5D77F] bg-[#1E3A8A]/20 rounded-r-lg font-serif">
-                &quot;We don&apos;t just rent cars. We take personal responsibility for making your journey smooth, comfortable, and memorable.&quot;
-                <footer className="not-italic text-slate-400 font-mono text-[10px] mt-1">— S. Ramesh, Proprietor</footer>
-              </blockquote>
-
-              <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex flex-wrap gap-3.5 pt-4 sm:pt-6">
                 <WhatsAppButton variant="inline" label="Connect on WhatsApp" />
                 <CallButton variant="primary" label="Call S. Ramesh" />
               </div>
-            </ScrollReveal>
+            </motion.div>
           </div>
 
           {/* Right Column Grid */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {REASONS.map((item, index) => {
               const Icon = item.icon;
               return (
-                <ScrollReveal key={index} yOffset={30} delay={index * 0.06}>
-                  <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-[#A16207]/50 transition-all duration-300">
-                    <div className="w-10 h-10 rounded-lg bg-[#1E3A8A]/40 border border-[#A16207]/30 flex items-center justify-center text-[#A16207] mb-4">
-                      <Icon className="w-5 h-5" />
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  className="kanishka-exp-card p-5 sm:p-7 rounded-2xl bg-[#1A1A1D]/90 border border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-300 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(212,175,55,0.15)] group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="kanishka-card-icon w-12 h-12 rounded-xl bg-[#0B0B0D]/90 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] mb-5 group-hover:scale-110 group-hover:border-[#D4AF37] transition-all duration-300">
+                      <Icon className="w-6 h-6" strokeWidth={2} />
                     </div>
-                    <h3 className="text-base font-bold text-white font-serif mb-2">{item.title}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">{item.description}</p>
+                    <h3 className="kanishka-card-title text-lg font-extrabold text-[#F5D77F] mb-2 group-hover:text-white transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="kanishka-card-desc text-sm text-[#A1A1AA] leading-relaxed">{item.description}</p>
                   </div>
-                </ScrollReveal>
+                </motion.div>
               );
             })}
           </div>
