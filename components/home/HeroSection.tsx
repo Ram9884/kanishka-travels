@@ -1,14 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import ParallaxLayer from '@/components/motion/ParallaxLayer';
 import ScrollReveal from '@/components/motion/ScrollReveal';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CallButton from '@/components/CallButton';
+import LocationAutocomplete from '@/components/ui/LocationAutocomplete';
 import { Crown, MapPin, Calendar, Compass, ShieldCheck, ArrowRight } from 'lucide-react';
 
 export default function HeroSection() {
+  const [pickup, setPickup] = useState('');
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0A1128] via-[#0F172A] to-[#1E3A8A]/30 py-20 px-4">
       {/* Background Parallax Layers */}
@@ -112,11 +115,11 @@ export default function HeroSection() {
                   <label className="block text-xs font-medium text-slate-300 mb-1 flex items-center gap-1.5">
                     <MapPin className="w-3.5 h-3.5 text-[#A16207]" /> Pickup Location
                   </label>
-                  <input
-                    type="text"
+                  <LocationAutocomplete
                     name="pickup"
-                    placeholder="e.g. Iyyappanthangal, Airport, T. Nagar"
-                    className="w-full rounded-lg bg-slate-800 border border-slate-700 text-white px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:outline-none placeholder:text-slate-500"
+                    value={pickup}
+                    onChange={setPickup}
+                    placeholder="Type area e.g. Porur, Airport, T. Nagar"
                     required
                   />
                 </div>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { Crown, Menu, X, User, LogOut } from 'lucide-react';
+import { Crown, Menu, X, User, LogOut, Calendar } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -80,32 +80,35 @@ export default function Navbar() {
             <Link href="/fleet" className="hover:text-[#A16207] transition-colors cursor-pointer">
               Fleet
             </Link>
-            <Link href="/about" className="hover:text-[#A16207] transition-colors cursor-pointer">
-              About
-            </Link>
-
-            {/* Dedicated Book a Trip Link */}
             <Link href="/book" className="hover:text-[#A16207] transition-colors cursor-pointer font-semibold text-white">
               Book a Trip
             </Link>
-
-            {/* Dedicated My Bookings Link */}
-            <Link href="/my-bookings" className="text-[#F5D77F] hover:text-[#D4AF37] font-semibold transition-colors cursor-pointer">
-              My Bookings
+            {/* About moved to the last position in nav */}
+            <Link href="/about" className="hover:text-[#A16207] transition-colors cursor-pointer">
+              About
             </Link>
           </nav>
 
-          {/* User Auth Actions */}
+          {/* User Auth & Profile Actions Area */}
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <div className="flex items-center gap-3">
-                <Link
-                  href="/my-bookings"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200 hover:text-white transition-colors cursor-pointer"
-                >
+                {/* 1. Profile / Name Badge */}
+                <div className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200">
                   <User className="w-3.5 h-3.5 text-[#A16207]" />
                   <span className="max-w-[120px] truncate">{userName}</span>
+                </div>
+
+                {/* 2. My Bookings Button (Placed right after Profile / Name) */}
+                <Link
+                  href="/my-bookings"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#1E3A8A] border border-[#A16207]/40 text-xs font-bold text-[#F5D77F] hover:bg-[#152e72] transition-colors cursor-pointer shadow-sm"
+                >
+                  <Calendar className="w-3.5 h-3.5 text-[#A16207]" />
+                  <span>My Bookings</span>
                 </Link>
+
+                {/* 3. Logout Button */}
                 <button
                   onClick={handleLogout}
                   title="Logout"
@@ -149,28 +152,38 @@ export default function Navbar() {
             <Link href="/fleet" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
               Fleet
             </Link>
-            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
-              About Us
-            </Link>
             <Link href="/book" onClick={() => setMobileMenuOpen(false)} className="py-2 font-semibold text-white">
               Book a Trip
             </Link>
-            <Link href="/my-bookings" onClick={() => setMobileMenuOpen(false)} className="py-2 text-[#F5D77F] font-semibold">
-              My Bookings
+            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="py-2 hover:text-[#A16207]">
+              About Us
             </Link>
           </nav>
 
           <div className="pt-2 flex flex-col gap-3">
             {user ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full text-center py-2.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-300 font-semibold text-sm"
-              >
-                Log Out ({userName})
-              </button>
+              <div className="space-y-2">
+                <div className="text-xs text-slate-400 font-mono flex items-center gap-1.5 px-1">
+                  <User className="w-3.5 h-3.5 text-[#A16207]" />
+                  <span>Logged in as <strong>{userName}</strong></span>
+                </div>
+                <Link
+                  href="/my-bookings"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center py-2.5 rounded-lg bg-[#1E3A8A] text-[#F5D77F] font-semibold text-sm border border-[#A16207]/40 block"
+                >
+                  My Bookings Portal
+                </Link>
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full text-center py-2.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-300 font-semibold text-sm"
+                >
+                  Log Out
+                </button>
+              </div>
             ) : (
               <Link
                 href="/login"
