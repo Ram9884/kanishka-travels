@@ -91,7 +91,7 @@ export default function AboutHero() {
           >
             More Than a{' '}
             <span
-              className="block italic"
+              className="block font-black"
               style={{
                 backgroundImage: isLight
                   ? 'linear-gradient(135deg, #78350F 0%, #B45309 40%, #D97706 70%, #92400E 100%)'

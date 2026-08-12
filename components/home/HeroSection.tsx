@@ -165,20 +165,20 @@ export default function HeroSection() {
             >
               {/* Line 1 */}
               <span
-                className="hero-gsap-line block font-bold tracking-tight"
+                className="hero-gsap-line block font-extrabold sm:font-black tracking-tight"
                 style={{
-                  color: isLight ? '#1153e0ff' : '#FFFFFF',
+                  color: isLight ? '#1A1108' : '#FFFFFF',
                   textShadow: isLight
-                    ? '0 1px 3px rgba(255,255,255,0.9), 0 4px 20px rgba(255,255,255,0.6)'
+                    ? '0 1px 3px rgba(255,255,255,0.9), 0 2px 10px rgba(0,0,0,0.06)'
                     : '0 2px 16px rgba(0,0,0,0.9)',
                 }}
               >
-                Your Trip...
+                Your Trip
               </span>
 
-              {/* Line 2 — gradient gold */}
+              {/* Line 2 — crisp sharp gold gradient */}
               <span
-                className="hero-gsap-line block italic pb-1"
+                className="hero-gsap-line block font-extrabold sm:font-black pb-1"
                 style={{
                   backgroundImage: isLight
                     ? 'linear-gradient(135deg, #92400E 0%, #D97706 40%, #B45309 70%, #78350F 100%)'
@@ -191,7 +191,7 @@ export default function HeroSection() {
                     : 'drop-shadow(0 4px 20px rgba(212,175,55,0.35))',
                 }}
               >
-                Our Responsibility!
+                Our Responsibility
               </span>
             </h1>
           </div>
